@@ -197,6 +197,12 @@ class TestAppRun < Minitest::Test
     assert_includes output, "Finished task: 'clean out the freezer'"
     assert_includes output, "No tasks created in 'House work'"
   end
+
+  def test_bug_app_should_not_unexpectedly_quit
+    stub_input('e', 'a', 'new project', 'q')
+    app.run
+    assert_includes output, "Created project:"
+  end
 end
 
 

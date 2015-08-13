@@ -58,29 +58,28 @@ class App
           if !@projects || @projects.size == 0
             @output_stream.puts("\e[40;38;5;214mCan't edit any projects\e[0m")
             @output_stream.puts("\e[40;38;5;214mNo projects created\e[0m\n\n")
-            break
-          end
-
-          @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
-          name = @input_stream.gets.chomp
-          if @current_project = @projects.detect{|p| p.keys.first == name}
-            @output_stream.puts("\e[38;5;40mEditing project: '#{name}'\n\n")
-            @output_stream.puts("\e[0;37mEDIT PROJECT MENU\e[0m")
-            @output_stream.puts("-----------------------------")
-            @output_stream.puts("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-            @output_stream.puts("\e[1;37mc   \e[0;35mChange the project name")
-            @output_stream.puts("\e[1;37ma   \e[0;35mAdd a new task")
-            @output_stream.puts("\e[1;37mls  \e[0;35mList all tasks")
-            @output_stream.puts("\e[1;37md   \e[0;35mDelete a task")
-            @output_stream.puts("\e[1;37me   \e[0;35mEdit a task")
-            @output_stream.puts("\e[1;37mf   \e[0;35mFinish a task")
-            @output_stream.puts("\e[1;37mb   \e[0;35mBack to Projects menu")
-            @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
-            command = @input_stream.gets.chomp
-            next
           else
-            @output_stream.puts("\e[40;38;5;214mCan't edit project\e[0m")
-            @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n")
+            @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
+            name = @input_stream.gets.chomp
+            if @current_project = @projects.detect{|p| p.keys.first == name}
+              @output_stream.puts("\e[38;5;40mEditing project: '#{name}'\n\n")
+              @output_stream.puts("\e[0;37mEDIT PROJECT MENU\e[0m")
+              @output_stream.puts("-----------------------------")
+              @output_stream.puts("\e[40;38;5;214mENTER A COMMAND:\e[0m")
+              @output_stream.puts("\e[1;37mc   \e[0;35mChange the project name")
+              @output_stream.puts("\e[1;37ma   \e[0;35mAdd a new task")
+              @output_stream.puts("\e[1;37mls  \e[0;35mList all tasks")
+              @output_stream.puts("\e[1;37md   \e[0;35mDelete a task")
+              @output_stream.puts("\e[1;37me   \e[0;35mEdit a task")
+              @output_stream.puts("\e[1;37mf   \e[0;35mFinish a task")
+              @output_stream.puts("\e[1;37mb   \e[0;35mBack to Projects menu")
+              @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+              command = @input_stream.gets.chomp
+              next
+            else
+              @output_stream.puts("\e[40;38;5;214mCan't edit project\e[0m")
+              @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n")
+            end
           end
         end
       else
