@@ -1,6 +1,6 @@
 class App
   attr_reader :input_stream, :output_stream,
-    :projects, :current_project, :deleted
+    :projects, :current_project
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
@@ -35,19 +35,15 @@ class App
           if projects.size > 0
             print_project_name_prompt
             project_name = get_input
-            @deleted = projects.delete_if {|project| name_for_project(project) == project_name }.empty?
-            if deleted
+            if delete_project_by_name(project_name)
               print_successful_delete(project_name)
             else
               print_project_does_not_exist(project_name)
             end
-          end
-
-          if !deleted && projects.empty?
+          else
             print_cant_delete_project
             print_no_projects_message
           end
-          @deleted = nil
         when 'e'
           if projects.size == 0
             print_cant_edit_project
@@ -230,5 +226,10 @@ class App
 
   def current_tasks_empty?
     current_project_tasks.empty?
+  end
+
+  def delete_project_by_name(name)
+    deleted = projects.delete_if {|project| name_for_project(project) == name }
+    deleted.empty?
   end
 end
