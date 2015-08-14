@@ -28,7 +28,7 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-13 20:56:22 -0700'>2015-08-13 20:56:22 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-13 20:59:08 -0700'>2015-08-13 20:59:08 -0700</time>
     
   </span>
 
@@ -40,7 +40,7 @@
       48.4 complexity per method
     </div>
     <div class="file-stat">
-      6 churn
+      7 churn
     </div>
     <div class="file-stat">
       5 methods
@@ -64,7 +64,7 @@
     @projects = []
   end
 
-  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#run has a flog score of 232          </span>  </li></ul>
+  def run<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(VeryHighComplexity) App#run has a flog score of 232          </span>  </li></ul>
     print_line(&quot;\e[38;5;40mWelcome to Taskitome!&quot;)
     print_line(&quot;\e[0;37m=============================\n&quot;)
     print_line(&quot;\e[0mPROJECTS MENU&quot;)
@@ -90,7 +90,7 @@
           print_line(&quot;\e[38;5;40mListing projects:\e[0m\n&quot;)
           if !@projects.empty?
             @projects.each do |project|
-              print_line(&quot;  #{project.keys.first}\n&quot;)
+              print_line(&quot;  #{project.keys.first}\n&quot;)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys.first 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li></ul>
             end
             print_line(&quot;\n&quot;)
           else
@@ -100,7 +100,7 @@
           if @projects.size &gt; 0
             print_line(&quot;\e[0;35mEnter a project name:\e[0m&quot;)
             project_name = get_input
-            @deleted = @projects.delete_if {|project| project.keys.first == project_name }.empty?
+            @deleted = @projects.delete_if {|project| project.keys.first == project_name }.empty?<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys.first 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li></ul>
             if @deleted
               print_line &quot;\e[38;5;40mDeleting project:\e[0m &#39;#{project_name}&#39;\n\n&quot;
             else
@@ -120,7 +120,7 @@
           else
             print_line(&quot;\e[0;35mEnter a project name:\e[0m&quot;)
             name = get_input
-            if @current_project = @projects.detect{|p| p.keys.first == name}<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) App#run has the variable name 'p'          </span>  </li></ul>
+            if @current_project = @projects.detect{|project| project.keys.first == name}<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls project.keys.first 3 times                        <a href="app.html#L36" class="js-smell-location">0</a>                  <a href="app.html#L46" class="js-smell-location">1</a>                  <a href="app.html#L66" class="js-smell-location">2</a>                  </span>  </li></ul>
               print_line(&quot;\e[38;5;40mEditing project: &#39;#{name}&#39;\n\n&quot;)
               print_line(&quot;\e[0;37mEDIT PROJECT MENU\e[0m&quot;)
               print_line(&quot;-----------------------------&quot;)

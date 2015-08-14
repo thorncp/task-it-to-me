@@ -63,7 +63,7 @@ class App
           else
             print_line("\e[0;35mEnter a project name:\e[0m")
             name = get_input
-            if @current_project = @projects.detect{|p| p.keys.first == name}
+            if @current_project = @projects.detect{|project| project.keys.first == name}
               print_line("\e[38;5;40mEditing project: '#{name}'\n\n")
               print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
               print_line("-----------------------------")
