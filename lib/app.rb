@@ -17,51 +17,51 @@ class App
       if !current_project
         case command
         when 'a'
-          print_line("\e[0;3mEnter a project name:\e[0m")
+          print_project_name_prompt
           name = get_input
           projects << {name => []}
-          print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
+          print_project_created(name)
         when 'ls'
-          print_line("\e[38;5;40mListing projects:\e[0m\n")
+          print_listing_project_header
           if !projects.empty?
             projects.each do |project|
-              print_line("  #{name_for_project(project)}\n")
+              print_project_list_item(name_for_project(project))
             end
-            print_line("\n")
+            print_break
           else
             print_no_projects_message
           end
         when 'd'
           if projects.size > 0
-            print_line("\e[0;35mEnter a project name:\e[0m")
+            print_project_name_prompt
             project_name = get_input
             @deleted = projects.delete_if {|project| name_for_project(project) == project_name }.empty?
             if deleted
-              print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
+              print_successful_delete(project_name)
             else
-              print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n"
+              print_project_does_not_exist(project_name)
             end
           end
 
           if !deleted && projects.empty?
-            print_line("\e[40;38;5;214mCan't delete a project\e[0m")
+            print_cant_delete_project
             print_no_projects_message
           end
           @deleted = nil
         when 'e'
           if projects.size == 0
-            print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
+            print_cant_edit_project
             print_no_projects_message
           else
-            print_line("\e[0;35mEnter a project name:\e[0m")
+            print_project_name_prompt
             name = get_input
             if @current_project = projects.detect{|project| name_for_project(project) == name}
               print_tasks_menu(name)
               command = get_input
               next
             else
-              print_line("\e[40;38;5;214mCan't edit project\e[0m")
-              print_line("\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n")
+              print_cant_edit_project
+              print_project_does_not_exist(name)
             end
           end
         end
@@ -174,6 +174,42 @@ class App
 
   def print_no_projects_message
     print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+  end
+
+  def print_project_name_prompt
+    print_line("\e[0;3mEnter a project name:\e[0m")
+  end
+
+  def print_project_created(project_name)
+    print_line("\e[38;5;40mCreated project:\e[0m '#{project_name}'\n\n")
+  end
+
+  def print_listing_project_header
+    print_line("\e[38;5;40mListing projects:\e[0m\n")
+  end
+
+  def print_project_list_item(name)
+    print_line("  #{name}\n")
+  end
+
+  def print_break
+    print_line("\n")
+  end
+
+  def print_successful_delete(project_name)
+    print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
+  end
+
+  def print_project_does_not_exist(project_name)
+    print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n"
+  end
+
+  def print_cant_delete_project
+    print_line("\e[40;38;5;214mCan't delete a project\e[0m")
+  end
+
+  def print_cant_edit_project
+    print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
   end
 
   def name_for_project(data)
