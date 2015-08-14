@@ -140,6 +140,8 @@ class App
     output_stream.puts(message)
   end
 
+  # Menu Headers
+
   def print_projects_menu
     print_line("\e[38;5;40mWelcome to Taskitome!")
     print_line("\e[0;37m=============================\n")
@@ -168,6 +170,12 @@ class App
     print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
   end
 
+  # Assorted printing/view methods
+  def print_break
+    print_line("\n\n")
+  end
+
+  # project menu related messages, no arguments required
   def print_no_projects_message
     print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
   end
@@ -180,28 +188,8 @@ class App
     print_line("\e[0;35mEnter new project name:\e[0m")
   end
 
-  def print_project_created(project_name)
-    print_line("\e[38;5;40mCreated project:\e[0m '#{project_name}'\n\n")
-  end
-
   def print_listing_project_header
     print_line("\e[38;5;40mListing projects:\e[0m\n")
-  end
-
-  def print_project_list_item(name)
-    print_line("  #{name}\n")
-  end
-
-  def print_break
-    print_line("\n\n")
-  end
-
-  def print_successful_delete(project_name)
-    print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
-  end
-
-  def print_project_does_not_exist(project_name)
-    print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n"
   end
 
   def print_cant_delete_project
@@ -212,12 +200,36 @@ class App
     print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
   end
 
+  # project menu related messages, with data passed in
+  def print_project_created(name)
+    print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
+  end
+
+  def print_project_list_item(name)
+    print_line("  #{name}\n")
+  end
+
+  def print_successful_delete(name)
+    print_line "\e[38;5;40mDeleting project:\e[0m '#{name}'\n\n"
+  end
+
+  def print_project_does_not_exist(name)
+    print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n"
+  end
+
+  # task menu related messages, no data passed in
   def print_task_name_prompt
     print_line("\e[0;35mEnter a task name:\e[0m")
   end
 
-  def print_created_task(task_name)
-    print_line("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
+  def print_task_list_header
+    print_line("\e[38;5;40mListing tasks:\e[0m")
+  end
+
+  # task menu related messages, data required
+
+  def print_created_task(name)
+    print_line("\e[38;5;40mCreated task:\e[0m '#{name}'\n\n")
   end
 
   def print_changed_project_name(old_name, new_name)
@@ -244,30 +256,39 @@ class App
     print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
   end
 
-  def print_task_deleted(task_name)
-    print_line("\e[38;5;40mDeleted task:\e[0m '#{task_name}'\n\n")
+  def print_task_deleted(name)
+    print_line("\e[38;5;40mDeleted task:\e[0m '#{name}'\n\n")
   end
 
-  def print_finished_task(task_name)
-    print_line("\e[38;5;40mFinished task:\e[0m '#{task_name}'\n\n")
-  end
-
-  def print_task_list_header
-    print_line("\e[38;5;40mListing tasks:\e[0m")
+  def print_finished_task(name)
+    print_line("\e[38;5;40mFinished task:\e[0m '#{name}'\n\n")
   end
 
   def print_task_item(name)
     print_line("  #{name}")
   end
 
-  def name_for_project(data)
-    data.keys.first
+  # data manipulation
+
+  # project data
+  def name_for_project(project_data)
+    project_data.keys.first
   end
 
-  def tasks_for_project(data)
-    data.values.first
+  def tasks_for_project(project_data)
+    project_data.values.first
   end
 
+  def delete_project_by_name(name)
+    deleted = projects.delete_if {|project| name_for_project(project) == name }
+    deleted.empty?
+  end
+
+  def find_project_by_name(name)
+    projects.detect{|project| name_for_project(project) == name}
+  end
+
+  # data for current project
   def current_project_tasks
     tasks_for_project(current_project)
   end
@@ -278,14 +299,5 @@ class App
 
   def current_tasks_empty?
     current_project_tasks.empty?
-  end
-
-  def delete_project_by_name(name)
-    deleted = projects.delete_if {|project| name_for_project(project) == name }
-    deleted.empty?
-  end
-
-  def find_project_by_name(name)
-    projects.detect{|project| name_for_project(project) == name}
   end
 end
