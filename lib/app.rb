@@ -37,7 +37,7 @@ class App
             end
             print_line("\n")
           else
-            print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+            print_no_projects_message
           end
         when 'd'
           if @projects.size > 0
@@ -53,13 +53,13 @@ class App
 
           if !@deleted && @projects.empty?
             print_line("\e[40;38;5;214mCan't delete a project\e[0m")
-            print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+            print_no_projects_message
           end
           @deleted = nil
         when 'e'
           if @projects.size == 0
             print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
-            print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+            print_no_projects_message
           else
             print_line("\e[0;35mEnter a project name:\e[0m")
             name = get_input
@@ -161,5 +161,9 @@ class App
 
   def print_line(message='')
     output_stream.puts(message)
+  end
+
+  def print_no_projects_message
+    print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
   end
 end
