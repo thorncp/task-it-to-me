@@ -89,7 +89,7 @@ class App
         when 'a'
           print_line("\e[0;35mEnter a task name:\e[0m")
           task_name = get_input
-          tasks_for_project(@current_project) << task_name
+          current_project_tasks << task_name
           print_line("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
         when 'b'
           @current_project = false
@@ -98,28 +98,28 @@ class App
           print_line("\e[0;35mEnter new project name:\e[0m")
           old_name = name_for_project(@current_project)
           new_name = get_input
-          @current_project[new_name] = tasks_for_project(@current_project)
+          @current_project[new_name] = current_project_tasks
           @current_project.delete(old_name)
           print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
         when 'e'
           name = get_input
-          if index = tasks_for_project(@current_project).find_index(name)
+          if index = current_project_tasks.find_index(name)
             print_line("\e[38;5;40mEditing task:\e[0m '#{name}'")
             print_line("\e[0;35mEnter a task name:\e[0m")
             new_name = get_input
-            @current_project[name_for_project(@current_project)][index] = new_name
+            current_project_tasks[index] = new_name
             print_line("\e[38;5;40mChanged task name from\e[0m '#{name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
           else
             print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{name}'\n\n")
           end
         when 'd'
           project_name = name_for_project(@current_project)
-          if tasks_for_project(@current_project).empty?
+          if current_project_tasks.empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
             task_name = get_input
-            if @current_project[name_for_project(@current_project)].delete(task_name)
+            if current_project_tasks.delete(task_name)
               print_line("\e[38;5;40mDeleted task:\e[0m '#{task_name}'\n\n")
             else
               print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
@@ -127,23 +127,23 @@ class App
           end
         when 'f'
           project_name = name_for_project(@current_project)
-          if tasks_for_project(@current_project).empty?
+          if current_project_tasks.empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
             task_name = get_input
-            if @current_project[name_for_project(@current_project)].delete(task_name)
+            if current_project_tasks.delete(task_name)
               print_line("\e[38;5;40mFinished task:\e[0m '#{task_name}'\n\n")
             else
               print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
             end
           end
         when 'ls'
-          if tasks_for_project(@current_project).empty?
+          if current_project_tasks.empty?
             print_line("\e[40;38;5;214mNo tasks created in \e[0m'#{name_for_project(@current_project)}'\n\n")
           else
             print_line("\e[38;5;40mListing tasks:\e[0m")
-            tasks_for_project(@current_project).each do |task|
+            current_project_tasks.each do |task|
               print_line("  #{task}")
             end
             print_line("\n\n")
@@ -173,5 +173,9 @@ class App
 
   def tasks_for_project(data)
     data.values.first
+  end
+
+  def current_project_tasks
+    tasks_for_project(@current_project)
   end
 end
