@@ -1,5 +1,6 @@
 class App
-  attr_reader :input_stream, :output_stream
+  attr_reader :input_stream, :output_stream,
+    :projects
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
@@ -27,12 +28,12 @@ class App
         when 'a'
           print_line("\e[0;3mEnter a project name:\e[0m")
           name = get_input
-          @projects << {name => []}
+          projects << {name => []}
           print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
         when 'ls'
           print_line("\e[38;5;40mListing projects:\e[0m\n")
-          if !@projects.empty?
-            @projects.each do |project|
+          if !projects.empty?
+            projects.each do |project|
               print_line("  #{name_for_project(project)}\n")
             end
             print_line("\n")
@@ -40,10 +41,10 @@ class App
             print_no_projects_message
           end
         when 'd'
-          if @projects.size > 0
+          if projects.size > 0
             print_line("\e[0;35mEnter a project name:\e[0m")
             project_name = get_input
-            @deleted = @projects.delete_if {|project| name_for_project(project) == project_name }.empty?
+            @deleted = projects.delete_if {|project| name_for_project(project) == project_name }.empty?
             if @deleted
               print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
             else
@@ -51,19 +52,19 @@ class App
             end
           end
 
-          if !@deleted && @projects.empty?
+          if !@deleted && projects.empty?
             print_line("\e[40;38;5;214mCan't delete a project\e[0m")
             print_no_projects_message
           end
           @deleted = nil
         when 'e'
-          if @projects.size == 0
+          if projects.size == 0
             print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
             print_no_projects_message
           else
             print_line("\e[0;35mEnter a project name:\e[0m")
             name = get_input
-            if @current_project = @projects.detect{|project| name_for_project(project) == name}
+            if @current_project = projects.detect{|project| name_for_project(project) == name}
               print_line("\e[38;5;40mEditing project: '#{name}'\n\n")
               print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
               print_line("-----------------------------")
