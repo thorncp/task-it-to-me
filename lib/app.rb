@@ -89,7 +89,7 @@ class App
         when 'a'
           print_line("\e[0;35mEnter a task name:\e[0m")
           task_name = get_input
-          @current_project.values.first << task_name
+          tasks_for_project(@current_project) << task_name
           print_line("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
         when 'b'
           @current_project = false
@@ -98,12 +98,12 @@ class App
           print_line("\e[0;35mEnter new project name:\e[0m")
           old_name = @current_project.keys.first
           new_name = get_input
-          @current_project[new_name] = @current_project.values.first
+          @current_project[new_name] = tasks_for_project(@current_project)
           @current_project.delete(old_name)
           print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
         when 'e'
           name = get_input
-          if index = @current_project.values.first.find_index(name)
+          if index = tasks_for_project(@current_project).find_index(name)
             print_line("\e[38;5;40mEditing task:\e[0m '#{name}'")
             print_line("\e[0;35mEnter a task name:\e[0m")
             new_name = get_input
@@ -114,7 +114,7 @@ class App
           end
         when 'd'
           project_name = @current_project.keys.first
-          if @current_project.values.first.empty?
+          if tasks_for_project(@current_project).empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
@@ -127,7 +127,7 @@ class App
           end
         when 'f'
           project_name = @current_project.keys.first
-          if @current_project.values.first.empty?
+          if tasks_for_project(@current_project).empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
@@ -139,11 +139,11 @@ class App
             end
           end
         when 'ls'
-          if @current_project.values.first.empty?
+          if tasks_for_project(@current_project).empty?
             print_line("\e[40;38;5;214mNo tasks created in \e[0m'#{@current_project.keys.first}'\n\n")
           else
             print_line("\e[38;5;40mListing tasks:\e[0m")
-            @current_project.values.first.each do |task|
+            tasks_for_project(@current_project).each do |task|
               print_line("  #{task}")
             end
             print_line("\n\n")
@@ -169,5 +169,9 @@ class App
 
   def name_for_project(data)
     data.keys.first
+  end
+
+  def tasks_for_project(data)
+    data.values.first
   end
 end
