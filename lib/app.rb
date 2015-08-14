@@ -33,7 +33,7 @@ class App
           print_line("\e[38;5;40mListing projects:\e[0m\n")
           if !@projects.empty?
             @projects.each do |project|
-              print_line("  #{project.keys.first}\n")
+              print_line("  #{name_for_project(project)}\n")
             end
             print_line("\n")
           else
@@ -43,7 +43,7 @@ class App
           if @projects.size > 0
             print_line("\e[0;35mEnter a project name:\e[0m")
             project_name = get_input
-            @deleted = @projects.delete_if {|project| project.keys.first == project_name }.empty?
+            @deleted = @projects.delete_if {|project| name_for_project(project) == project_name }.empty?
             if @deleted
               print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
             else
@@ -63,7 +63,7 @@ class App
           else
             print_line("\e[0;35mEnter a project name:\e[0m")
             name = get_input
-            if @current_project = @projects.detect{|project| project.keys.first == name}
+            if @current_project = @projects.detect{|project| name_for_project(project) == name}
               print_line("\e[38;5;40mEditing project: '#{name}'\n\n")
               print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
               print_line("-----------------------------")
@@ -165,5 +165,9 @@ class App
 
   def print_no_projects_message
     print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+  end
+
+  def name_for_project(data)
+    data.keys.first
   end
 end
