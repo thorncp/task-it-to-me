@@ -43,11 +43,11 @@ class App
           if @projects.size > 0
             print_line("\e[0;35mEnter a project name:\e[0m")
             project_name = get_input
-            @deleted = @projects.delete_if {|project| project.keys.first == project_name.strip }.empty?
+            @deleted = @projects.delete_if {|project| project.keys.first == project_name }.empty?
             if @deleted
-              print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name.strip}'\n\n"
+              print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
             else
-              print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name.strip}'\n\n"
+              print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n"
             end
           end
 
