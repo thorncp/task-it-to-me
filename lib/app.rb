@@ -9,16 +9,7 @@ class App
   end
 
   def run
-    print_line("\e[38;5;40mWelcome to Taskitome!")
-    print_line("\e[0;37m=============================\n")
-    print_line("\e[0mPROJECTS MENU")
-    print_line("\e[0;37m-----------------------------")
-    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-    print_line("\e[1;37ma   \e[0;35mAdd a new project")
-    print_line("\e[1;37mls  \e[0;35mList all project")
-    print_line("\e[1;37md   \e[0;35mDelete a project")
-    print_line("\e[1;37me   \e[0;35mEdit a project")
-    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+    print_projects_menu
 
     command = get_input
 
@@ -65,18 +56,7 @@ class App
             print_line("\e[0;35mEnter a project name:\e[0m")
             name = get_input
             if @current_project = projects.detect{|project| name_for_project(project) == name}
-              print_line("\e[38;5;40mEditing project: '#{name}'\n\n")
-              print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
-              print_line("-----------------------------")
-              print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-              print_line("\e[1;37mc   \e[0;35mChange the project name")
-              print_line("\e[1;37ma   \e[0;35mAdd a new task")
-              print_line("\e[1;37mls  \e[0;35mList all tasks")
-              print_line("\e[1;37md   \e[0;35mDelete a task")
-              print_line("\e[1;37me   \e[0;35mEdit a task")
-              print_line("\e[1;37mf   \e[0;35mFinish a task")
-              print_line("\e[1;37mb   \e[0;35mBack to Projects menu")
-              print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+              print_tasks_menu(name)
               command = get_input
               next
             else
@@ -162,6 +142,34 @@ class App
 
   def print_line(message='')
     output_stream.puts(message)
+  end
+
+  def print_projects_menu
+    print_line("\e[38;5;40mWelcome to Taskitome!")
+    print_line("\e[0;37m=============================\n")
+    print_line("\e[0mPROJECTS MENU")
+    print_line("\e[0;37m-----------------------------")
+    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
+    print_line("\e[1;37ma   \e[0;35mAdd a new project")
+    print_line("\e[1;37mls  \e[0;35mList all project")
+    print_line("\e[1;37md   \e[0;35mDelete a project")
+    print_line("\e[1;37me   \e[0;35mEdit a project")
+    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+  end
+
+  def print_tasks_menu(project_name)
+    print_line("\e[38;5;40mEditing project: '#{project_name}'\n\n")
+    print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
+    print_line("-----------------------------")
+    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
+    print_line("\e[1;37mc   \e[0;35mChange the project name")
+    print_line("\e[1;37ma   \e[0;35mAdd a new task")
+    print_line("\e[1;37mls  \e[0;35mList all tasks")
+    print_line("\e[1;37md   \e[0;35mDelete a task")
+    print_line("\e[1;37me   \e[0;35mEdit a task")
+    print_line("\e[1;37mf   \e[0;35mFinish a task")
+    print_line("\e[1;37mb   \e[0;35mBack to Projects menu")
+    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
   end
 
   def print_no_projects_message
