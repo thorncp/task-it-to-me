@@ -34,10 +34,10 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      257 complexity
+      247 complexity
     </div>
     <div class="file-stat">
-      64.3 complexity per method
+      61.8 complexity per method
     </div>
     <div class="file-stat">
       4 churn
@@ -61,9 +61,10 @@
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
+    @projects = []
   end
 
-  def run<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(VeryHighComplexity) App#run has a flog score of 249          </span>  </li></ul>
+  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#run has a flog score of 238          </span>  </li></ul>
     print_line(&quot;\e[38;5;40mWelcome to Taskitome!&quot;)
     print_line(&quot;\e[0;37m=============================\n&quot;)
     print_line(&quot;\e[0mPROJECTS MENU&quot;)
@@ -81,14 +82,13 @@
       if !@current_project
         case command
         when &#39;a&#39;
-          @projects = [] if @projects.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NilCheck) App#run performs a nil-check.          </span>  </li></ul>
           print_line(&quot;\e[0;3mEnter a project name:\e[0m&quot;)
           name = get_input
           @projects &lt;&lt; {name =&gt; []}
           print_line(&quot;\e[38;5;40mCreated project:\e[0m &#39;#{name}&#39;\n\n&quot;)
         when &#39;ls&#39;
           print_line(&quot;\e[38;5;40mListing projects:\e[0m\n&quot;)
-          if !@projects.nil? &amp;&amp; !@projects.empty?
+          if !@projects.empty?
             @projects.each do |project|
               print_line(&quot;  #{project.keys.first}\n&quot;)
             end
@@ -97,7 +97,7 @@
             print_line(&quot;\e[40;38;5;214mNo projects created\e[0m\n\n&quot;)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) App#run calls print_line("\e[40;38;5;214mNo projects created\e[0m\n\n") 3 times                        <a href="app.html#L40" class="js-smell-location">0</a>                  <a href="app.html#L56" class="js-smell-location">1</a>                  <a href="app.html#L62" class="js-smell-location">2</a>                  </span>  </li></ul>
           end
         when &#39;d&#39;
-          if @projects and @projects.size &gt; 0
+          if @projects.size &gt; 0
             print_line(&quot;\e[0;35mEnter a project name:\e[0m&quot;)
             project_name = get_input
             @deleted = @projects.delete_if {|project| project.keys.first == project_name.strip }.empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) App#run calls project_name.strip 3 times                        <a href="app.html#L46" class="js-smell-location">0</a>                  <a href="app.html#L48" class="js-smell-location">1</a>                  <a href="app.html#L50" class="js-smell-location">2</a>                  </span>  </li></ul>
@@ -108,13 +108,13 @@
             end
           end
 
-          if !@deleted &amp;&amp; (!@projects || @projects.empty?)
+          if !@deleted &amp;&amp; @projects.empty?
             print_line(&quot;\e[40;38;5;214mCan&#39;t delete a project\e[0m&quot;)
             print_line(&quot;\e[40;38;5;214mNo projects created\e[0m\n\n&quot;)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) App#run calls print_line("\e[40;38;5;214mNo projects created\e[0m\n\n") 3 times                        <a href="app.html#L40" class="js-smell-location">0</a>                  <a href="app.html#L56" class="js-smell-location">1</a>                  <a href="app.html#L62" class="js-smell-location">2</a>                  </span>  </li></ul>
           end
           @deleted = nil
         when &#39;e&#39;
-          if !@projects || @projects.size == 0
+          if @projects.size == 0
             print_line(&quot;\e[40;38;5;214mCan&#39;t edit any projects\e[0m&quot;)
             print_line(&quot;\e[40;38;5;214mNo projects created\e[0m\n\n&quot;)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) App#run calls print_line("\e[40;38;5;214mNo projects created\e[0m\n\n") 3 times                        <a href="app.html#L40" class="js-smell-location">0</a>                  <a href="app.html#L56" class="js-smell-location">1</a>                  <a href="app.html#L62" class="js-smell-location">2</a>                  </span>  </li></ul>
           else

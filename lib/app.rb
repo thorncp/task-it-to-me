@@ -4,6 +4,7 @@ class App
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
+    @projects = []
   end
 
   def run
@@ -24,14 +25,13 @@ class App
       if !@current_project
         case command
         when 'a'
-          @projects = [] if @projects.nil?
           print_line("\e[0;3mEnter a project name:\e[0m")
           name = get_input
           @projects << {name => []}
           print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
         when 'ls'
           print_line("\e[38;5;40mListing projects:\e[0m\n")
-          if !@projects.nil? && !@projects.empty?
+          if !@projects.empty?
             @projects.each do |project|
               print_line("  #{project.keys.first}\n")
             end
@@ -40,7 +40,7 @@ class App
             print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
           end
         when 'd'
-          if @projects and @projects.size > 0
+          if @projects.size > 0
             print_line("\e[0;35mEnter a project name:\e[0m")
             project_name = get_input
             @deleted = @projects.delete_if {|project| project.keys.first == project_name.strip }.empty?
@@ -51,13 +51,13 @@ class App
             end
           end
 
-          if !@deleted && (!@projects || @projects.empty?)
+          if !@deleted && @projects.empty?
             print_line("\e[40;38;5;214mCan't delete a project\e[0m")
             print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
           end
           @deleted = nil
         when 'e'
-          if !@projects || @projects.size == 0
+          if @projects.size == 0
             print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
             print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
           else
