@@ -1,6 +1,6 @@
 class App
   attr_reader :input_stream, :output_stream,
-    :projects
+    :projects, :current_project
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
@@ -23,7 +23,7 @@ class App
     command = get_input
 
     while command != 'q'
-      if !@current_project
+      if !current_project
         case command
         when 'a'
           print_line("\e[0;3mEnter a project name:\e[0m")
@@ -99,8 +99,8 @@ class App
           print_line("\e[0;35mEnter new project name:\e[0m")
           old_name = current_project_name
           new_name = get_input
-          @current_project[new_name] = current_project_tasks
-          @current_project.delete(old_name)
+          current_project[new_name] = current_project_tasks
+          current_project.delete(old_name)
           print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
         when 'e'
           name = get_input
@@ -177,11 +177,11 @@ class App
   end
 
   def current_project_tasks
-    tasks_for_project(@current_project)
+    tasks_for_project(current_project)
   end
 
   def current_project_name
-    name_for_project(@current_project)
+    name_for_project(current_project)
   end
 
   def current_tasks_empty?
