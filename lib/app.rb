@@ -64,66 +64,66 @@ class App
       else
         case command
         when 'a'
-          print_line("\e[0;35mEnter a task name:\e[0m")
+          print_task_name_prompt
           task_name = get_input
           current_project_tasks << task_name
-          print_line("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
+          print_created_task(task_name)
         when 'b'
           @current_project = false
-          print_line("\n\n")
+          print_break
         when 'c'
-          print_line("\e[0;35mEnter new project name:\e[0m")
+          print_new_project_name_prompt
           old_name = current_project_name
           new_name = get_input
           current_project[new_name] = current_project_tasks
           current_project.delete(old_name)
-          print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+          print_changed_project_name(old_name, new_name)
         when 'e'
           name = get_input
           if index = current_project_tasks.find_index(name)
-            print_line("\e[38;5;40mEditing task:\e[0m '#{name}'")
-            print_line("\e[0;35mEnter a task name:\e[0m")
+            print_editing_task(name)
+            print_task_prompt
             new_name = get_input
             current_project_tasks[index] = new_name
-            print_line("\e[38;5;40mChanged task name from\e[0m '#{name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+            print_changed_task_name(name, new_name)
           else
-            print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{name}'\n\n")
+            print_task_does_not_exsit(name)
           end
         when 'd'
           project_name = current_project_name
           if current_tasks_empty?
-            print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
+            print_no_tasks_created_in(project_name)
           else
-            print_line("\e[0;35mEnter task name:\e[0m")
+            print_task_prompt
             task_name = get_input
             if current_project_tasks.delete(task_name)
-              print_line("\e[38;5;40mDeleted task:\e[0m '#{task_name}'\n\n")
+              print_task_deleted(task_name)
             else
-              print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
+              print_task_does_not_exsit(task_name)
             end
           end
         when 'f'
           project_name = current_project_name
           if current_tasks_empty?
-            print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
+            print_no_tasks_created_in(project_name)
           else
-            print_line("\e[0;35mEnter task name:\e[0m")
+            print_task_name_prompt
             task_name = get_input
             if current_project_tasks.delete(task_name)
-              print_line("\e[38;5;40mFinished task:\e[0m '#{task_name}'\n\n")
+              print_finished_task(task_name)
             else
-              print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
+              print_task_does_not_exsit(task_name)
             end
           end
         when 'ls'
           if current_tasks_empty?
-            print_line("\e[40;38;5;214mNo tasks created in \e[0m'#{current_project_name}'\n\n")
+            print_no_tasks_created_in(current_project_name)
           else
-            print_line("\e[38;5;40mListing tasks:\e[0m")
+            print_task_list_header
             current_project_tasks.each do |task|
-              print_line("  #{task}")
+              print_task_item(task)
             end
-            print_line("\n\n")
+            print_break
           end
         end
       end
@@ -176,6 +176,10 @@ class App
     print_line("\e[0;3mEnter a project name:\e[0m")
   end
 
+  def print_new_project_name_prompt
+    print_line("\e[0;35mEnter new project name:\e[0m")
+  end
+
   def print_project_created(project_name)
     print_line("\e[38;5;40mCreated project:\e[0m '#{project_name}'\n\n")
   end
@@ -189,7 +193,7 @@ class App
   end
 
   def print_break
-    print_line("\n")
+    print_line("\n\n")
   end
 
   def print_successful_delete(project_name)
@@ -206,6 +210,54 @@ class App
 
   def print_cant_edit_project
     print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
+  end
+
+  def print_task_name_prompt
+    print_line("\e[0;35mEnter a task name:\e[0m")
+  end
+
+  def print_created_task(task_name)
+    print_line("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
+  end
+
+  def print_changed_project_name(old_name, new_name)
+    print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+  end
+
+  def print_editing_task(name)
+    print_line("\e[38;5;40mEditing task:\e[0m '#{name}'")
+  end
+
+  def print_task_prompt
+    print_line("\e[0;35mEnter a task name:\e[0m")
+  end
+
+  def print_changed_task_name(old_name, new_name)
+    print_line("\e[38;5;40mChanged task name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+  end
+
+  def print_task_does_not_exsit(name)
+    print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{name}'\n\n")
+  end
+
+  def print_no_tasks_created_in(project_name)
+    print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
+  end
+
+  def print_task_deleted(task_name)
+    print_line("\e[38;5;40mDeleted task:\e[0m '#{task_name}'\n\n")
+  end
+
+  def print_finished_task(task_name)
+    print_line("\e[38;5;40mFinished task:\e[0m '#{task_name}'\n\n")
+  end
+
+  def print_task_list_header
+    print_line("\e[38;5;40mListing tasks:\e[0m")
+  end
+
+  def print_task_item(name)
+    print_line("  #{name}")
   end
 
   def name_for_project(data)
