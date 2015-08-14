@@ -1,6 +1,6 @@
 class App
   attr_reader :input_stream, :output_stream,
-    :projects, :current_project
+    :projects, :current_project, :deleted
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
@@ -45,14 +45,14 @@ class App
             print_line("\e[0;35mEnter a project name:\e[0m")
             project_name = get_input
             @deleted = projects.delete_if {|project| name_for_project(project) == project_name }.empty?
-            if @deleted
+            if deleted
               print_line "\e[38;5;40mDeleting project:\e[0m '#{project_name}'\n\n"
             else
               print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n"
             end
           end
 
-          if !@deleted && projects.empty?
+          if !deleted && projects.empty?
             print_line("\e[40;38;5;214mCan't delete a project\e[0m")
             print_no_projects_message
           end
