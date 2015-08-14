@@ -114,7 +114,7 @@ class App
           end
         when 'd'
           project_name = current_project_name
-          if current_project_tasks.empty?
+          if current_tasks_empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
@@ -127,7 +127,7 @@ class App
           end
         when 'f'
           project_name = current_project_name
-          if current_project_tasks.empty?
+          if current_tasks_empty?
             print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             print_line("\e[0;35mEnter task name:\e[0m")
@@ -139,7 +139,7 @@ class App
             end
           end
         when 'ls'
-          if current_project_tasks.empty?
+          if current_tasks_empty?
             print_line("\e[40;38;5;214mNo tasks created in \e[0m'#{current_project_name}'\n\n")
           else
             print_line("\e[38;5;40mListing tasks:\e[0m")
@@ -181,5 +181,9 @@ class App
 
   def current_project_name
     name_for_project(@current_project)
+  end
+
+  def current_tasks_empty?
+    current_project_tasks.empty?
   end
 end
