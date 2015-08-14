@@ -16,7 +16,7 @@ class App
     @output_stream.puts("\e[1;37me   \e[0;35mEdit a project")
     @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
 
-    command = @input_stream.gets.chomp
+    command = get_input
 
     while command != 'q'
       if !@current_project
@@ -24,7 +24,7 @@ class App
         when 'a'
           @projects = [] if @projects.nil?
           @output_stream.puts("\e[0;3mEnter a project name:\e[0m")
-          name = @input_stream.gets.chomp
+          name = get_input
           @projects << {name => []}
           @output_stream.puts("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
         when 'ls'
@@ -40,7 +40,7 @@ class App
         when 'd'
           if @projects and @projects.size > 0
             @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
-            project_name = @input_stream.gets
+            project_name = get_input
             @deleted = @projects.delete_if {|project| project.keys.first == project_name.strip }.empty?
             if @deleted
               @output_stream.puts "\e[38;5;40mDeleting project:\e[0m '#{project_name.strip}'\n\n"
@@ -60,7 +60,7 @@ class App
             @output_stream.puts("\e[40;38;5;214mNo projects created\e[0m\n\n")
           else
             @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
-            name = @input_stream.gets.chomp
+            name = get_input
             if @current_project = @projects.detect{|p| p.keys.first == name}
               @output_stream.puts("\e[38;5;40mEditing project: '#{name}'\n\n")
               @output_stream.puts("\e[0;37mEDIT PROJECT MENU\e[0m")
@@ -74,7 +74,7 @@ class App
               @output_stream.puts("\e[1;37mf   \e[0;35mFinish a task")
               @output_stream.puts("\e[1;37mb   \e[0;35mBack to Projects menu")
               @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
-              command = @input_stream.gets.chomp
+              command = get_input
               next
             else
               @output_stream.puts("\e[40;38;5;214mCan't edit project\e[0m")
@@ -86,7 +86,7 @@ class App
         case command
         when 'a'
           @output_stream.puts("\e[0;35mEnter a task name:\e[0m")
-          task_name = @input_stream.gets.chomp
+          task_name = get_input
           @current_project.values.first << task_name
           @output_stream.puts("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
         when 'b'
@@ -95,16 +95,16 @@ class App
         when 'c'
           @output_stream.puts("\e[0;35mEnter new project name:\e[0m")
           old_name = @current_project.keys.first
-          new_name = @input_stream.gets.chomp
+          new_name = get_input
           @current_project[new_name] = @current_project.values.first
           @current_project.delete(old_name)
           @output_stream.puts("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
         when 'e'
-          name = @input_stream.gets.chomp
+          name = get_input
           if index = @current_project.values.first.find_index(name)
             @output_stream.puts("\e[38;5;40mEditing task:\e[0m '#{name}'")
             @output_stream.puts("\e[0;35mEnter a task name:\e[0m")
-            new_name = @input_stream.gets.chomp
+            new_name = get_input
             @current_project[@current_project.keys.first][index] = new_name
             @output_stream.puts("\e[38;5;40mChanged task name from\e[0m '#{name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
           else
@@ -116,11 +116,11 @@ class App
             @output_stream.puts("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             @output_stream.puts("\e[0;35mEnter task name:\e[0m")
-            task_name = @input_stream.gets
-            if @current_project[@current_project.keys.first].delete(task_name.strip)
-              @output_stream.puts("\e[38;5;40mDeleted task:\e[0m '#{task_name.strip}'\n\n")
+            task_name = get_input
+            if @current_project[@current_project.keys.first].delete(task_name)
+              @output_stream.puts("\e[38;5;40mDeleted task:\e[0m '#{task_name}'\n\n")
             else
-              @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name.strip}'\n\n")
+              @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
             end
           end
         when 'f'
@@ -129,11 +129,11 @@ class App
             @output_stream.puts("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
           else
             @output_stream.puts("\e[0;35mEnter task name:\e[0m")
-            task_name = @input_stream.gets
-            if @current_project[@current_project.keys.first].delete(task_name.strip)
-              @output_stream.puts("\e[38;5;40mFinished task:\e[0m '#{task_name.strip}'\n\n")
+            task_name = get_input
+            if @current_project[@current_project.keys.first].delete(task_name)
+              @output_stream.puts("\e[38;5;40mFinished task:\e[0m '#{task_name}'\n\n")
             else
-              @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name.strip}'\n\n")
+              @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
             end
           end
         when 'ls'
@@ -149,7 +149,11 @@ class App
         end
       end
 
-      command = @input_stream.gets.chomp
+      command = get_input
     end
+  end
+
+  def get_input
+    @input_stream.gets.strip
   end
 end

@@ -203,6 +203,12 @@ class TestAppRun < Minitest::Test
     app.run
     assert_includes output, "Created project:"
   end
+
+  def test_bug_commands_with_space_unrecognized
+    stub_input('a ', 'new project', 'q')
+    app.run
+    assert_includes output, "Created project:"
+  end
 end
 
 
