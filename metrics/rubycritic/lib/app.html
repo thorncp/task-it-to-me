@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-13 22:38:05 -0700'>2015-08-13 22:38:05 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-13 22:46:41 -0700'>2015-08-13 22:46:41 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      223 complexity
+      222 complexity
     </div>
     <div class="file-stat">
-      10.1 complexity per method
+      9.7 complexity per method
     </div>
     <div class="file-stat">
-      19 churn
+      20 churn
     </div>
     <div class="file-stat">
-      22 methods
+      23 methods
     </div>
     <div class="file-stat">
       62 duplication
@@ -65,7 +65,7 @@
     @projects = []
   end
 
-  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#run has a flog score of 165          </span>  </li></ul>
+  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#run has a flog score of 159          </span>  </li></ul>
     print_projects_menu
 
     command = get_input
@@ -108,7 +108,7 @@
           else
             print_project_name_prompt
             name = get_input
-            if @current_project = projects.detect{|project| name_for_project(project) == name}
+            if @current_project = find_project_by_name(name)
               print_tasks_menu(name)
               command = get_input
               next
@@ -288,6 +288,10 @@
   def delete_project_by_name(name)
     deleted = projects.delete_if {|project| name_for_project(project) == name }
     deleted.empty?
+  end
+
+  def find_project_by_name(name)
+    projects.detect{|project| name_for_project(project) == name}
   end
 end
 </code>

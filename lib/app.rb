@@ -51,7 +51,7 @@ class App
           else
             print_project_name_prompt
             name = get_input
-            if @current_project = projects.detect{|project| name_for_project(project) == name}
+            if @current_project = find_project_by_name(name)
               print_tasks_menu(name)
               command = get_input
               next
@@ -231,5 +231,9 @@ class App
   def delete_project_by_name(name)
     deleted = projects.delete_if {|project| name_for_project(project) == name }
     deleted.empty?
+  end
+
+  def find_project_by_name(name)
+    projects.detect{|project| name_for_project(project) == name}
   end
 end
