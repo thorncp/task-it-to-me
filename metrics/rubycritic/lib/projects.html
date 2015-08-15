@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <div class="container">
+        <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+        <nav class="project-nav">
+          <a href="../overview.html" class="project-nav-item">Overview</a>
+          <a href="../code_index.html" class="project-nav-item">Code</a>
+          <a href="../smells_index.html" class="project-nav-item">Smells</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="file-header group rated">
+  <span class="rating rating-a circled-text circle">
+    A
+  </span>
+  <h2 class="file-name">Projects</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2015-08-15 14:02:57 -0700'>2015-08-15 14:02:57 -0700</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      45 complexity
+    </div>
+    <div class="file-stat">
+      2.8 complexity per method
+    </div>
+    <div class="file-stat">
+      1 churn
+    </div>
+    <div class="file-stat">
+      16 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Projects
+  attr_reader :projects, :current_project
+
+  def initialize
+    @projects = []
+  end
+
+  def add(name)
+    projects &lt;&lt; {name =&gt; []}
+  end
+
+  def delete(name)
+    projects.delete_if {|project| name_for_project(project) == name }.empty?
+  end
+
+  def rename(old_name, new_name)
+    current_project[new_name] = current_project_tasks
+    current_project.delete(old_name)
+  end
+
+  def set_current_project(name)
+    @current_project = find_project_by_name(name)
+  end
+
+  def add_task(name)
+    current_project_tasks &lt;&lt; name
+  end
+
+  def delete_task(name)
+    current_project_tasks.delete(name)
+  end
+
+  def rename_task(old_name, new_name)
+    index = current_project_tasks.find_index(old_name)
+    current_project_tasks[index] = new_name
+  end
+
+  def projects_empty?
+    projects.empty?
+  end
+
+  def name_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Projects#name_for_project refers to project_data more than self          </span>  </li></ul>
+    project_data.keys.first
+  end
+
+  def tasks_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Projects#tasks_for_project refers to project_data more than self          </span>  </li></ul>
+    project_data.values.first
+  end
+
+  def find_project_by_name(name)
+    projects.detect{|project| name_for_project(project) == name}
+  end
+
+  def current_project_tasks
+    tasks_for_project(current_project)
+  end
+
+  def current_project_name
+    name_for_project(current_project)
+  end
+
+  def current_tasks_empty?
+    current_project_tasks.empty?
+  end
+
+  def task_exists?(name)
+    current_project_tasks.any?{|n| n == name}<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) Projects#task_exists? has the variable name 'n'          </span>  </li></ul>
+  end
+end
+</code>
+
+    </div>
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

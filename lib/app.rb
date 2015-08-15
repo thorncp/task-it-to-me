@@ -1,11 +1,15 @@
+require_relative 'projects'
+
 class App
   attr_reader :input_stream, :output_stream,
-    :projects, :current_project
+    :projects, :current_project,
+    :project_data
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
     @projects = []
+    @project_data = Projects.new
   end
 
   def run
@@ -51,7 +55,7 @@ class App
           else
             print_project_name_prompt
             name = get_input
-            if @current_project = find_project_by_name(name)
+            if set_current_project(name)
               print_tasks_menu(name)
               command = get_input
               next
@@ -69,7 +73,7 @@ class App
           add_task(task_name)
           print_created_task(task_name)
         when 'b'
-          @current_project = false
+          set_current_project(false)
           print_break
         when 'c'
           print_new_project_name_prompt
@@ -267,13 +271,47 @@ class App
     print_line("  #{name}")
   end
 
-  # data manipulation
+  # data methods
 
-  # project data
+  # write/change/delete methods for data
+  def set_current_project(name)
+    project_data.set_current_project(name)
+    @current_project = find_project_by_name(name)
+  end
+
   def create_project(name)
+    project_data.add(name)
     projects << {name => []}
   end
 
+  def delete_project_by_name(name)
+    project_data.delete(name)
+    projects.delete_if {|project| name_for_project(project) == name }.empty?
+  end
+
+  def rename_project(old_name, new_name)
+    project_data.rename(old_name, new_name)
+    current_project[new_name] = current_project_tasks
+    current_project.delete(old_name)
+  end
+
+  def add_task(name)
+    project_data.add_task(name)
+    current_project_tasks << name
+  end
+
+  def delete_task(name)
+    project_data.delete_task(name)
+    current_project_tasks.delete(name)
+  end
+
+  def rename_task(old_name, new_name)
+    project_data.rename_task(old_name, new_name)
+    index = current_project_tasks.find_index(old_name)
+    current_project_tasks[index] = new_name
+  end
+
+  # read methods for data
   def projects_empty?
     projects.empty?
   end
@@ -286,16 +324,10 @@ class App
     project_data.values.first
   end
 
-  def delete_project_by_name(name)
-    deleted = projects.delete_if {|project| name_for_project(project) == name }
-    deleted.empty?
-  end
-
   def find_project_by_name(name)
     projects.detect{|project| name_for_project(project) == name}
   end
 
-  # data for current project
   def current_project_tasks
     tasks_for_project(current_project)
   end
@@ -308,25 +340,7 @@ class App
     current_project_tasks.empty?
   end
 
-  def add_task(name)
-    current_project_tasks << name
-  end
-
-  def rename_project(old_name, new_name)
-    current_project[new_name] = current_project_tasks
-    current_project.delete(old_name)
-  end
-
   def task_exists?(name)
     current_project_tasks.any?{|n| n == name}
-  end
-
-  def rename_task(old_name, new_name)
-    index = current_project_tasks.find_index(old_name)
-    current_project_tasks[index] = new_name
-  end
-
-  def delete_task(name)
-    current_project_tasks.delete(name)
   end
 end
