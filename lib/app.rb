@@ -19,20 +19,23 @@ class App
         when 'a'
           print_project_name_prompt
           name = get_input
-          projects << {name => []}
+          create_project(name)
           print_project_created(name)
         when 'ls'
           print_listing_project_header
-          if !projects.empty?
+          if projects_empty?
+            print_no_projects_message
+          else
             projects.each do |project|
               print_project_list_item(name_for_project(project))
             end
             print_break
-          else
-            print_no_projects_message
           end
         when 'd'
-          if projects.size > 0
+          if projects_empty?
+            print_cant_delete_project
+            print_no_projects_message
+          else
             print_project_name_prompt
             project_name = get_input
             if delete_project_by_name(project_name)
@@ -40,12 +43,9 @@ class App
             else
               print_project_does_not_exist(project_name)
             end
-          else
-            print_cant_delete_project
-            print_no_projects_message
           end
         when 'e'
-          if projects.size == 0
+          if projects_empty?
             print_cant_edit_project
             print_no_projects_message
           else
@@ -66,7 +66,7 @@ class App
         when 'a'
           print_task_name_prompt
           task_name = get_input
-          current_project_tasks << task_name
+          add_task(task_name)
           print_created_task(task_name)
         when 'b'
           @current_project = false
@@ -75,16 +75,15 @@ class App
           print_new_project_name_prompt
           old_name = current_project_name
           new_name = get_input
-          current_project[new_name] = current_project_tasks
-          current_project.delete(old_name)
+          rename_project(old_name, new_name)
           print_changed_project_name(old_name, new_name)
         when 'e'
           name = get_input
-          if index = current_project_tasks.find_index(name)
+          if task_exists?(name)
             print_editing_task(name)
             print_task_prompt
             new_name = get_input
-            current_project_tasks[index] = new_name
+            rename_task(name, new_name)
             print_changed_task_name(name, new_name)
           else
             print_task_does_not_exsit(name)
@@ -96,7 +95,7 @@ class App
           else
             print_task_prompt
             task_name = get_input
-            if current_project_tasks.delete(task_name)
+            if delete_task(task_name)
               print_task_deleted(task_name)
             else
               print_task_does_not_exsit(task_name)
@@ -109,7 +108,7 @@ class App
           else
             print_task_name_prompt
             task_name = get_input
-            if current_project_tasks.delete(task_name)
+            if delete_task(task_name)
               print_finished_task(task_name)
             else
               print_task_does_not_exsit(task_name)
@@ -271,6 +270,14 @@ class App
   # data manipulation
 
   # project data
+  def create_project(name)
+    projects << {name => []}
+  end
+
+  def projects_empty?
+    projects.empty?
+  end
+
   def name_for_project(project_data)
     project_data.keys.first
   end
@@ -299,5 +306,27 @@ class App
 
   def current_tasks_empty?
     current_project_tasks.empty?
+  end
+
+  def add_task(name)
+    current_project_tasks << name
+  end
+
+  def rename_project(old_name, new_name)
+    current_project[new_name] = current_project_tasks
+    current_project.delete(old_name)
+  end
+
+  def task_exists?(name)
+    current_project_tasks.any?{|n| n == name}
+  end
+
+  def rename_task(old_name, new_name)
+    index = current_project_tasks.find_index(old_name)
+    current_project_tasks[index] = new_name
+  end
+
+  def delete_task(name)
+    current_project_tasks.delete(name)
   end
 end

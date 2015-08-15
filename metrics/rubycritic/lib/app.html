@@ -28,25 +28,25 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-13 23:07:53 -0700'>2015-08-13 23:07:53 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-14 15:01:24 -0700'>2015-08-14 15:01:24 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      235 complexity
+      231 complexity
     </div>
     <div class="file-stat">
-      6.5 complexity per method
+      5.4 complexity per method
     </div>
     <div class="file-stat">
-      22 churn
+      23 churn
     </div>
     <div class="file-stat">
-      36 methods
+      43 methods
     </div>
     <div class="file-stat">
-      42 duplication
+      40 duplication
     </div>
   </div>
 
@@ -55,7 +55,7 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class App<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(TooManyMethods) App has at least 36 methods          </span>  </li></ul>
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class App<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) App has at least 43 methods          </span>  </li></ul>
   attr_reader :input_stream, :output_stream,
     :projects, :current_project
 
@@ -65,7 +65,7 @@
     @projects = []
   end
 
-  def run<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(VeryHighComplexity) App#run has a flog score of 159          </span>  </li></ul>
+  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#run has a flog score of 135          </span>  </li></ul>
     print_projects_menu
 
     command = get_input
@@ -76,20 +76,23 @@
         when &#39;a&#39;
           print_project_name_prompt
           name = get_input
-          projects &lt;&lt; {name =&gt; []}
+          create_project(name)
           print_project_created(name)
         when &#39;ls&#39;
           print_listing_project_header
-          if !projects.empty?
+          if projects_empty?<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(RepeatedConditional) App tests projects_empty? at least 3 times                        <a href="app.html#L26" class="js-smell-location">0</a>                  <a href="app.html#L35" class="js-smell-location">1</a>                  <a href="app.html#L48" class="js-smell-location">2</a>                  </span>  </li></ul>
+            print_no_projects_message
+          else
             projects.each do |project|
               print_project_list_item(name_for_project(project))
             end
             print_break
-          else
-            print_no_projects_message
           end
         when &#39;d&#39;
-          if projects.size &gt; 0
+          if projects_empty?<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(RepeatedConditional) App tests projects_empty? at least 3 times                        <a href="app.html#L26" class="js-smell-location">0</a>                  <a href="app.html#L35" class="js-smell-location">1</a>                  <a href="app.html#L48" class="js-smell-location">2</a>                  </span>  </li></ul>
+            print_cant_delete_project
+            print_no_projects_message
+          else
             print_project_name_prompt
             project_name = get_input
             if delete_project_by_name(project_name)
@@ -97,12 +100,9 @@
             else
               print_project_does_not_exist(project_name)
             end
-          else
-            print_cant_delete_project
-            print_no_projects_message
           end
         when &#39;e&#39;
-          if projects.size == 0
+          if projects_empty?<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(RepeatedConditional) App tests projects_empty? at least 3 times                        <a href="app.html#L26" class="js-smell-location">0</a>                  <a href="app.html#L35" class="js-smell-location">1</a>                  <a href="app.html#L48" class="js-smell-location">2</a>                  </span>  </li></ul>
             print_cant_edit_project
             print_no_projects_message
           else
@@ -123,7 +123,7 @@
         when &#39;a&#39;
           print_task_name_prompt
           task_name = get_input
-          current_project_tasks &lt;&lt; task_name
+          add_task(task_name)
           print_created_task(task_name)
         when &#39;b&#39;
           @current_project = false
@@ -132,48 +132,47 @@
           print_new_project_name_prompt
           old_name = current_project_name
           new_name = get_input
-          current_project[new_name] = current_project_tasks
-          current_project.delete(old_name)
+          rename_project(old_name, new_name)
           print_changed_project_name(old_name, new_name)
         when &#39;e&#39;
           name = get_input
-          if index = current_project_tasks.find_index(name)
+          if task_exists?(name)
             print_editing_task(name)
             print_task_prompt
             new_name = get_input
-            current_project_tasks[index] = new_name
+            rename_task(name, new_name)
             print_changed_task_name(name, new_name)
           else
             print_task_does_not_exsit(name)
           end
-        when &#39;d&#39;<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L92" class="js-smell-location">0</a>                  <a href="app.html#L105" class="js-smell-location">1</a>                  </span>  </li></ul>
+        when &#39;d&#39;<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L91" class="js-smell-location">0</a>                  <a href="app.html#L104" class="js-smell-location">1</a>                  </span>  </li></ul>
           project_name = current_project_name
-          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L94" class="js-smell-location">0</a>                  <a href="app.html#L107" class="js-smell-location">1</a>                  <a href="app.html#L119" class="js-smell-location">2</a>                  </span>  </li></ul>
+          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L93" class="js-smell-location">0</a>                  <a href="app.html#L106" class="js-smell-location">1</a>                  <a href="app.html#L118" class="js-smell-location">2</a>                  </span>  </li></ul>
             print_no_tasks_created_in(project_name)
           else
             print_task_prompt
             task_name = get_input
-            if current_project_tasks.delete(task_name)
+            if delete_task(task_name)
               print_task_deleted(task_name)
             else
               print_task_does_not_exsit(task_name)
             end
           end
-        when &#39;f&#39;<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L92" class="js-smell-location">0</a>                  <a href="app.html#L105" class="js-smell-location">1</a>                  </span>  </li></ul>
+        when &#39;f&#39;<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L91" class="js-smell-location">0</a>                  <a href="app.html#L104" class="js-smell-location">1</a>                  </span>  </li></ul>
           project_name = current_project_name
-          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L94" class="js-smell-location">0</a>                  <a href="app.html#L107" class="js-smell-location">1</a>                  <a href="app.html#L119" class="js-smell-location">2</a>                  </span>  </li></ul>
+          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L93" class="js-smell-location">0</a>                  <a href="app.html#L106" class="js-smell-location">1</a>                  <a href="app.html#L118" class="js-smell-location">2</a>                  </span>  </li></ul>
             print_no_tasks_created_in(project_name)
           else
             print_task_name_prompt
             task_name = get_input
-            if current_project_tasks.delete(task_name)
+            if delete_task(task_name)
               print_finished_task(task_name)
             else
               print_task_does_not_exsit(task_name)
             end
           end
         when &#39;ls&#39;
-          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L94" class="js-smell-location">0</a>                  <a href="app.html#L107" class="js-smell-location">1</a>                  <a href="app.html#L119" class="js-smell-location">2</a>                  </span>  </li></ul>
+          if current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(RepeatedConditional) App tests current_tasks_empty? at least 3 times                        <a href="app.html#L93" class="js-smell-location">0</a>                  <a href="app.html#L106" class="js-smell-location">1</a>                  <a href="app.html#L118" class="js-smell-location">2</a>                  </span>  </li></ul>
             print_no_tasks_created_in(current_project_name)
           else
             print_task_list_header
@@ -328,11 +327,19 @@
   # data manipulation
 
   # project data
-  def name_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(FeatureEnvy) App#name_for_project refers to project_data more than self          </span>  </li></ul>
+  def create_project(name)
+    projects &lt;&lt; {name =&gt; []}
+  end
+
+  def projects_empty?
+    projects.empty?
+  end
+
+  def name_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) App#name_for_project refers to project_data more than self          </span>  </li></ul>
     project_data.keys.first
   end
 
-  def tasks_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(FeatureEnvy) App#tasks_for_project refers to project_data more than self          </span>  </li></ul>
+  def tasks_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) App#tasks_for_project refers to project_data more than self          </span>  </li></ul>
     project_data.values.first
   end
 
@@ -356,6 +363,28 @@
 
   def current_tasks_empty?
     current_project_tasks.empty?
+  end
+
+  def add_task(name)
+    current_project_tasks &lt;&lt; name
+  end
+
+  def rename_project(old_name, new_name)
+    current_project[new_name] = current_project_tasks
+    current_project.delete(old_name)
+  end
+
+  def task_exists?(name)
+    current_project_tasks.any?{|n| n == name}<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(UncommunicativeVariableName) App#task_exists? has the variable name 'n'          </span>  </li></ul>
+  end
+
+  def rename_task(old_name, new_name)
+    index = current_project_tasks.find_index(old_name)
+    current_project_tasks[index] = new_name
+  end
+
+  def delete_task(name)
+    current_project_tasks.delete(name)
   end
 end
 </code>
