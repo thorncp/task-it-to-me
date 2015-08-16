@@ -4,13 +4,11 @@ require_relative 'projects'
 
 class App
   attr_reader :input_stream, :output_stream,
-    :projects, :current_project,
     :project_data
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
-    @projects = []
     @project_data = Projects.new
   end
 
@@ -278,39 +276,30 @@ class App
   # write/change/delete methods for data
   def set_current_project(name)
     project_data.set_current_project(name)
-    @current_project = @projects.detect{|project| project.keys.first == name}
   end
 
   def create_project(name)
     project_data.add(name)
-    @projects << {name => []}
   end
 
   def delete_project_by_name(name)
     project_data.delete(name)
-    @projects.delete_if {|project| project.keys.first == name }.empty?
   end
 
   def rename_project(old_name, new_name)
     project_data.rename(old_name, new_name)
-    @current_project[new_name] = @current_project.values.first
-    @current_project.delete(old_name)
   end
 
   def add_task(name)
     project_data.add_task(name)
-    @current_project.values.first << name
   end
 
   def delete_task(name)
     project_data.delete_task(name)
-    @current_project.values.first.delete(name)
   end
 
   def rename_task(old_name, new_name)
     project_data.rename_task(old_name, new_name)
-    index = @current_project.values.first.find_index(old_name)
-    @current_project.values.first[index] = new_name
   end
 
   extend Forwardable
