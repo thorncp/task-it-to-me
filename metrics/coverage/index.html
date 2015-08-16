@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-15T15:08:55-07:00">2015-08-15T15:08:55-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-15T22:18:48-07:00">2015-08-15T22:18:48-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">98.3%</span></span>
+    (<span class="covered_percent"><span class="green">99.57%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         10.22
+         10.47
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>235</b> relevant lines. 
-    <span class="green"><b>231</b> lines covered</span> and
-    <span class="red"><b>4</b> lines missed </span>
+    <b>230</b> relevant lines. 
+    <span class="green"><b>229</b> lines covered</span> and
+    <span class="red"><b>1</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,22 +52,22 @@
       
       <tr>
         <td class="strong"><a href="#1359a246c00752159e257faa5a67415edbdc4220" class="src_link" title="lib/app.rb">lib/app.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>346</td>
-        <td>199</td>
-        <td>199</td>
-        <td>0</td>
-        <td>11.2</td>
+        <td class="green strong">99.48 %</td>
+        <td>342</td>
+        <td>194</td>
+        <td>193</td>
+        <td>1</td>
+        <td>11.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#6b79ead2ed2e2fa4e45f932db58891af602733db" class="src_link" title="lib/projects.rb">lib/projects.rb</a></td>
-        <td class="yellow strong">88.89 %</td>
+        <td class="green strong">100.0 %</td>
         <td>69</td>
         <td>36</td>
-        <td>32</td>
-        <td>4</td>
-        <td>4.8</td>
+        <td>36</td>
+        <td>0</td>
+        <td>7.6</td>
       </tr>
       
     </tbody>
@@ -89,11 +89,11 @@
         <div class="source_table" id="1359a246c00752159e257faa5a67415edbdc4220">
   <div class="header">
     <h3>lib/app.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="green">99.48 %</span> covered</h4>
     <div>
-      <b>199</b> relevant lines. 
-      <span class="green"><b>199</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>194</b> relevant lines. 
+      <span class="green"><b>193</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -103,7 +103,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require_relative &#39;projects&#39;</code>
+          <code class="ruby">require &#39;forwardable&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -115,97 +115,97 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
+          <code class="ruby">require_relative &#39;projects&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
           <code class="ruby">class App</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
+        <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
           <code class="ruby">  attr_reader :input_stream, :output_stream,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="never" data-hits="" data-linenumber="7">
           
           
           <code class="ruby">    :projects, :current_project,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="never" data-hits="" data-linenumber="8">
           
           
           <code class="ruby">    :project_data</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="7">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="8">
+        <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
           <code class="ruby">  def initialize(output_stream, input_stream)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="9">
+        <li class="covered" data-hits="26" data-linenumber="11">
           <span class="hits">26</span>
           
           <code class="ruby">    @output_stream = output_stream</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="10">
+        <li class="covered" data-hits="26" data-linenumber="12">
           <span class="hits">26</span>
           
           <code class="ruby">    @input_stream = input_stream</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="11">
+        <li class="covered" data-hits="26" data-linenumber="13">
           <span class="hits">26</span>
           
           <code class="ruby">    @projects = []</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="12">
+        <li class="covered" data-hits="26" data-linenumber="14">
           <span class="hits">26</span>
           
           <code class="ruby">    @project_data = Projects.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
+        <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
           <code class="ruby">  def run</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="16">
-          <span class="hits">26</span>
-          
-          <code class="ruby">    print_projects_menu</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="covered" data-hits="26" data-linenumber="18">
           <span class="hits">26</span>
           
-          <code class="ruby">    command = get_input</code>
+          <code class="ruby">    print_projects_menu</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
@@ -217,763 +217,763 @@
         <li class="covered" data-hits="26" data-linenumber="20">
           <span class="hits">26</span>
           
+          <code class="ruby">    command = get_input</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="26" data-linenumber="22">
+          <span class="hits">26</span>
+          
           <code class="ruby">    while command != &#39;q&#39;</code>
         </li>
       
-        <li class="covered" data-hits="69" data-linenumber="21">
+        <li class="covered" data-hits="69" data-linenumber="23">
           <span class="hits">69</span>
           
           <code class="ruby">      if !current_project</code>
         </li>
       
-        <li class="covered" data-hits="45" data-linenumber="22">
+        <li class="covered" data-hits="45" data-linenumber="24">
           <span class="hits">45</span>
           
           <code class="ruby">        case command</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">        when &#39;a&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="21" data-linenumber="24">
-          <span class="hits">21</span>
-          
-          <code class="ruby">          print_project_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="21" data-linenumber="25">
-          <span class="hits">21</span>
-          
-          <code class="ruby">          name = get_input</code>
         </li>
       
         <li class="covered" data-hits="21" data-linenumber="26">
           <span class="hits">21</span>
           
-          <code class="ruby">          create_project(name)</code>
+          <code class="ruby">          print_project_name_prompt</code>
         </li>
       
         <li class="covered" data-hits="21" data-linenumber="27">
           <span class="hits">21</span>
           
+          <code class="ruby">          name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="21" data-linenumber="28">
+          <span class="hits">21</span>
+          
+          <code class="ruby">          create_project(name)</code>
+        </li>
+      
+        <li class="covered" data-hits="21" data-linenumber="29">
+          <span class="hits">21</span>
+          
           <code class="ruby">          print_project_created(name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">        when &#39;ls&#39;</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="29">
+        <li class="covered" data-hits="5" data-linenumber="31">
           <span class="hits">5</span>
           
           <code class="ruby">          print_listing_project_header</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="30">
+        <li class="covered" data-hits="5" data-linenumber="32">
           <span class="hits">5</span>
           
           <code class="ruby">          if projects_empty?</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="31">
+        <li class="covered" data-hits="3" data-linenumber="33">
           <span class="hits">3</span>
           
           <code class="ruby">            print_no_projects_message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby">          else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="33">
+        <li class="covered" data-hits="2" data-linenumber="35">
           <span class="hits">2</span>
           
           <code class="ruby">            projects.each do |project|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="34">
+        <li class="covered" data-hits="3" data-linenumber="36">
           <span class="hits">3</span>
           
           <code class="ruby">              print_project_list_item(name_for_project(project))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">            end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="36">
+        <li class="covered" data-hits="2" data-linenumber="38">
           <span class="hits">2</span>
           
           <code class="ruby">            print_break</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="37">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby">          end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby">        when &#39;d&#39;</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="39">
+        <li class="covered" data-hits="3" data-linenumber="41">
           <span class="hits">3</span>
           
           <code class="ruby">          if projects_empty?</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
           <code class="ruby">            print_cant_delete_project</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">            print_no_projects_message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="43">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            print_project_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="44">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            project_name = get_input</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="45">
           <span class="hits">2</span>
           
+          <code class="ruby">            print_project_name_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="46">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            project_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="47">
+          <span class="hits">2</span>
+          
           <code class="ruby">            if delete_project_by_name(project_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="46">
-          <span class="hits">1</span>
-          
-          <code class="ruby">              print_successful_delete(project_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="47">
-          
-          
-          <code class="ruby">            else</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
-          <code class="ruby">              print_project_does_not_exist(project_name)</code>
+          <code class="ruby">              print_successful_delete(project_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">            end</code>
+          <code class="ruby">            else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          end</code>
+          <code class="ruby">              print_project_does_not_exist(project_name)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="51">
           
           
+          <code class="ruby">            end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
           <code class="ruby">        when &#39;e&#39;</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="52">
+        <li class="covered" data-hits="16" data-linenumber="54">
           <span class="hits">16</span>
           
           <code class="ruby">          if projects_empty?</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="53">
+        <li class="covered" data-hits="2" data-linenumber="55">
           <span class="hits">2</span>
           
           <code class="ruby">            print_cant_edit_project</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="54">
+        <li class="covered" data-hits="2" data-linenumber="56">
           <span class="hits">2</span>
           
           <code class="ruby">            print_no_projects_message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="14" data-linenumber="56">
-          <span class="hits">14</span>
-          
-          <code class="ruby">            print_project_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="14" data-linenumber="57">
-          <span class="hits">14</span>
-          
-          <code class="ruby">            name = get_input</code>
         </li>
       
         <li class="covered" data-hits="14" data-linenumber="58">
           <span class="hits">14</span>
           
+          <code class="ruby">            print_project_name_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="14" data-linenumber="59">
+          <span class="hits">14</span>
+          
+          <code class="ruby">            name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="14" data-linenumber="60">
+          <span class="hits">14</span>
+          
           <code class="ruby">            if set_current_project(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="13" data-linenumber="59">
-          <span class="hits">13</span>
-          
-          <code class="ruby">              print_tasks_menu(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="13" data-linenumber="60">
-          <span class="hits">13</span>
-          
-          <code class="ruby">              command = get_input</code>
         </li>
       
         <li class="covered" data-hits="13" data-linenumber="61">
           <span class="hits">13</span>
           
+          <code class="ruby">              print_tasks_menu(name)</code>
+        </li>
+      
+        <li class="covered" data-hits="13" data-linenumber="62">
+          <span class="hits">13</span>
+          
+          <code class="ruby">              command = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="13" data-linenumber="63">
+          <span class="hits">13</span>
+          
           <code class="ruby">              next</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">            else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
           <code class="ruby">              print_cant_edit_project</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
           <code class="ruby">              print_project_does_not_exist(name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
-          
-          
-          <code class="ruby">            end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="66">
-          
-          
-          <code class="ruby">          end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">            end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="69">
-          <span class="hits">24</span>
-          
-          <code class="ruby">        case command</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="70">
-          
-          
-          <code class="ruby">        when &#39;a&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="71">
-          <span class="hits">7</span>
-          
-          <code class="ruby">          print_task_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="72">
-          <span class="hits">7</span>
-          
-          <code class="ruby">          task_name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="73">
-          <span class="hits">7</span>
-          
-          <code class="ruby">          add_task(task_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="74">
-          <span class="hits">7</span>
-          
-          <code class="ruby">          print_created_task(task_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="75">
-          
-          
-          <code class="ruby">        when &#39;b&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="76">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          set_current_project(false)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="77">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          print_break</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="78">
-          
-          
-          <code class="ruby">        when &#39;c&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="79">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          print_new_project_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="80">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          old_name = current_project_name</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="81">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          new_name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="82">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          rename_project(old_name, new_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
-          
-          <code class="ruby">          print_changed_project_name(old_name, new_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="84">
-          
-          
-          <code class="ruby">        when &#39;e&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="85">
-          <span class="hits">2</span>
-          
-          <code class="ruby">          name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="86">
-          <span class="hits">2</span>
-          
-          <code class="ruby">          if task_exists?(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="87">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_editing_task(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="88">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_task_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="89">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            new_name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="90">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            rename_task(name, new_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="91">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_changed_task_name(name, new_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="93">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_task_does_not_exsit(name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="94">
-          
-          
           <code class="ruby">          end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
-          
-          
-          <code class="ruby">        when &#39;d&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="96">
-          <span class="hits">3</span>
-          
-          <code class="ruby">          project_name = current_project_name</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="97">
-          <span class="hits">3</span>
-          
-          <code class="ruby">          if current_tasks_empty?</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="98">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_no_tasks_created_in(project_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="99">
-          
-          
-          <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="100">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            print_task_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="101">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            task_name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="102">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            if delete_task(task_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="103">
-          <span class="hits">1</span>
-          
-          <code class="ruby">              print_task_deleted(task_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="104">
-          
-          
-          <code class="ruby">            else</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="105">
-          <span class="hits">1</span>
-          
-          <code class="ruby">              print_task_does_not_exsit(task_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="106">
-          
-          
-          <code class="ruby">            end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="107">
-          
-          
-          <code class="ruby">          end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="108">
-          
-          
-          <code class="ruby">        when &#39;f&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="109">
-          <span class="hits">3</span>
-          
-          <code class="ruby">          project_name = current_project_name</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="110">
-          <span class="hits">3</span>
-          
-          <code class="ruby">          if current_tasks_empty?</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="111">
-          <span class="hits">1</span>
-          
-          <code class="ruby">            print_no_tasks_created_in(project_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="112">
-          
-          
-          <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="113">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            print_task_name_prompt</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="114">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            task_name = get_input</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="115">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            if delete_task(task_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
-          
-          <code class="ruby">              print_finished_task(task_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="117">
-          
-          
-          <code class="ruby">            else</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="118">
-          <span class="hits">1</span>
-          
-          <code class="ruby">              print_task_does_not_exsit(task_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="119">
-          
-          
-          <code class="ruby">            end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="120">
-          
-          
-          <code class="ruby">          end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="121">
-          
-          
-          <code class="ruby">        when &#39;ls&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="122">
-          <span class="hits">5</span>
-          
-          <code class="ruby">          if current_tasks_empty?</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="123">
-          <span class="hits">3</span>
-          
-          <code class="ruby">            print_no_tasks_created_in(current_project_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="124">
-          
-          
-          <code class="ruby">          else</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="125">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            print_task_list_header</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="126">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            current_project_tasks.each do |task|</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="127">
-          <span class="hits">2</span>
-          
-          <code class="ruby">              print_task_item(task)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="128">
-          
-          
-          <code class="ruby">            end</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="129">
-          <span class="hits">2</span>
-          
-          <code class="ruby">            print_break</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="130">
-          
-          
-          <code class="ruby">          end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="131">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">        end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="70">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="covered" data-hits="24" data-linenumber="71">
+          <span class="hits">24</span>
+          
+          <code class="ruby">        case command</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby">        when &#39;a&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="73">
+          <span class="hits">7</span>
+          
+          <code class="ruby">          print_task_name_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="74">
+          <span class="hits">7</span>
+          
+          <code class="ruby">          task_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="75">
+          <span class="hits">7</span>
+          
+          <code class="ruby">          add_task(task_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="76">
+          <span class="hits">7</span>
+          
+          <code class="ruby">          print_created_task(task_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="77">
+          
+          
+          <code class="ruby">        when &#39;b&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="78">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          set_current_project(false)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="79">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          print_break</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby">        when &#39;c&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="81">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          print_new_project_name_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          old_name = current_project_name</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          new_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="84">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          rename_project(old_name, new_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          print_changed_project_name(old_name, new_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="86">
+          
+          
+          <code class="ruby">        when &#39;e&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="87">
+          <span class="hits">2</span>
+          
+          <code class="ruby">          name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="88">
+          <span class="hits">2</span>
+          
+          <code class="ruby">          if task_exists?(name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="89">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_editing_task(name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_task_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="91">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            new_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            rename_task(name, new_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="93">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_changed_task_name(name, new_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
+          <code class="ruby">          else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="95">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_task_does_not_exsit(name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="96">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
+          
+          
+          <code class="ruby">        when &#39;d&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="98">
+          <span class="hits">3</span>
+          
+          <code class="ruby">          project_name = current_project_name</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="99">
+          <span class="hits">3</span>
+          
+          <code class="ruby">          if current_tasks_empty?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="100">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_no_tasks_created_in(project_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="101">
+          
+          
+          <code class="ruby">          else</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="102">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            print_task_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="103">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            task_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="104">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            if delete_task(task_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="105">
+          <span class="hits">1</span>
+          
+          <code class="ruby">              print_task_deleted(task_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="106">
+          
+          
+          <code class="ruby">            else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="107">
+          <span class="hits">1</span>
+          
+          <code class="ruby">              print_task_does_not_exsit(task_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="108">
+          
+          
+          <code class="ruby">            end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="109">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="110">
+          
+          
+          <code class="ruby">        when &#39;f&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="111">
+          <span class="hits">3</span>
+          
+          <code class="ruby">          project_name = current_project_name</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="112">
+          <span class="hits">3</span>
+          
+          <code class="ruby">          if current_tasks_empty?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="113">
+          <span class="hits">1</span>
+          
+          <code class="ruby">            print_no_tasks_created_in(project_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="114">
+          
+          
+          <code class="ruby">          else</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="115">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            print_task_name_prompt</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="116">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            task_name = get_input</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="117">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            if delete_task(task_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="118">
+          <span class="hits">1</span>
+          
+          <code class="ruby">              print_finished_task(task_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby">            else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="120">
+          <span class="hits">1</span>
+          
+          <code class="ruby">              print_task_does_not_exsit(task_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby">            end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">        when &#39;ls&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="124">
+          <span class="hits">5</span>
+          
+          <code class="ruby">          if current_tasks_empty?</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="125">
+          <span class="hits">3</span>
+          
+          <code class="ruby">            print_no_tasks_created_in(current_project_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">          else</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="127">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            print_task_list_header</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="128">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            current_project_tasks.each do |task|</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="129">
+          <span class="hits">2</span>
+          
+          <code class="ruby">              print_task_item(task)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">            end</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="131">
+          <span class="hits">2</span>
+          
+          <code class="ruby">            print_break</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="132">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">          end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="133">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="56" data-linenumber="134">
-          <span class="hits">56</span>
+        <li class="never" data-hits="" data-linenumber="134">
           
-          <code class="ruby">      command = get_input</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="135">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="136">
+        <li class="covered" data-hits="56" data-linenumber="136">
+          <span class="hits">56</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      command = get_input</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="137">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="138">
+        <li class="covered" data-hits="1" data-linenumber="140">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_input</code>
         </li>
       
-        <li class="covered" data-hits="147" data-linenumber="139">
+        <li class="covered" data-hits="147" data-linenumber="141">
           <span class="hits">147</span>
           
           <code class="ruby">    input_stream.gets.strip</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="140">
+        <li class="never" data-hits="" data-linenumber="142">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="141">
+        <li class="never" data-hits="" data-linenumber="143">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="142">
+        <li class="covered" data-hits="1" data-linenumber="144">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_line(message=&#39;&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="537" data-linenumber="143">
+        <li class="covered" data-hits="537" data-linenumber="145">
           <span class="hits">537</span>
           
           <code class="ruby">    output_stream.puts(message)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="144">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="145">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="146">
           
           
-          <code class="ruby">  # Menu Headers</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="147">
@@ -982,514 +982,514 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="148">
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby">  # Menu Headers</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="149">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="150">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_projects_menu</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="149">
+        <li class="covered" data-hits="26" data-linenumber="151">
           <span class="hits">26</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mWelcome to Taskitome!&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="150">
+        <li class="covered" data-hits="26" data-linenumber="152">
           <span class="hits">26</span>
           
           <code class="ruby">    print_line(&quot;\e[0;37m=============================\n&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="151">
+        <li class="covered" data-hits="26" data-linenumber="153">
           <span class="hits">26</span>
           
           <code class="ruby">    print_line(&quot;\e[0mPROJECTS MENU&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="152">
+        <li class="covered" data-hits="26" data-linenumber="154">
           <span class="hits">26</span>
           
           <code class="ruby">    print_line(&quot;\e[0;37m-----------------------------&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="153">
-          <span class="hits">26</span>
-          
-          <code class="ruby">    print_line(&quot;\e[40;38;5;214mENTER A COMMAND:\e[0m&quot;)</code>
-        </li>
-      
-        <li class="covered" data-hits="26" data-linenumber="154">
-          <span class="hits">26</span>
-          
-          <code class="ruby">    print_line(&quot;\e[1;37ma   \e[0;35mAdd a new project&quot;)</code>
-        </li>
-      
         <li class="covered" data-hits="26" data-linenumber="155">
           <span class="hits">26</span>
           
-          <code class="ruby">    print_line(&quot;\e[1;37mls  \e[0;35mList all project&quot;)</code>
+          <code class="ruby">    print_line(&quot;\e[40;38;5;214mENTER A COMMAND:\e[0m&quot;)</code>
         </li>
       
         <li class="covered" data-hits="26" data-linenumber="156">
           <span class="hits">26</span>
           
-          <code class="ruby">    print_line(&quot;\e[1;37md   \e[0;35mDelete a project&quot;)</code>
+          <code class="ruby">    print_line(&quot;\e[1;37ma   \e[0;35mAdd a new project&quot;)</code>
         </li>
       
         <li class="covered" data-hits="26" data-linenumber="157">
           <span class="hits">26</span>
           
-          <code class="ruby">    print_line(&quot;\e[1;37me   \e[0;35mEdit a project&quot;)</code>
+          <code class="ruby">    print_line(&quot;\e[1;37mls  \e[0;35mList all project&quot;)</code>
         </li>
       
         <li class="covered" data-hits="26" data-linenumber="158">
           <span class="hits">26</span>
           
+          <code class="ruby">    print_line(&quot;\e[1;37md   \e[0;35mDelete a project&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="26" data-linenumber="159">
+          <span class="hits">26</span>
+          
+          <code class="ruby">    print_line(&quot;\e[1;37me   \e[0;35mEdit a project&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="26" data-linenumber="160">
+          <span class="hits">26</span>
+          
           <code class="ruby">    print_line(&quot;\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="159">
+        <li class="never" data-hits="" data-linenumber="161">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="160">
+        <li class="never" data-hits="" data-linenumber="162">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="161">
+        <li class="covered" data-hits="1" data-linenumber="163">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_tasks_menu(project_name)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="162">
+        <li class="covered" data-hits="13" data-linenumber="164">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mEditing project: &#39;#{project_name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="163">
+        <li class="covered" data-hits="13" data-linenumber="165">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[0;37mEDIT PROJECT MENU\e[0m&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="164">
+        <li class="covered" data-hits="13" data-linenumber="166">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;-----------------------------&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="165">
+        <li class="covered" data-hits="13" data-linenumber="167">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mENTER A COMMAND:\e[0m&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="166">
+        <li class="covered" data-hits="13" data-linenumber="168">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37mc   \e[0;35mChange the project name&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="167">
+        <li class="covered" data-hits="13" data-linenumber="169">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37ma   \e[0;35mAdd a new task&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="168">
+        <li class="covered" data-hits="13" data-linenumber="170">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37mls  \e[0;35mList all tasks&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="169">
+        <li class="covered" data-hits="13" data-linenumber="171">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37md   \e[0;35mDelete a task&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="170">
+        <li class="covered" data-hits="13" data-linenumber="172">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37me   \e[0;35mEdit a task&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="171">
+        <li class="covered" data-hits="13" data-linenumber="173">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37mf   \e[0;35mFinish a task&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="172">
+        <li class="covered" data-hits="13" data-linenumber="174">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37mb   \e[0;35mBack to Projects menu&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="173">
+        <li class="covered" data-hits="13" data-linenumber="175">
           <span class="hits">13</span>
           
           <code class="ruby">    print_line(&quot;\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="174">
+        <li class="never" data-hits="" data-linenumber="176">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="175">
+        <li class="never" data-hits="" data-linenumber="177">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="176">
+        <li class="never" data-hits="" data-linenumber="178">
           
           
           <code class="ruby">  # Assorted printing/view methods</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="177">
+        <li class="covered" data-hits="1" data-linenumber="179">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_break</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="178">
+        <li class="covered" data-hits="5" data-linenumber="180">
           <span class="hits">5</span>
           
           <code class="ruby">    print_line(&quot;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="179">
+        <li class="never" data-hits="" data-linenumber="181">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="180">
+        <li class="never" data-hits="" data-linenumber="182">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="181">
+        <li class="never" data-hits="" data-linenumber="183">
           
           
           <code class="ruby">  # project menu related messages, no arguments required</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="182">
+        <li class="covered" data-hits="1" data-linenumber="184">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_no_projects_message</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="183">
+        <li class="covered" data-hits="6" data-linenumber="185">
           <span class="hits">6</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mNo projects created\e[0m\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="184">
+        <li class="never" data-hits="" data-linenumber="186">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="185">
+        <li class="never" data-hits="" data-linenumber="187">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="186">
+        <li class="covered" data-hits="1" data-linenumber="188">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_project_name_prompt</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="187">
+        <li class="covered" data-hits="37" data-linenumber="189">
           <span class="hits">37</span>
           
           <code class="ruby">    print_line(&quot;\e[0;3mEnter a project name:\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="188">
+        <li class="never" data-hits="" data-linenumber="190">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="189">
+        <li class="never" data-hits="" data-linenumber="191">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="190">
+        <li class="covered" data-hits="1" data-linenumber="192">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_new_project_name_prompt</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="191">
+        <li class="covered" data-hits="1" data-linenumber="193">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[0;35mEnter new project name:\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="192">
+        <li class="never" data-hits="" data-linenumber="194">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="193">
+        <li class="never" data-hits="" data-linenumber="195">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="194">
+        <li class="covered" data-hits="1" data-linenumber="196">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_listing_project_header</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="195">
+        <li class="covered" data-hits="5" data-linenumber="197">
           <span class="hits">5</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mListing projects:\e[0m\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="196">
+        <li class="never" data-hits="" data-linenumber="198">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="197">
+        <li class="never" data-hits="" data-linenumber="199">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="198">
+        <li class="covered" data-hits="1" data-linenumber="200">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_cant_delete_project</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="199">
+        <li class="covered" data-hits="1" data-linenumber="201">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mCan&#39;t delete a project\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="200">
+        <li class="never" data-hits="" data-linenumber="202">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="201">
+        <li class="never" data-hits="" data-linenumber="203">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="202">
+        <li class="covered" data-hits="1" data-linenumber="204">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_cant_edit_project</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="203">
+        <li class="covered" data-hits="3" data-linenumber="205">
           <span class="hits">3</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mCan&#39;t edit any projects\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="204">
+        <li class="never" data-hits="" data-linenumber="206">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="205">
+        <li class="never" data-hits="" data-linenumber="207">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="206">
+        <li class="never" data-hits="" data-linenumber="208">
           
           
           <code class="ruby">  # project menu related messages, with data passed in</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="207">
+        <li class="covered" data-hits="1" data-linenumber="209">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_project_created(name)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="208">
+        <li class="covered" data-hits="21" data-linenumber="210">
           <span class="hits">21</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mCreated project:\e[0m &#39;#{name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="209">
+        <li class="never" data-hits="" data-linenumber="211">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="210">
+        <li class="never" data-hits="" data-linenumber="212">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="211">
+        <li class="covered" data-hits="1" data-linenumber="213">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_project_list_item(name)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="212">
+        <li class="covered" data-hits="3" data-linenumber="214">
           <span class="hits">3</span>
           
           <code class="ruby">    print_line(&quot;  #{name}\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="213">
+        <li class="never" data-hits="" data-linenumber="215">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="214">
+        <li class="never" data-hits="" data-linenumber="216">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="215">
+        <li class="covered" data-hits="1" data-linenumber="217">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_successful_delete(name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="216">
+        <li class="covered" data-hits="1" data-linenumber="218">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line &quot;\e[38;5;40mDeleting project:\e[0m &#39;#{name}&#39;\n\n&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="217">
+        <li class="never" data-hits="" data-linenumber="219">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="218">
+        <li class="never" data-hits="" data-linenumber="220">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="219">
+        <li class="covered" data-hits="1" data-linenumber="221">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_project_does_not_exist(name)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="220">
+        <li class="covered" data-hits="2" data-linenumber="222">
           <span class="hits">2</span>
           
           <code class="ruby">    print_line &quot;\e[40;38;5;214mProject doesn&#39;t exist:\e[0m &#39;#{name}&#39;\n\n&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="223">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="222">
+        <li class="never" data-hits="" data-linenumber="224">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="223">
+        <li class="never" data-hits="" data-linenumber="225">
           
           
           <code class="ruby">  # task menu related messages, no data passed in</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="224">
+        <li class="covered" data-hits="1" data-linenumber="226">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_name_prompt</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="225">
+        <li class="covered" data-hits="9" data-linenumber="227">
           <span class="hits">9</span>
           
           <code class="ruby">    print_line(&quot;\e[0;35mEnter a task name:\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="226">
+        <li class="never" data-hits="" data-linenumber="228">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="227">
+        <li class="never" data-hits="" data-linenumber="229">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="228">
+        <li class="covered" data-hits="1" data-linenumber="230">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_list_header</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="229">
+        <li class="covered" data-hits="2" data-linenumber="231">
           <span class="hits">2</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mListing tasks:\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="230">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="231">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="232">
           
           
-          <code class="ruby">  # task menu related messages, data required</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="233">
@@ -1498,250 +1498,250 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="234">
+        <li class="never" data-hits="" data-linenumber="234">
+          
+          
+          <code class="ruby">  # task menu related messages, data required</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="235">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="236">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_created_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="235">
+        <li class="covered" data-hits="7" data-linenumber="237">
           <span class="hits">7</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mCreated task:\e[0m &#39;#{name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="236">
+        <li class="never" data-hits="" data-linenumber="238">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="237">
+        <li class="never" data-hits="" data-linenumber="239">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="238">
+        <li class="covered" data-hits="1" data-linenumber="240">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_changed_project_name(old_name, new_name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="239">
+        <li class="covered" data-hits="1" data-linenumber="241">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mChanged project name from\e[0m &#39;#{old_name}&#39; \e[38;5;40mto\e[0m &#39;#{new_name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="240">
+        <li class="never" data-hits="" data-linenumber="242">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="241">
+        <li class="never" data-hits="" data-linenumber="243">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="242">
+        <li class="covered" data-hits="1" data-linenumber="244">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_editing_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="243">
+        <li class="covered" data-hits="1" data-linenumber="245">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mEditing task:\e[0m &#39;#{name}&#39;&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="244">
+        <li class="never" data-hits="" data-linenumber="246">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="245">
+        <li class="never" data-hits="" data-linenumber="247">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="246">
+        <li class="covered" data-hits="1" data-linenumber="248">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_prompt</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="247">
+        <li class="covered" data-hits="3" data-linenumber="249">
           <span class="hits">3</span>
           
           <code class="ruby">    print_line(&quot;\e[0;35mEnter a task name:\e[0m&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="248">
+        <li class="never" data-hits="" data-linenumber="250">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="249">
+        <li class="never" data-hits="" data-linenumber="251">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="250">
+        <li class="covered" data-hits="1" data-linenumber="252">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_changed_task_name(old_name, new_name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="251">
+        <li class="covered" data-hits="1" data-linenumber="253">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mChanged task name from\e[0m &#39;#{old_name}&#39; \e[38;5;40mto\e[0m &#39;#{new_name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="252">
+        <li class="never" data-hits="" data-linenumber="254">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="253">
+        <li class="never" data-hits="" data-linenumber="255">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="254">
+        <li class="covered" data-hits="1" data-linenumber="256">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_does_not_exsit(name)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="255">
+        <li class="covered" data-hits="3" data-linenumber="257">
           <span class="hits">3</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mTask doesn&#39;t exist:\e[0m &#39;#{name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="256">
+        <li class="never" data-hits="" data-linenumber="258">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="257">
+        <li class="never" data-hits="" data-linenumber="259">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="258">
+        <li class="covered" data-hits="1" data-linenumber="260">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_no_tasks_created_in(project_name)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="259">
+        <li class="covered" data-hits="5" data-linenumber="261">
           <span class="hits">5</span>
           
           <code class="ruby">    print_line(&quot;\e[40;38;5;214mNo tasks created in &#39;#{project_name}&#39;\e[0m\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="260">
+        <li class="never" data-hits="" data-linenumber="262">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="261">
+        <li class="never" data-hits="" data-linenumber="263">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="262">
+        <li class="covered" data-hits="1" data-linenumber="264">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_deleted(name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="263">
+        <li class="covered" data-hits="1" data-linenumber="265">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mDeleted task:\e[0m &#39;#{name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="264">
+        <li class="never" data-hits="" data-linenumber="266">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="265">
+        <li class="never" data-hits="" data-linenumber="267">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="266">
+        <li class="covered" data-hits="1" data-linenumber="268">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_finished_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="267">
+        <li class="covered" data-hits="1" data-linenumber="269">
           <span class="hits">1</span>
           
           <code class="ruby">    print_line(&quot;\e[38;5;40mFinished task:\e[0m &#39;#{name}&#39;\n\n&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="268">
+        <li class="never" data-hits="" data-linenumber="270">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="269">
+        <li class="never" data-hits="" data-linenumber="271">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="270">
+        <li class="covered" data-hits="1" data-linenumber="272">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_task_item(name)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="271">
+        <li class="covered" data-hits="2" data-linenumber="273">
           <span class="hits">2</span>
           
           <code class="ruby">    print_line(&quot;  #{name}&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="272">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="273">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="274">
           
           
-          <code class="ruby">  # data methods</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="275">
@@ -1753,349 +1753,349 @@
         <li class="never" data-hits="" data-linenumber="276">
           
           
+          <code class="ruby">  # data methods</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="277">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="278">
+          
+          
           <code class="ruby">  # write/change/delete methods for data</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="277">
+        <li class="covered" data-hits="1" data-linenumber="279">
           <span class="hits">1</span>
           
           <code class="ruby">  def set_current_project(name)</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="278">
+        <li class="covered" data-hits="15" data-linenumber="280">
           <span class="hits">15</span>
           
           <code class="ruby">    project_data.set_current_project(name)</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="279">
+        <li class="covered" data-hits="15" data-linenumber="281">
           <span class="hits">15</span>
           
           <code class="ruby">    @current_project = find_project_by_name(name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="280">
+        <li class="never" data-hits="" data-linenumber="282">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="281">
+        <li class="never" data-hits="" data-linenumber="283">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="282">
+        <li class="covered" data-hits="1" data-linenumber="284">
           <span class="hits">1</span>
           
           <code class="ruby">  def create_project(name)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="283">
+        <li class="covered" data-hits="21" data-linenumber="285">
           <span class="hits">21</span>
           
           <code class="ruby">    project_data.add(name)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="284">
+        <li class="covered" data-hits="21" data-linenumber="286">
           <span class="hits">21</span>
           
           <code class="ruby">    projects &lt;&lt; {name =&gt; []}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="285">
+        <li class="never" data-hits="" data-linenumber="287">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="286">
+        <li class="never" data-hits="" data-linenumber="288">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="287">
+        <li class="covered" data-hits="1" data-linenumber="289">
           <span class="hits">1</span>
           
           <code class="ruby">  def delete_project_by_name(name)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="288">
+        <li class="covered" data-hits="2" data-linenumber="290">
           <span class="hits">2</span>
           
           <code class="ruby">    project_data.delete(name)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="289">
+        <li class="covered" data-hits="4" data-linenumber="291">
           <span class="hits">4</span>
           
           <code class="ruby">    projects.delete_if {|project| name_for_project(project) == name }.empty?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="290">
+        <li class="never" data-hits="" data-linenumber="292">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="291">
+        <li class="never" data-hits="" data-linenumber="293">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="292">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def rename_project(old_name, new_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="293">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    project_data.rename(old_name, new_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="294">
           <span class="hits">1</span>
           
-          <code class="ruby">    current_project[new_name] = current_project_tasks</code>
+          <code class="ruby">  def rename_project(old_name, new_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="295">
           <span class="hits">1</span>
           
+          <code class="ruby">    project_data.rename(old_name, new_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="296">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    current_project[new_name] = current_project_tasks</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="297">
+          <span class="hits">1</span>
+          
           <code class="ruby">    current_project.delete(old_name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="296">
+        <li class="never" data-hits="" data-linenumber="298">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="297">
+        <li class="never" data-hits="" data-linenumber="299">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="298">
+        <li class="covered" data-hits="1" data-linenumber="300">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="299">
+        <li class="covered" data-hits="7" data-linenumber="301">
           <span class="hits">7</span>
           
           <code class="ruby">    project_data.add_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="300">
+        <li class="covered" data-hits="7" data-linenumber="302">
           <span class="hits">7</span>
           
           <code class="ruby">    current_project_tasks &lt;&lt; name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="301">
+        <li class="never" data-hits="" data-linenumber="303">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="302">
+        <li class="never" data-hits="" data-linenumber="304">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="303">
+        <li class="covered" data-hits="1" data-linenumber="305">
           <span class="hits">1</span>
           
           <code class="ruby">  def delete_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="304">
+        <li class="covered" data-hits="4" data-linenumber="306">
           <span class="hits">4</span>
           
           <code class="ruby">    project_data.delete_task(name)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="305">
+        <li class="covered" data-hits="4" data-linenumber="307">
           <span class="hits">4</span>
           
           <code class="ruby">    current_project_tasks.delete(name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="306">
+        <li class="never" data-hits="" data-linenumber="308">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="307">
+        <li class="never" data-hits="" data-linenumber="309">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="308">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def rename_task(old_name, new_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="309">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    project_data.rename_task(old_name, new_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="310">
           <span class="hits">1</span>
           
-          <code class="ruby">    index = current_project_tasks.find_index(old_name)</code>
+          <code class="ruby">  def rename_task(old_name, new_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="311">
           <span class="hits">1</span>
           
+          <code class="ruby">    project_data.rename_task(old_name, new_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="312">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    index = current_project_tasks.find_index(old_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="313">
+          <span class="hits">1</span>
+          
           <code class="ruby">    current_project_tasks[index] = new_name</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="312">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="313">
-          
-          
-          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="314">
           
           
-          <code class="ruby">  # read methods for data</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="315">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def projects_empty?</code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="316">
-          <span class="hits">24</span>
-          
-          <code class="ruby">    projects.empty?</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="317">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="318">
+        <li class="never" data-hits="" data-linenumber="315">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="319">
+        <li class="never" data-hits="" data-linenumber="316">
+          
+          
+          <code class="ruby">  # read methods for data</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="317">
           <span class="hits">1</span>
           
           <code class="ruby">  def name_for_project(project_data)</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="320">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="20" data-linenumber="318">
+          <span class="hits">20</span>
           
           <code class="ruby">    project_data.keys.first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="321">
+        <li class="never" data-hits="" data-linenumber="319">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="322">
+        <li class="never" data-hits="" data-linenumber="320">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="323">
+        <li class="covered" data-hits="1" data-linenumber="321">
           <span class="hits">1</span>
           
           <code class="ruby">  def tasks_for_project(project_data)</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="324">
-          <span class="hits">29</span>
+        <li class="missed" data-hits="0" data-linenumber="322">
+          
           
           <code class="ruby">    project_data.values.first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="325">
+        <li class="never" data-hits="" data-linenumber="323">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="326">
+        <li class="never" data-hits="" data-linenumber="324">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="327">
+        <li class="covered" data-hits="1" data-linenumber="325">
           <span class="hits">1</span>
           
           <code class="ruby">  def find_project_by_name(name)</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="328">
+        <li class="covered" data-hits="30" data-linenumber="326">
           <span class="hits">30</span>
           
           <code class="ruby">    projects.detect{|project| name_for_project(project) == name}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="329">
+        <li class="never" data-hits="" data-linenumber="327">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="330">
+        <li class="never" data-hits="" data-linenumber="328">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="331">
+        <li class="covered" data-hits="1" data-linenumber="329">
           <span class="hits">1</span>
           
           <code class="ruby">  def current_project_tasks</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="332">
-          <span class="hits">29</span>
+        <li class="covered" data-hits="16" data-linenumber="330">
+          <span class="hits">16</span>
           
           <code class="ruby">    tasks_for_project(current_project)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="333">
+        <li class="never" data-hits="" data-linenumber="331">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="332">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="333">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  extend Forwardable</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="334">
@@ -2107,70 +2107,46 @@
         <li class="covered" data-hits="1" data-linenumber="335">
           <span class="hits">1</span>
           
-          <code class="ruby">  def current_project_name</code>
+          <code class="ruby">  def_delegators :project_data,</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="336">
-          <span class="hits">10</span>
+        <li class="never" data-hits="" data-linenumber="336">
           
-          <code class="ruby">    name_for_project(current_project)</code>
+          
+          <code class="ruby">    :projects_empty?,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="337">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    :tasks_for_project,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="338">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    :current_project_name,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="339">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="339">
           
-          <code class="ruby">  def current_tasks_empty?</code>
+          
+          <code class="ruby">    :current_tasks_empty?,</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="340">
-          <span class="hits">11</span>
+        <li class="never" data-hits="" data-linenumber="340">
           
-          <code class="ruby">    current_project_tasks.empty?</code>
+          
+          <code class="ruby">    :task_exists?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="341">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="342">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="343">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def task_exists?(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="344">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    current_project_tasks.any?{|n| n == name}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="345">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="346">
+        <li class="never" data-hits="" data-linenumber="342">
           
           
           <code class="ruby">end</code>
@@ -2183,11 +2159,11 @@
         <div class="source_table" id="6b79ead2ed2e2fa4e45f932db58891af602733db">
   <div class="header">
     <h3>lib/projects.rb</h3>
-    <h4><span class="yellow">88.89 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>36</b> relevant lines. 
-      <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <span class="green"><b>36</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -2422,8 +2398,8 @@
           <code class="ruby">  def projects_empty?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
-          
+        <li class="covered" data-hits="24" data-linenumber="39">
+          <span class="hits">24</span>
           
           <code class="ruby">    projects.empty?</code>
         </li>
@@ -2446,8 +2422,8 @@
           <code class="ruby">  def name_for_project(project_data)</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="43">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="27" data-linenumber="43">
+          <span class="hits">27</span>
           
           <code class="ruby">    project_data.keys.first</code>
         </li>
@@ -2470,8 +2446,8 @@
           <code class="ruby">  def tasks_for_project(project_data)</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="47">
-          <span class="hits">14</span>
+        <li class="covered" data-hits="43" data-linenumber="47">
+          <span class="hits">43</span>
           
           <code class="ruby">    project_data.values.first</code>
         </li>
@@ -2518,8 +2494,8 @@
           <code class="ruby">  def current_project_tasks</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="55">
-          <span class="hits">14</span>
+        <li class="covered" data-hits="27" data-linenumber="55">
+          <span class="hits">27</span>
           
           <code class="ruby">    tasks_for_project(current_project)</code>
         </li>
@@ -2542,8 +2518,8 @@
           <code class="ruby">  def current_project_name</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
-          
+        <li class="covered" data-hits="10" data-linenumber="59">
+          <span class="hits">10</span>
           
           <code class="ruby">    name_for_project(current_project)</code>
         </li>
@@ -2566,8 +2542,8 @@
           <code class="ruby">  def current_tasks_empty?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="63">
-          
+        <li class="covered" data-hits="11" data-linenumber="63">
+          <span class="hits">11</span>
           
           <code class="ruby">    current_project_tasks.empty?</code>
         </li>
@@ -2590,8 +2566,8 @@
           <code class="ruby">  def task_exists?(name)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
-          
+        <li class="covered" data-hits="3" data-linenumber="67">
+          <span class="hits">3</span>
           
           <code class="ruby">    current_project_tasks.any?{|n| n == name}</code>
         </li>

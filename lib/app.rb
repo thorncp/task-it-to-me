@@ -1,3 +1,5 @@
+require 'forwardable'
+
 require_relative 'projects'
 
 class App
@@ -312,10 +314,6 @@ class App
   end
 
   # read methods for data
-  def projects_empty?
-    projects.empty?
-  end
-
   def name_for_project(project_data)
     project_data.keys.first
   end
@@ -332,15 +330,13 @@ class App
     tasks_for_project(current_project)
   end
 
-  def current_project_name
-    name_for_project(current_project)
-  end
+  extend Forwardable
 
-  def current_tasks_empty?
-    current_project_tasks.empty?
-  end
+  def_delegators :project_data,
+    :projects_empty?,
+    :tasks_for_project,
+    :current_project_name,
+    :current_tasks_empty?,
+    :task_exists?
 
-  def task_exists?(name)
-    current_project_tasks.any?{|n| n == name}
-  end
 end
