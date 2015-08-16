@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-15 14:02:57 -0700'>2015-08-15 14:02:57 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-15 22:19:27 -0700'>2015-08-15 22:19:27 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      258 complexity
+      280 complexity
     </div>
     <div class="file-stat">
-      6.5 complexity per method
+      7.2 complexity per method
     </div>
     <div class="file-stat">
-      25 churn
+      26 churn
     </div>
     <div class="file-stat">
-      40 methods
+      39 methods
     </div>
     <div class="file-stat">
       40 duplication
@@ -59,7 +59,7 @@
 
 require_relative &#39;projects&#39;
 
-class App<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) App has at least 40 methods          </span>  </li></ul>
+class App<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) App has at least 39 methods          </span>  </li></ul>
   attr_reader :input_stream, :output_stream,
     :projects, :current_project,
     :project_data
@@ -335,7 +335,7 @@ class App<ul class="nocode smells js-smells">  <li class="smell new">    <span c
   # write/change/delete methods for data
   def set_current_project(name)
     project_data.set_current_project(name)
-    @current_project = find_project_by_name(name)
+    @current_project = projects.detect{|project| project.keys.first == name}
   end
 
   def create_project(name)
@@ -345,38 +345,34 @@ class App<ul class="nocode smells js-smells">  <li class="smell new">    <span c
 
   def delete_project_by_name(name)
     project_data.delete(name)
-    projects.delete_if {|project| name_for_project(project) == name }.empty?
+    projects.delete_if {|project| project.keys.first == name }.empty?
   end
 
   def rename_project(old_name, new_name)
     project_data.rename(old_name, new_name)
-    current_project[new_name] = current_project_tasks
+    current_project[new_name] = current_project.values.first
     current_project.delete(old_name)
   end
 
   def add_task(name)
     project_data.add_task(name)
-    current_project_tasks &lt;&lt; name
+    current_project.values.first &lt;&lt; name
   end
 
   def delete_task(name)
     project_data.delete_task(name)
-    current_project_tasks.delete(name)
+    current_project.values.first.delete(name)
   end
 
   def rename_task(old_name, new_name)
     project_data.rename_task(old_name, new_name)
-    index = current_project_tasks.find_index(old_name)
-    current_project_tasks[index] = new_name
+    index = current_project.values.first.find_index(old_name)
+    current_project.values.first[index] = new_name
   end
 
   # read methods for data
-  def name_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) App#name_for_project refers to project_data more than self          </span>  </li></ul>
-    project_data.keys.first
-  end
-
-  def tasks_for_project(project_data)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) App#tasks_for_project refers to project_data more than self          </span>  </li></ul>
-    project_data.values.first
+  def name_for_project(project)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(FeatureEnvy) App#name_for_project refers to project more than self          </span>  </li></ul>
+    project.keys.first
   end
 
   def find_project_by_name(name)
@@ -384,7 +380,7 @@ class App<ul class="nocode smells js-smells">  <li class="smell new">    <span c
   end
 
   def current_project_tasks
-    tasks_for_project(current_project)
+    current_project.values.first
   end
 
   extend Forwardable
