@@ -271,37 +271,6 @@ class App
     print_line("  #{name}")
   end
 
-  # data methods
-
-  # write/change/delete methods for data
-  def set_current_project(name)
-    project_data.set_current_project(name)
-  end
-
-  def create_project(name)
-    project_data.add(name)
-  end
-
-  def delete_project_by_name(name)
-    project_data.delete(name)
-  end
-
-  def rename_project(old_name, new_name)
-    project_data.rename(old_name, new_name)
-  end
-
-  def add_task(name)
-    project_data.add_task(name)
-  end
-
-  def delete_task(name)
-    project_data.delete_task(name)
-  end
-
-  def rename_task(old_name, new_name)
-    project_data.rename_task(old_name, new_name)
-  end
-
   extend Forwardable
 
   def_delegators :project_data,
@@ -314,5 +283,14 @@ class App
     :find_project_by_name,
     :current_project_tasks,
     :projects,
-    :current_project
+    :current_project,
+
+    :set_current_project,
+    :add_task,
+    :delete_task,
+    :rename_task
+
+  def_delegator :project_data, :add, :create_project
+  def_delegator :project_data, :delete, :delete_project_by_name
+  def_delegator :project_data, :rename, :rename_project
 end

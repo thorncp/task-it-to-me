@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-15T22:57:56-07:00">2015-08-15T22:57:56-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-15T23:00:47-07:00">2015-08-15T23:00:47-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         10.55
+         10.85
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>212</b> relevant lines. 
-    <span class="green"><b>212</b> lines covered</span> and
+    <b>201</b> relevant lines. 
+    <span class="green"><b>201</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#1359a246c00752159e257faa5a67415edbdc4220" class="src_link" title="lib/app.rb">lib/app.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>318</td>
-        <td>176</td>
-        <td>176</td>
+        <td>296</td>
+        <td>165</td>
+        <td>165</td>
         <td>0</td>
-        <td>11.2</td>
+        <td>11.6</td>
       </tr>
       
       <tr>
@@ -91,8 +91,8 @@
     <h3>lib/app.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>176</b> relevant lines. 
-      <span class="green"><b>176</b> lines covered</span> and
+      <b>165</b> relevant lines. 
+      <span class="green"><b>165</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1738,10 +1738,10 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="274">
+        <li class="covered" data-hits="1" data-linenumber="274">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # data methods</code>
+          <code class="ruby">  extend Forwardable</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="275">
@@ -1750,100 +1750,100 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="276">
-          
-          
-          <code class="ruby">  # write/change/delete methods for data</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="277">
+        <li class="covered" data-hits="1" data-linenumber="276">
           <span class="hits">1</span>
           
-          <code class="ruby">  def set_current_project(name)</code>
+          <code class="ruby">  def_delegators :project_data,</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="278">
-          <span class="hits">15</span>
+        <li class="never" data-hits="" data-linenumber="277">
           
-          <code class="ruby">    project_data.set_current_project(name)</code>
+          
+          <code class="ruby">    :projects_empty?,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="278">
+          
+          
+          <code class="ruby">    :tasks_for_project,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="279">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    :current_project_name,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="280">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    :current_tasks_empty?,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="281">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="281">
           
-          <code class="ruby">  def create_project(name)</code>
+          
+          <code class="ruby">    :task_exists?,</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="282">
-          <span class="hits">21</span>
+        <li class="never" data-hits="" data-linenumber="282">
           
-          <code class="ruby">    project_data.add(name)</code>
+          
+          <code class="ruby">    :name_for_project,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="283">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    :find_project_by_name,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="284">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    :current_project_tasks,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="285">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="285">
           
-          <code class="ruby">  def delete_project_by_name(name)</code>
+          
+          <code class="ruby">    :projects,</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="286">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="286">
           
-          <code class="ruby">    project_data.delete(name)</code>
+          
+          <code class="ruby">    :current_project,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="287">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="288">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    :set_current_project,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="289">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="289">
           
-          <code class="ruby">  def rename_project(old_name, new_name)</code>
+          
+          <code class="ruby">    :add_task,</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="290">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="290">
           
-          <code class="ruby">    project_data.rename(old_name, new_name)</code>
+          
+          <code class="ruby">    :delete_task,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="291">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    :rename_task</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="292">
@@ -1855,154 +1855,22 @@
         <li class="covered" data-hits="1" data-linenumber="293">
           <span class="hits">1</span>
           
-          <code class="ruby">  def add_task(name)</code>
+          <code class="ruby">  def_delegator :project_data, :add, :create_project</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="294">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="1" data-linenumber="294">
+          <span class="hits">1</span>
           
-          <code class="ruby">    project_data.add_task(name)</code>
+          <code class="ruby">  def_delegator :project_data, :delete, :delete_project_by_name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="295">
+        <li class="covered" data-hits="1" data-linenumber="295">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">  def_delegator :project_data, :rename, :rename_project</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="296">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="297">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def delete_task(name)</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="298">
-          <span class="hits">4</span>
-          
-          <code class="ruby">    project_data.delete_task(name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="299">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="300">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="301">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def rename_task(old_name, new_name)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="302">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    project_data.rename_task(old_name, new_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="303">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="304">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="305">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  extend Forwardable</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="306">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="307">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def_delegators :project_data,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="308">
-          
-          
-          <code class="ruby">    :projects_empty?,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="309">
-          
-          
-          <code class="ruby">    :tasks_for_project,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="310">
-          
-          
-          <code class="ruby">    :current_project_name,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="311">
-          
-          
-          <code class="ruby">    :current_tasks_empty?,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="312">
-          
-          
-          <code class="ruby">    :task_exists?,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="313">
-          
-          
-          <code class="ruby">    :name_for_project,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="314">
-          
-          
-          <code class="ruby">    :find_project_by_name,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="315">
-          
-          
-          <code class="ruby">    :current_project_tasks,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="316">
-          
-          
-          <code class="ruby">    :projects,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="317">
-          
-          
-          <code class="ruby">    :current_project</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="318">
           
           
           <code class="ruby">end</code>
