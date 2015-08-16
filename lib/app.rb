@@ -278,52 +278,39 @@ class App
   # write/change/delete methods for data
   def set_current_project(name)
     project_data.set_current_project(name)
-    @current_project = projects.detect{|project| project.keys.first == name}
+    @current_project = @projects.detect{|project| project.keys.first == name}
   end
 
   def create_project(name)
     project_data.add(name)
-    projects << {name => []}
+    @projects << {name => []}
   end
 
   def delete_project_by_name(name)
     project_data.delete(name)
-    projects.delete_if {|project| project.keys.first == name }.empty?
+    @projects.delete_if {|project| project.keys.first == name }.empty?
   end
 
   def rename_project(old_name, new_name)
     project_data.rename(old_name, new_name)
-    current_project[new_name] = current_project.values.first
-    current_project.delete(old_name)
+    @current_project[new_name] = @current_project.values.first
+    @current_project.delete(old_name)
   end
 
   def add_task(name)
     project_data.add_task(name)
-    current_project.values.first << name
+    @current_project.values.first << name
   end
 
   def delete_task(name)
     project_data.delete_task(name)
-    current_project.values.first.delete(name)
+    @current_project.values.first.delete(name)
   end
 
   def rename_task(old_name, new_name)
     project_data.rename_task(old_name, new_name)
-    index = current_project.values.first.find_index(old_name)
-    current_project.values.first[index] = new_name
-  end
-
-  # read methods for data
-  def name_for_project(project)
-    project.keys.first
-  end
-
-  def find_project_by_name(name)
-    projects.detect{|project| name_for_project(project) == name}
-  end
-
-  def current_project_tasks
-    current_project.values.first
+    index = @current_project.values.first.find_index(old_name)
+    @current_project.values.first[index] = new_name
   end
 
   extend Forwardable
@@ -333,6 +320,10 @@ class App
     :tasks_for_project,
     :current_project_name,
     :current_tasks_empty?,
-    :task_exists?
-
+    :task_exists?,
+    :name_for_project,
+    :find_project_by_name,
+    :current_project_tasks,
+    :projects,
+    :current_project
 end
