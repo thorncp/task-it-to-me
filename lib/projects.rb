@@ -6,6 +6,7 @@ class Projects
   end
 
   def add(name)
+    return if names.include?(name)
     projects << {name => []}
   end
 
@@ -16,6 +17,14 @@ class Projects
   def rename(old_name, new_name)
     current_project[new_name] = current_project_tasks
     current_project.delete(old_name)
+  end
+
+  def size
+    projects.size
+  end
+
+  def names
+    projects.map{ |project| project.keys.first }
   end
 
   def set_current_project(name)
