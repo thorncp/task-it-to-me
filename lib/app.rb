@@ -1,6 +1,5 @@
 require 'forwardable'
 
-require_relative 'projects'
 require_relative 'state'
 require_relative 'project'
 require_relative 'task'
@@ -13,7 +12,7 @@ class App
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
-    @project_data = Projects.new
+    @project_data = State.new
   end
 
   def run
