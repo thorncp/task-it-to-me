@@ -2,7 +2,7 @@ require 'forwardable'
 
 require_relative 'projects'
 require_relative 'project'
-require_relative 'projects_data'
+require_relative 'collection'
 
 class App
   attr_reader :input_stream, :output_stream,

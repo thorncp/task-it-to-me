@@ -1,8 +1,8 @@
 require_relative 'test_helper'
 
-class TestdataData < Minitest::Test
+class TestCollection < Minitest::Test
   def data
-    @data ||= ProjectsData.new
+    @data ||= Collection.new
   end
 
   def test_adding_a_project
