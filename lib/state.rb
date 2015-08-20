@@ -50,10 +50,6 @@ class State
     project.name
   end
 
-  def find_project_by_name(name)
-    projects.find(name)
-  end
-
   def current_project_tasks
     return [] unless current_project
     current_project.tasks
