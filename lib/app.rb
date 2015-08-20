@@ -1,7 +1,9 @@
 require 'forwardable'
 
 require_relative 'projects'
+require_relative 'state'
 require_relative 'project'
+require_relative 'task'
 require_relative 'collection'
 
 class App

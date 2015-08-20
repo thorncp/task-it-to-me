@@ -27,7 +27,10 @@ class Collection
     collection.detect{|object| object.name == name}
   end
 
-  def size
-    collection.size
+  def names
+    collection.map(&:name)
   end
+
+  extend Forwardable
+  def_delegators :collection, :size, :map, :each
 end
