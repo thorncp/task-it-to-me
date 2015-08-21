@@ -13,26 +13,31 @@ class State
   def_delegators :projects, :find, :rename, :names, :size, :delete
 
   def set_current_project(name)
-    @current_project = find(name)
+    @current_project = find(name) || NullProject.new
+    current_project?
+  end
+
+  def current_project?
+    !!(current_project && !current_project.is_a?(NullProject))
   end
 
   def add_task(name)
-    return false unless current_project
+    return false unless current_project?
     current_project.add_task(name)
   end
 
   def delete_task(name)
-    return false unless current_project
+    return false unless current_project?
     current_project.delete_task(name)
   end
 
   def rename_task(old_name, new_name)
-    return false unless current_project
+    return false unless current_project?
     current_project.rename_task(old_name, new_name)
   end
 
   def task_exists?(name)
-    return false unless current_project
+    return false unless current_project?
     !!current_project.find_task(name)
   end
 
@@ -51,12 +56,12 @@ class State
   end
 
   def current_project_tasks
-    return [] unless current_project
+    return [] unless current_project?
     current_project.tasks
   end
 
   def current_project_name
-    return false unless current_project
+    return false unless current_project?
     current_project.name
   end
 end

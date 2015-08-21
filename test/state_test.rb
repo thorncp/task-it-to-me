@@ -34,11 +34,6 @@ class TestState < Minitest::Test
     assert_equal(state.current_project, state.find('camping'))
   end
 
-  def test_set_current_project_by_missing_name
-    state.set_current_project('mia')
-    refute(state.current_project)
-  end
-
   def test_add_task_when_no_current_project
     assert_equal(false, state.add_task('but add it where'))
   end

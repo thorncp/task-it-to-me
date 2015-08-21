@@ -2,6 +2,7 @@ require 'forwardable'
 
 require_relative 'state'
 require_relative 'project'
+require_relative 'null_project'
 require_relative 'task'
 require_relative 'collection'
 
@@ -21,7 +22,7 @@ class App
     command = get_input
 
     while command != 'q'
-      if !current_project
+      if !current_project?
         case command
         when 'a'
           print_project_name_prompt
@@ -277,6 +278,7 @@ class App
   extend Forwardable
 
   def_delegators :project_data,
+    :current_project?,
     :projects_empty?,
     :tasks_for_project,
     :current_project_name,
