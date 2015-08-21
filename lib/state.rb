@@ -3,6 +3,7 @@ class State
 
   def initialize
     @projects = Collection.new
+    @current_project = NullProject.new
   end
 
   def add(name)
@@ -22,22 +23,18 @@ class State
   end
 
   def add_task(name)
-    return false unless current_project?
     current_project.add_task(name)
   end
 
   def delete_task(name)
-    return false unless current_project?
     current_project.delete_task(name)
   end
 
   def rename_task(old_name, new_name)
-    return false unless current_project?
     current_project.rename_task(old_name, new_name)
   end
 
   def task_exists?(name)
-    return false unless current_project?
     !!current_project.find_task(name)
   end
 
@@ -56,12 +53,10 @@ class State
   end
 
   def current_project_tasks
-    return [] unless current_project?
     current_project.tasks
   end
 
   def current_project_name
-    return false unless current_project?
     current_project.name
   end
 end

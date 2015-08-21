@@ -24,7 +24,7 @@
   <span class="rating rating-a circled-text circle">
     A
   </span>
-  <h2 class="file-name">State</h2>
+  <h2 class="file-name">NullProject</h2>
 
   <span class="file-committed-at">
     
@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      42 complexity
+      0 complexity
     </div>
     <div class="file-stat">
-      3.2 complexity per method
+      0.0 complexity per method
     </div>
     <div class="file-stat">
-      3 churn
+      1 churn
     </div>
     <div class="file-stat">
-      13 methods
+      6 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -55,66 +55,29 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class State
-  attr_reader :projects, :current_project
-
-  def initialize
-    @projects = Collection.new
-    @current_project = NullProject.new
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class NullProject
+  def name
+    false
   end
 
-  def add(name)
-    projects.add(Project.new(name))
+  def add_task(name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) NullProject#add_task has unused parameter 'name'          </span>  </li></ul>
+    false
   end
 
-  extend Forwardable
-  def_delegators :projects, :find, :rename, :names, :size, :delete
-
-  def set_current_project(name)
-    @current_project = find(name) || NullProject.new
-    current_project?
+  def delete_task(name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) NullProject#delete_task has unused parameter 'name'          </span>  </li></ul>
+    false
   end
 
-  def current_project?
-    !!(current_project &amp;&amp; !current_project.is_a?(NullProject))
+  def rename_task(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) NullProject#rename_task has unused parameter 'new_name'          </span>  </li>  <li class="smell old">    <span class="description">(UnusedParameters) NullProject#rename_task has unused parameter 'old_name'          </span>  </li></ul>
+    false
   end
 
-  def add_task(name)
-    current_project.add_task(name)
+  def find_task(name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) NullProject#find_task has unused parameter 'name'          </span>  </li></ul>
+    false
   end
 
-  def delete_task(name)
-    current_project.delete_task(name)
-  end
-
-  def rename_task(old_name, new_name)
-    current_project.rename_task(old_name, new_name)
-  end
-
-  def task_exists?(name)
-    !!current_project.find_task(name)
-  end
-
-  def projects_empty?
-    size == 0
-  end
-
-  def current_tasks_empty?
-    current_project_tasks.size == 0
-  end
-
-  # can probably delete later -----
-
-  def name_for_project(project)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) State#name_for_project refers to project more than self          </span>  </li></ul>
-    project.name
-  end
-
-  def current_project_tasks
-    current_project.tasks
-  end
-
-  def current_project_name
-    current_project.name
+  def tasks
+    []
   end
 end
 </code>
