@@ -28,30 +28,28 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-20 17:30:13 -0700'>2015-08-20 17:30:13 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-20 17:45:16 -0700'>2015-08-20 17:45:16 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      42 complexity
+      35 complexity
     </div>
     <div class="file-stat">
-      3.2 complexity per method
+      2.9 complexity per method
     </div>
     <div class="file-stat">
-      3 churn
+      5 churn
     </div>
     <div class="file-stat">
-      13 methods
+      12 methods
     </div>
     <div class="file-stat">
       0 duplication
     </div>
   </div>
 
-  
-    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
   
 </div>
 
@@ -76,7 +74,7 @@
   end
 
   def current_project?
-    !!(current_project &amp;&amp; !current_project.is_a?(NullProject))
+    !current_project.is_a?(NullProject)
   end
 
   def add_task(name)
@@ -101,12 +99,6 @@
 
   def current_tasks_empty?
     current_project_tasks.size == 0
-  end
-
-  # can probably delete later -----
-
-  def name_for_project(project)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) State#name_for_project refers to project more than self          </span>  </li></ul>
-    project.name
   end
 
   def current_project_tasks

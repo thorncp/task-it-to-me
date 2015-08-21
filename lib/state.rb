@@ -19,7 +19,7 @@ class State
   end
 
   def current_project?
-    !!(current_project && !current_project.is_a?(NullProject))
+    !current_project.is_a?(NullProject)
   end
 
   def add_task(name)
@@ -44,12 +44,6 @@ class State
 
   def current_tasks_empty?
     current_project_tasks.size == 0
-  end
-
-  # can probably delete later -----
-
-  def name_for_project(project)
-    project.name
   end
 
   def current_project_tasks

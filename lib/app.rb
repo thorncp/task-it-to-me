@@ -35,7 +35,7 @@ class App
             print_no_projects_message
           else
             projects.each do |project|
-              print_project_list_item(name_for_project(project))
+              print_project_list_item(project.name)
             end
             print_break
           end
@@ -284,7 +284,6 @@ class App
     :current_project_name,
     :current_tasks_empty?,
     :task_exists?,
-    :name_for_project,
     :find_project_by_name,
     :current_project_tasks,
     :projects,
