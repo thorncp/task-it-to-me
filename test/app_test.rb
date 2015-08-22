@@ -64,7 +64,7 @@ class TestAppRun < Minitest::Test
   def test_listing_non_empty_projects
     stub_input('a', 'Cat Servitude', 'a', 'House work', 'ls', 'q')
     app.run
-    assert_includes output, "Listing projects:\n  Cat Servitude\n  House work"
+    assert_includes output, "Listing projects:\n  1.  Cat Servitude\n  2.  House work"
   end
 
   def test_delete_projects_when_projects_empty
@@ -90,7 +90,7 @@ class TestAppRun < Minitest::Test
     assert_includes output, "Project doesn't exist: 'House Work'"
   end
 
-  def test_edit_project_when_projects_dont_exist
+  def test_edit_project_when_projects_does_not_exist
     stub_input('e', 'q')
     app.run
     assert_includes output, "No projects created"
@@ -142,7 +142,7 @@ class TestAppRun < Minitest::Test
     stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'ls', 'q');
     app.run
     last_section = output.split("Listing tasks").last
-    assert_includes last_section, "clean out the freezer"
+    assert_includes last_section, "1.  clean out the freezer"
   end
 
   def test_editing_a_task_that_does_not_exist

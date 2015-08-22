@@ -35,7 +35,7 @@ class App
             print_no_projects_message
           else
             projects.each do |project|
-              print_project_list_item(project.name)
+              print_project_list_item(project)
             end
             print_break
           end
@@ -212,8 +212,8 @@ class App
     print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
   end
 
-  def print_project_list_item(name)
-    print_line("  #{name}\n")
+  def print_project_list_item(project)
+    print_line("  #{project.position}.  \e[0;35m#{project.name}\e[0m\n")
   end
 
   def print_successful_delete(name)
@@ -271,8 +271,8 @@ class App
     print_line("\e[38;5;40mFinished task:\e[0m '#{name}'\n\n")
   end
 
-  def print_task_item(name)
-    print_line("  #{name}")
+  def print_task_item(task)
+    print_line("  #{task.position}.  \e[0;35m#{task.name}\e[0m")
   end
 
   extend Forwardable
