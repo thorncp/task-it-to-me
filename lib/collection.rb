@@ -8,6 +8,7 @@ class Collection
   def add(object)
     return false if find(object.name)
     collection << object
+    reorder
     true
   end
 
@@ -20,6 +21,7 @@ class Collection
   def delete(name)
     original_size = collection.size
     collection.delete_if{|object| object.name == name}
+    reorder
     collection.size < original_size
   end
 
@@ -33,4 +35,12 @@ class Collection
 
   extend Forwardable
   def_delegators :collection, :size, :map, :each
+
+  private
+
+  def reorder
+    collection.each.with_index do |object, index|
+      object.position = index + 1
+    end
+  end
 end

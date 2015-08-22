@@ -1,2 +1,2 @@
-class Task < Struct.new(:name)
+class Task < Struct.new(:name, :position)
 end

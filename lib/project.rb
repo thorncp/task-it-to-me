@@ -1,6 +1,6 @@
 class Project
   attr_reader   :tasks
-  attr_accessor :name
+  attr_accessor :name, :position
 
   def initialize(name)
     @name = name
