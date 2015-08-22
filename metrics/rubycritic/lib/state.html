@@ -34,10 +34,10 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      23 complexity
+      24 complexity
     </div>
     <div class="file-stat">
-      3.3 complexity per method
+      3.4 complexity per method
     </div>
     <div class="file-stat">
       7 churn
@@ -73,7 +73,7 @@
 
   def set_current_project(name)
     @current_project = find_project(name) || NullProject.new
-    current_project?
+    current_project? ? current_project : false
   end
 
   def current_project?

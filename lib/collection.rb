@@ -9,13 +9,13 @@ class Collection
     return false if find(object.name)
     collection << object
     reorder
-    true
+    object
   end
 
   def rename(old_name, new_name)
     return false unless object = find(old_name)
     object.name = new_name
-    true
+    object
   end
 
   def delete(name)
@@ -23,7 +23,7 @@ class Collection
       collection.delete(found)
       reorder
     end
-    !!found
+    found
   end
 
   def find(name)

@@ -46,8 +46,7 @@ class App
           else
             print_project_name_prompt
             project_name = get_input
-            if project = find_project(project_name)
-              delete_project(project_name)
+            if project = delete_project(project_name)
               print_successful_delete(project.name)
             else
               print_project_does_not_exist(project_name)
@@ -60,8 +59,8 @@ class App
           else
             print_project_name_prompt
             name = get_input
-            if set_current_project(name)
-              print_tasks_menu(find_project(name))
+            if project = set_current_project(name)
+              print_tasks_menu(project.name)
               command = get_input
               next
             else
@@ -105,8 +104,7 @@ class App
           else
             print_task_prompt
             task_name = get_input
-            if task = find_task(task_name)
-              delete_task(task_name)
+            if task = delete_task(task_name)
               print_task_deleted(task.name)
             else
               print_task_does_not_exsit(task_name)
@@ -119,8 +117,7 @@ class App
           else
             print_task_name_prompt
             task_name = get_input
-            if task = find_task(task_name)
-              delete_task(task_name)
+            if task = delete_task(task_name)
               print_finished_task(task.name)
             else
               print_task_does_not_exsit(task_name)
@@ -166,8 +163,8 @@ class App
     print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
   end
 
-  def print_tasks_menu(project)
-    print_line("\e[38;5;40mEditing project: '#{project.name}'\n\n")
+  def print_tasks_menu(project_name)
+    print_line("\e[38;5;40mEditing project: '#{project_name}'\n\n")
     print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
     print_line("-----------------------------")
     print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")

@@ -35,18 +35,19 @@ class TestCollection < Minitest::Test
 
   def test_successful_delete_of_project_returns_true
     data.add(Project.new('camping'))
-    assert_equal(true, data.delete('camping'))
+    deleted =  data.delete('camping')
+    assert_equal('camping', deleted.name)
   end
 
   def test_delete_of_project_that_does_not_exist
     data.add(Project.new('camping'))
-    assert_equal(false, data.delete('glamping'))
+    refute(data.delete('glamping'))
   end
 
   def test_rename_project
     data.add(Project.new('camping'))
-    assert_equal(true, data.rename('camping', 'glamping'))
-    assert_equal(Project, data.find('glamping').class)
+    renamed = data.rename('camping', 'glamping')
+    assert_equal(renamed.name, 'glamping')
   end
 
   def test_setting_position_of_element

@@ -18,8 +18,8 @@ class TestState < Minitest::Test
 
   def test_rename_project
     state.add_project('camping')
-    assert_equal(true, state.rename_project('camping', 'glamping'))
-    assert_equal(Project, state.find_project('glamping').class)
+    renamed = state.rename_project('camping', 'glamping')
+    assert_equal(renamed.name, 'glamping')
   end
 
   def test_set_current_project_by_name

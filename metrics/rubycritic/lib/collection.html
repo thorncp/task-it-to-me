@@ -34,10 +34,10 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      39 complexity
+      37 complexity
     </div>
     <div class="file-stat">
-      4.3 complexity per method
+      4.1 complexity per method
     </div>
     <div class="file-stat">
       5 churn
@@ -64,13 +64,13 @@
     return false if find(object.name)
     collection &lt;&lt; object
     reorder
-    true
+    object
   end
 
   def rename(old_name, new_name)
     return false unless object = find(old_name)
     object.name = new_name
-    true
+    object
   end
 
   def delete(name)
@@ -78,7 +78,7 @@
       collection.delete(found)
       reorder
     end
-    !!found
+    found
   end
 
   def find(name)

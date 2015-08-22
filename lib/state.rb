@@ -18,7 +18,7 @@ class State
 
   def set_current_project(name)
     @current_project = find_project(name) || NullProject.new
-    current_project?
+    current_project? ? current_project : false
   end
 
   def current_project?
