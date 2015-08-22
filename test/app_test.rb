@@ -141,6 +141,23 @@ class TestAppRun < Minitest::Test
     assert_includes last_section, "Chores"
   end
 
+  def test_changing_project_name_that_does_not_exist
+    stub_input('a', 'House work', 'e', 'House Work', 'ls', 'q')
+    app.run
+    last_section = output.split("Listing projects").last
+    refute_includes output, "Changed project name from 'House Work' to 'Chores'"
+    assert_includes last_section, "House work"
+  end
+
+  def test_changing_project_name_by_position
+    stub_input('a', 'House work', 'e', '1', 'c', 'Chores', 'b', 'ls', 'q')
+    app.run
+    last_section = output.split("Listing projects").last
+    assert_includes output, "Changed project name from 'House work' to 'Chores'"
+    refute_includes last_section, "House work"
+    assert_includes last_section, "Chores"
+  end
+
   def test_adding_a_task
     stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'q');
     app.run
