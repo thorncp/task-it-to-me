@@ -19,10 +19,11 @@ class Collection
   end
 
   def delete(name)
-    original_size = collection.size
-    collection.delete_if{|object| object.name == name}
-    reorder
-    collection.size < original_size
+    if found = find(name)
+      collection.delete(found)
+      reorder
+    end
+    !!found
   end
 
   def find(name)

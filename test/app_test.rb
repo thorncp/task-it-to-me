@@ -83,6 +83,15 @@ class TestAppRun < Minitest::Test
     assert_includes last_section, "No projects created"
   end
 
+  def test_delete_project_by_position
+    stub_input('a', 'House work', 'd', '1', 'ls', 'q')
+    app.run
+    last_section = output.split("Listing projects").last
+    assert_includes output, "Deleting project: 'House work'"
+    refute_includes last_section, "House work"
+    assert_includes last_section, "No projects created"
+  end
+
   def test_delete_project_that_does_not_exist
     stub_input('a', 'House work', 'd', 'House Work', 'q')
     app.run

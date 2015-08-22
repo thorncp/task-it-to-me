@@ -46,8 +46,9 @@ class App
           else
             print_project_name_prompt
             project_name = get_input
-            if delete_project(project_name)
-              print_successful_delete(project_name)
+            if project = find_project(project_name)
+              delete_project(project_name)
+              print_successful_delete(project.name)
             else
               print_project_does_not_exist(project_name)
             end
