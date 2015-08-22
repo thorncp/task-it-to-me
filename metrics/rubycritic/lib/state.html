@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-20 17:45:16 -0700'>2015-08-20 17:45:16 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-22 11:49:05 -0700'>2015-08-22 11:49:05 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      35 complexity
+      23 complexity
     </div>
     <div class="file-stat">
-      2.9 complexity per method
+      3.3 complexity per method
     </div>
     <div class="file-stat">
-      5 churn
+      7 churn
     </div>
     <div class="file-stat">
-      12 methods
+      7 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -61,15 +61,18 @@
     @current_project = NullProject.new
   end
 
-  def add(name)
+  def add_project(name)
     projects.add(Project.new(name))
   end
 
   extend Forwardable
-  def_delegators :projects, :find, :rename, :names, :size, :delete
+
+  def_delegator :projects, :delete, :delete_project
+  def_delegator :projects, :rename, :rename_project
+  def_delegator :projects, :find,   :find_project
 
   def set_current_project(name)
-    @current_project = find(name) || NullProject.new
+    @current_project = find_project(name) || NullProject.new
     current_project?
   end
 
@@ -77,36 +80,22 @@
     !current_project.is_a?(NullProject)
   end
 
-  def add_task(name)
-    current_project.add_task(name)
-  end
-
-  def delete_task(name)
-    current_project.delete_task(name)
-  end
-
-  def rename_task(old_name, new_name)
-    current_project.rename_task(old_name, new_name)
-  end
-
-  def task_exists?(name)
-    !!current_project.find_task(name)
-  end
+  def_delegators :current_project,
+    :add_task,
+    :delete_task,
+    :rename_task,
+    :find_task
 
   def projects_empty?
-    size == 0
+    projects.size == 0
   end
 
   def current_tasks_empty?
-    current_project_tasks.size == 0
+    current_tasks.size == 0
   end
 
-  def current_project_tasks
+  def current_tasks
     current_project.tasks
-  end
-
-  def current_project_name
-    current_project.name
   end
 end
 </code>

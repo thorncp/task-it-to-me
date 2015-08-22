@@ -105,8 +105,9 @@ class App
           else
             print_task_prompt
             task_name = get_input
-            if delete_task(task_name)
-              print_task_deleted(task_name)
+            if task = find_task(task_name)
+              delete_task(task_name)
+              print_task_deleted(task.name)
             else
               print_task_does_not_exsit(task_name)
             end
@@ -118,8 +119,9 @@ class App
           else
             print_task_name_prompt
             task_name = get_input
-            if delete_task(task_name)
-              print_finished_task(task_name)
+            if task = find_task(task_name)
+              delete_task(task_name)
+              print_finished_task(task.name)
             else
               print_task_does_not_exsit(task_name)
             end

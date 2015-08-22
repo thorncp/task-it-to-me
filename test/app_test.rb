@@ -221,6 +221,12 @@ class TestAppRun < Minitest::Test
     assert_includes output, "Deleted task: 'clean out the freezer'"
   end
 
+  def test_delete_task_by_position
+    stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'd', '1', 'ls', 'q')
+    app.run
+    assert_includes output, "Deleted task: 'clean out the freezer'"
+  end
+
   def test_finish_task_when_no_tasks
     stub_input('a', 'House work', 'e', 'House work', 'f', 'clean out the freezer', 'q')
     app.run
@@ -235,6 +241,13 @@ class TestAppRun < Minitest::Test
 
   def test_finish_task_that_exists
     stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'f', 'clean out the freezer', 'ls', 'q')
+    app.run
+    assert_includes output, "Finished task: 'clean out the freezer'"
+    assert_includes output, "No tasks created in 'House work'"
+  end
+
+  def test_finish_task_by_position
+    stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'f', '1', 'ls', 'q')
     app.run
     assert_includes output, "Finished task: 'clean out the freezer'"
     assert_includes output, "No tasks created in 'House work'"

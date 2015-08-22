@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-20 09:22:59 -0700'>2015-08-20 09:22:59 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-22 11:30:26 -0700'>2015-08-22 11:30:26 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      35 complexity
+      39 complexity
     </div>
     <div class="file-stat">
-      5.0 complexity per method
+      4.3 complexity per method
     </div>
     <div class="file-stat">
-      2 churn
+      5 churn
     </div>
     <div class="file-stat">
-      7 methods
+      9 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -74,14 +74,16 @@
   end
 
   def delete(name)
-    original_size = collection.size
-    collection.delete_if{|object| object.name == name}
-    reorder
-    collection.size &lt; original_size
+    if found = find(name)
+      collection.delete(found)
+      reorder
+    end
+    !!found
   end
 
   def find(name)
-    collection.detect{|object| object.name == name}
+    return unless name
+    find_by_name(name) || find_by_position(name)
   end
 
   def names
@@ -92,6 +94,15 @@
   def_delegators :collection, :size, :map, :each
 
   private
+
+  def find_by_name(name)
+    collection.detect{|object| object.name == name}
+  end
+
+  def find_by_position(position)
+    position = position.to_i
+    collection.detect{|object| object.position == position}
+  end
 
   def reorder
     collection.each.with_index do |object, index|
