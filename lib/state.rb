@@ -6,15 +6,18 @@ class State
     @current_project = NullProject.new
   end
 
-  def add(name)
+  def add_project(name)
     projects.add(Project.new(name))
   end
 
   extend Forwardable
-  def_delegators :projects, :find, :rename, :names, :size, :delete
+
+  def_delegator :projects, :delete, :delete_project
+  def_delegator :projects, :rename, :rename_project
+  def_delegator :projects, :find,   :find_project
 
   def set_current_project(name)
-    @current_project = find(name) || NullProject.new
+    @current_project = find_project(name) || NullProject.new
     current_project?
   end
 
@@ -39,18 +42,14 @@ class State
   end
 
   def projects_empty?
-    size == 0
+    projects.size == 0
   end
 
   def current_tasks_empty?
-    current_project_tasks.size == 0
+    current_tasks.size == 0
   end
 
-  def current_project_tasks
+  def current_tasks
     current_project.tasks
-  end
-
-  def current_project_name
-    current_project.name
   end
 end

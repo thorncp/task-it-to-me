@@ -8,12 +8,12 @@ require_relative 'collection'
 
 class App
   attr_reader :input_stream, :output_stream,
-    :project_data
+    :state
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
-    @project_data = State.new
+    @state = State.new
   end
 
   def run
@@ -27,7 +27,7 @@ class App
         when 'a'
           print_project_name_prompt
           name = get_input
-          create_project(name)
+          add_project(name)
           print_project_created(name)
         when 'ls'
           print_listing_project_header
@@ -46,7 +46,7 @@ class App
           else
             print_project_name_prompt
             project_name = get_input
-            if delete_project_by_name(project_name)
+            if delete_project(project_name)
               print_successful_delete(project_name)
             else
               print_project_does_not_exist(project_name)
@@ -81,7 +81,7 @@ class App
           print_break
         when 'c'
           print_new_project_name_prompt
-          old_name = current_project_name
+          old_name = current_project.name
           new_name = get_input
           rename_project(old_name, new_name)
           print_changed_project_name(old_name, new_name)
@@ -97,7 +97,7 @@ class App
             print_task_does_not_exsit(name)
           end
         when 'd'
-          project_name = current_project_name
+          project_name = current_project.name
           if current_tasks_empty?
             print_no_tasks_created_in(project_name)
           else
@@ -110,7 +110,7 @@ class App
             end
           end
         when 'f'
-          project_name = current_project_name
+          project_name = current_project.name
           if current_tasks_empty?
             print_no_tasks_created_in(project_name)
           else
@@ -124,10 +124,10 @@ class App
           end
         when 'ls'
           if current_tasks_empty?
-            print_no_tasks_created_in(current_project_name)
+            print_no_tasks_created_in(current_project.name)
           else
             print_task_list_header
-            current_project_tasks.each do |task|
+            current_tasks.each do |task|
               print_task_item(task)
             end
             print_break
@@ -277,24 +277,21 @@ class App
 
   extend Forwardable
 
-  def_delegators :project_data,
-    :current_project?,
-    :projects_empty?,
-    :tasks_for_project,
-    :current_project_name,
-    :current_tasks_empty?,
-    :task_exists?,
-    :find_project_by_name,
-    :current_project_tasks,
+  def_delegators :state,
     :projects,
-    :current_project,
+    :add_project,
+    :delete_project,
+    :rename_project,
+    :projects_empty?,
 
     :set_current_project,
+    :current_project?,
+    :current_project,
+
+    :current_tasks,
+    :current_tasks_empty?,
     :add_task,
     :delete_task,
-    :rename_task
-
-  def_delegator :project_data, :add, :create_project
-  def_delegator :project_data, :delete, :delete_project_by_name
-  def_delegator :project_data, :rename, :rename_project
+    :rename_task,
+    :task_exists?
 end
