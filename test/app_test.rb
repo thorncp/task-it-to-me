@@ -193,6 +193,15 @@ class TestAppRun < Minitest::Test
     assert_includes last_section, "clean out fridge"
   end
 
+  def test_editing_a_task_by_position
+    stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'e', '1', 'clean out fridge', 'ls', 'q')
+    app.run
+    assert_includes output, "Changed task name from 'clean out the freezer' to 'clean out fridge'"
+    last_section = output.split("Listing tasks").last
+    refute_includes last_section, "clean out the freezer"
+    assert_includes last_section, "clean out fridge"
+  end
+
   def test_delete_task_when_no_tasks
     stub_input('a', 'House work', 'e', 'House work', 'd', 'clean out the freezer', 'q')
     app.run

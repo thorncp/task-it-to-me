@@ -25,21 +25,11 @@ class State
     !current_project.is_a?(NullProject)
   end
 
-  def add_task(name)
-    current_project.add_task(name)
-  end
-
-  def delete_task(name)
-    current_project.delete_task(name)
-  end
-
-  def rename_task(old_name, new_name)
-    current_project.rename_task(old_name, new_name)
-  end
-
-  def task_exists?(name)
-    !!current_project.find_task(name)
-  end
+  def_delegators :current_project,
+    :add_task,
+    :delete_task,
+    :rename_task,
+    :find_task
 
   def projects_empty?
     projects.size == 0

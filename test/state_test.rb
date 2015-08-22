@@ -55,14 +55,6 @@ class TestState < Minitest::Test
     assert_equal(false, state.rename_task('not here, yo!', 'doesnt matter'))
   end
 
-  def test_rename_task_when_exists
-    state.add_project('glamping')
-    state.set_current_project('glamping')
-    state.add_task('do nails')
-    state.rename_task('do nails', 'wash hair')
-    assert(state.task_exists?('wash hair'))
-  end
-
   def test_projects_empty?
     assert(state.projects_empty?)
     state.add_project('fullfillment')

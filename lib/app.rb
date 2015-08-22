@@ -88,12 +88,13 @@ class App
           print_changed_project_name(old_name, new_name)
         when 'e'
           name = get_input
-          if task_exists?(name)
-            print_editing_task(name)
+          if task = find_task(name)
+            old_name = task.name
+            print_editing_task(old_name)
             print_task_prompt
             new_name = get_input
-            rename_task(name, new_name)
-            print_changed_task_name(name, new_name)
+            rename_task(old_name, new_name)
+            print_changed_task_name(old_name, new_name)
           else
             print_task_does_not_exsit(name)
           end
@@ -295,5 +296,5 @@ class App
     :add_task,
     :delete_task,
     :rename_task,
-    :task_exists?
+    :find_task
 end
