@@ -60,7 +60,7 @@ class App
             print_project_name_prompt
             name = get_input
             if set_current_project(name)
-              print_tasks_menu(name)
+              print_tasks_menu(find_project(name))
               command = get_input
               next
             else
@@ -162,8 +162,8 @@ class App
     print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
   end
 
-  def print_tasks_menu(project_name)
-    print_line("\e[38;5;40mEditing project: '#{project_name}'\n\n")
+  def print_tasks_menu(project)
+    print_line("\e[38;5;40mEditing project: '#{project.name}'\n\n")
     print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
     print_line("-----------------------------")
     print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
@@ -282,6 +282,7 @@ class App
     :add_project,
     :delete_project,
     :rename_project,
+    :find_project,
     :projects_empty?,
 
     :set_current_project,

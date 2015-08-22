@@ -116,6 +116,13 @@ class TestAppRun < Minitest::Test
     assert_includes output, "b   Back to Projects menu"
   end
 
+  def test_edit_project_by_position_number
+    stub_input('a', 'House work', 'e', '1', 'q')
+    app.run
+    assert_includes output, "Editing project: 'House work'"
+    assert_includes output, "c   Change the project name"
+  end
+
   def test_changing_project_name
     stub_input('a', 'House work', 'e', 'House work', 'c', 'Chores', 'b', 'ls', 'q')
     app.run

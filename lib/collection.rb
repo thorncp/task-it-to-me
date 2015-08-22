@@ -26,7 +26,8 @@ class Collection
   end
 
   def find(name)
-    collection.detect{|object| object.name == name}
+    return unless name
+    find_by_name(name) || find_by_position(name)
   end
 
   def names
@@ -37,6 +38,15 @@ class Collection
   def_delegators :collection, :size, :map, :each
 
   private
+
+  def find_by_name(name)
+    collection.detect{|object| object.name == name}
+  end
+
+  def find_by_position(position)
+    position = position.to_i
+    collection.detect{|object| object.position == position}
+  end
 
   def reorder
     collection.each.with_index do |object, index|

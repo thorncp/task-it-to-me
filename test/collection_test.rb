@@ -16,10 +16,15 @@ class TestCollection < Minitest::Test
     assert_equal(1, data.size)
   end
 
-  def test_find_project
+  def test_find_project_by_name
     data.add(Project.new('cooking'))
     assert_equal(data.find('cooking').class, Project)
     assert_equal(data.find('cooking').name, 'cooking')
+  end
+
+  def test_find_project_by_position
+    data.add(Project.new('cooking'))
+    assert_equal(data.find('1').name, 'cooking')
   end
 
   def test_delete_of_project
