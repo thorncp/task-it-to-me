@@ -1,19 +1,29 @@
 class State
-  attr_reader :projects, :current_project
+  attr_reader :projects, :current_project, :persistence
 
   def initialize
     @projects = Collection.new
     @current_project = NullProject.new
+    @persistence = Persistence.new
   end
 
   def add_project(name)
-    projects.add(Project.new(name))
+    save { projects.add(Project.new(name)) }
+  end
+
+  def rename_project(*args)
+    save { projects.rename(*args) }
+  end
+
+  def delete_project(*args)
+    save { projects.delete(*args) }
+  end
+
+  def load
+    persistence.load
   end
 
   extend Forwardable
-
-  def_delegator :projects, :delete, :delete_project
-  def_delegator :projects, :rename, :rename_project
   def_delegator :projects, :find,   :find_project
 
   def set_current_project(name)
@@ -26,10 +36,19 @@ class State
   end
 
   def_delegators :current_project,
-    :add_task,
-    :delete_task,
-    :rename_task,
     :find_task
+
+  def add_task(*args)
+    save { current_project.add_task(*args) }
+  end
+
+  def rename_task(*args)
+    save { current_project.rename_task(*args) }
+  end
+
+  def delete_task(*args)
+    save { current_project.delete_task(*args) }
+  end
 
   def projects_empty?
     projects.size == 0
@@ -41,5 +60,13 @@ class State
 
   def current_tasks
     current_project.tasks
+  end
+
+  private
+
+  def save(&block)
+    object = block.call
+    persistence.save(projects.as_json) if object
+    object
   end
 end

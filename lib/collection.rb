@@ -38,6 +38,10 @@ class Collection
   extend Forwardable
   def_delegators :collection, :size, :map, :each
 
+  def as_json
+    map(&:to_hash)
+  end
+
   private
 
   def find_by_name(name)

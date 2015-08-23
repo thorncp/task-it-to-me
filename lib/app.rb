@@ -1,10 +1,12 @@
 require 'forwardable'
+require 'json'
 
 require_relative 'state'
 require_relative 'project'
 require_relative 'null_project'
 require_relative 'task'
 require_relative 'collection'
+require_relative 'persistence'
 
 class App
   attr_reader :input_stream, :output_stream,

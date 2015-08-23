@@ -24,7 +24,7 @@
   <span class="rating rating-a circled-text circle">
     A
   </span>
-  <h2 class="file-name">State</h2>
+  <h2 class="file-name">Persistence</h2>
 
   <span class="file-committed-at">
     
@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      53 complexity
+      0 complexity
     </div>
     <div class="file-stat">
-      3.8 complexity per method
+      0.0 complexity per method
     </div>
     <div class="file-stat">
-      9 churn
+      1 churn
     </div>
     <div class="file-stat">
-      14 methods
+      2 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -51,79 +51,17 @@
   </div>
 
   
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class State
-  attr_reader :projects, :current_project, :persistence
-
-  def initialize
-    @projects = Collection.new
-    @current_project = NullProject.new
-    @persistence = Persistence.new
-  end
-
-  def add_project(name)
-    save { projects.add(Project.new(name)) }
-  end
-
-  def rename_project(*args)
-    save { projects.rename(*args) }
-  end
-
-  def delete_project(*args)
-    save { projects.delete(*args) }
-  end
-
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Persistence
   def load
-    persistence.load
+    
   end
 
-  extend Forwardable
-  def_delegator :projects, :find,   :find_project
+  def save(json)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) Persistence#save has unused parameter 'json'          </span>  </li></ul>
 
-  def set_current_project(name)
-    @current_project = find_project(name) || NullProject.new
-    current_project? ? current_project : false
-  end
-
-  def current_project?
-    !current_project.is_a?(NullProject)
-  end
-
-  def_delegators :current_project,
-    :delete_task,
-    :find_task
-
-  def add_task(*args)
-    save { current_project.add_task(*args) }
-  end
-
-  def rename_task(*args)
-    save { current_project.rename_task(*args) }
-  end
-
-  def delete_task(*args)
-    save { current_project.delete_task(*args) }
-  end
-
-  def projects_empty?
-    projects.size == 0
-  end
-
-  def current_tasks_empty?
-    current_tasks.size == 0
-  end
-
-  def current_tasks
-    current_project.tasks
-  end
-
-  private
-
-  def save(&amp;block)
-    object = block.call
-    persistence.save(projects.as_json) if object
-    object
   end
 end
 </code>

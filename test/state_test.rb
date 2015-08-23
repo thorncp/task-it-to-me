@@ -5,6 +5,17 @@ class TestState < Minitest::Test
     @state ||= State.new
   end
 
+  def persistence
+    return @persistence if @persistence
+    @persistence = mock('persistence')
+    @persistence.stubs(:save)
+    @persistence
+  end
+
+  def setup
+    Persistence.stubs(:new).returns(persistence)
+  end
+
   def test_adding_a_project
     state.add_project('cooking')
     assert_equal(1, state.projects.size)
@@ -67,5 +78,45 @@ class TestState < Minitest::Test
     state.set_current_project('glamping')
     state.add_task('do nails')
     refute(state.current_tasks_empty?)
+  end
+
+  def test_saving_on_add_project
+    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: []}])
+    state.add_project('Build a Bridge')
+  end
+
+  def test_saving_on_rename_project
+    state.add_project('Build a Bridge')
+    persistence.expects(:save).with([{name: 'Break a Bridge', tasks: []}])
+    state.rename_project('Build a Bridge', 'Break a Bridge')
+  end
+
+  def test_saving_on_delete_project
+    state.add_project('Build a Bridge')
+    persistence.expects(:save).with([])
+    state.delete_project('Build a Bridge')
+  end
+
+  def test_saving_on_create_task
+    state.add_project('Build a Bridge')
+    state.set_current_project('Build a Bridge')
+    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: [{name: 'buy steel'}]}])
+    state.add_task('buy steel')
+  end
+
+  def test_saving_on_edit_task
+    state.add_project('Build a Bridge')
+    state.set_current_project('Build a Bridge')
+    state.add_task('buy steel')
+    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: [{name: 'buy plastic'}]}])
+    state.rename_task('buy steel', 'buy plastic')
+  end
+
+  def test_saving_on_delete_task
+    state.add_project('Build a Bridge')
+    state.set_current_project('Build a Bridge')
+    state.add_task('buy steel')
+    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: []}])
+    state.delete_task('buy steel')
   end
 end

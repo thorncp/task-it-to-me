@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-22 11:30:26 -0700'>2015-08-22 11:30:26 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      37 complexity
+      41 complexity
     </div>
     <div class="file-stat">
       4.1 complexity per method
     </div>
     <div class="file-stat">
-      5 churn
+      7 churn
     </div>
     <div class="file-stat">
-      9 methods
+      10 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -92,6 +92,10 @@
 
   extend Forwardable
   def_delegators :collection, :size, :map, :each
+
+  def as_json
+    map(&amp;:to_hash)
+  end
 
   private
 

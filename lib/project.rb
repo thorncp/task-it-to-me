@@ -11,6 +11,13 @@ class Project
     tasks.add(Task.new(name))
   end
 
+  def to_hash
+    {
+      name: name,
+      tasks: tasks.as_json
+    }
+  end
+
   extend Forwardable
 
   def_delegator :tasks, :delete, :delete_task
