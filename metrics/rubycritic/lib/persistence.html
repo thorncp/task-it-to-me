@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      0 complexity
+      9 complexity
     </div>
     <div class="file-stat">
-      0.0 complexity per method
+      2.3 complexity per method
     </div>
     <div class="file-stat">
       1 churn
     </div>
     <div class="file-stat">
-      2 methods
+      4 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -57,11 +57,20 @@
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Persistence
   def load
-    
   end
 
-  def save(json)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UnusedParameters) Persistence#save has unused parameter 'json'          </span>  </li></ul>
+  def save(hash)
+    write(hash.to_json)
+  end
 
+  def path
+    File.expand_path(File.dirname(__FILE__) + &quot;/../data/projects.json&quot;)
+  end
+
+  private
+
+  def write(string)
+    File.open(path, &#39;w&#39;) {|f| f.write(string) }<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(UncommunicativeVariableName) Persistence#write has the variable name 'f'          </span>  </li></ul>
   end
 end
 </code>

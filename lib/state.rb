@@ -35,8 +35,7 @@ class State
     !current_project.is_a?(NullProject)
   end
 
-  def_delegators :current_project,
-    :find_task
+  def_delegators :current_project, :find_task
 
   def add_task(*args)
     save { current_project.add_task(*args) }
