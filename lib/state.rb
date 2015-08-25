@@ -24,6 +24,8 @@ class State
     persistence.load.each do |project_data|
       projects.add(Project.load(project_data))
     end
+  rescue
+    warn "Stored data could not be loaded"
   end
 
   extend Forwardable
