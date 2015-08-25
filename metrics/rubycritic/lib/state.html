@@ -28,19 +28,19 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 07:52:03 -0700'>2015-08-25 07:52:03 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      53 complexity
+      59 complexity
     </div>
     <div class="file-stat">
-      3.8 complexity per method
+      4.2 complexity per method
     </div>
     <div class="file-stat">
-      9 churn
+      11 churn
     </div>
     <div class="file-stat">
       14 methods
@@ -75,7 +75,10 @@
   end
 
   def load
-    persistence.load
+    @projects = Collection.new
+    persistence.load.each do |project_data|
+      projects.add(Project.load(project_data))
+    end
   end
 
   extend Forwardable

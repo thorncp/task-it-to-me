@@ -119,4 +119,13 @@ class TestState < Minitest::Test
     persistence.expects(:save).with([{name: 'Build a Bridge', tasks: []}])
     state.delete_task('buy steel')
   end
+
+  def test_loading_data
+    persistence.expects(:load).returns([{'name' => 'Build a Bridge', 'tasks' => [{'name' => 'buy plastic'}]}])
+    state.load
+    project = state.find_project('Build a Bridge')
+    assert(project)
+    task = project.find_task('buy plastic')
+    assert(task)
+  end
 end

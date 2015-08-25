@@ -20,7 +20,10 @@ class State
   end
 
   def load
-    persistence.load
+    @projects = Collection.new
+    persistence.load.each do |project_data|
+      projects.add(Project.load(project_data))
+    end
   end
 
   extend Forwardable

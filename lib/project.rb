@@ -18,6 +18,14 @@ class Project
     }
   end
 
+  def self.load(data)
+    project = new(data['name'])
+    data['tasks'].each do |task_data|
+      project.tasks.add(Task.load(task_data))
+    end
+    project
+  end
+
   extend Forwardable
 
   def_delegator :tasks, :delete, :delete_task

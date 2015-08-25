@@ -22,8 +22,17 @@ class TestAppRun < Minitest::Test
     stdin.stubs(:gets).returns(*args)
   end
 
+  def persistence
+    return @persistence if @persistence
+    @persistence = mock('persistence')
+    @persistence.stubs(:save)
+    @persistence.stubs(:load).returns([])
+    @persistence
+  end
+
   def setup
     stdin.stubs(:gets).returns("q")
+    Persistence.stubs(:new).returns(persistence)
   end
 
   # HELPERS and setup above here ^^^
@@ -251,6 +260,11 @@ class TestAppRun < Minitest::Test
     app.run
     assert_includes output, "Finished task: 'clean out the freezer'"
     assert_includes output, "No tasks created in 'House work'"
+  end
+
+  def test_loading_state_data_on_run
+    persistence.expects(:load).returns([])
+    app.run
   end
 
   def test_bug_app_should_not_unexpectedly_quit

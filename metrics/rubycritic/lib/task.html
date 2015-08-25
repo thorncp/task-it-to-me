@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 07:52:03 -0700'>2015-08-25 07:52:03 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      1 complexity
+      3 complexity
     </div>
     <div class="file-stat">
-      1.0 complexity per method
+      1.5 complexity per method
     </div>
     <div class="file-stat">
-      3 churn
+      4 churn
     </div>
     <div class="file-stat">
-      1 methods
+      2 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -56,6 +56,10 @@
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Task &lt; Struct.new(:name, :position)
   def to_hash
     { name: name }
+  end
+
+  def self.load(data)
+    new(data[&#39;name&#39;])
   end
 end
 </code>

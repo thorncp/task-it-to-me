@@ -28,19 +28,19 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 07:26:33 -0700'>2015-08-25 07:26:33 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      9 complexity
+      13 complexity
     </div>
     <div class="file-stat">
-      2.3 complexity per method
+      3.3 complexity per method
     </div>
     <div class="file-stat">
-      1 churn
+      3 churn
     </div>
     <div class="file-stat">
       4 methods
@@ -57,6 +57,9 @@
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Persistence
   def load
+    JSON.load(File.read(path))
+  rescue JSON::ParserError
+    []
   end
 
   def save(hash)
@@ -70,7 +73,7 @@
   private
 
   def write(string)
-    File.open(path, &#39;w&#39;) {|f| f.write(string) }<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(UncommunicativeVariableName) Persistence#write has the variable name 'f'          </span>  </li></ul>
+    File.open(path, &#39;w&#39;) {|f| f.write(string) }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) Persistence#write has the variable name 'f'          </span>  </li></ul>
   end
 end
 </code>

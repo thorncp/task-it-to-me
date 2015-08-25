@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 07:52:03 -0700'>2015-08-25 07:52:03 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      9 complexity
+      17 complexity
     </div>
     <div class="file-stat">
-      3.0 complexity per method
+      4.3 complexity per method
     </div>
     <div class="file-stat">
-      4 churn
+      5 churn
     </div>
     <div class="file-stat">
-      3 methods
+      4 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -71,6 +71,14 @@
       name: name,
       tasks: tasks.as_json
     }
+  end
+
+  def self.load(data)
+    project = new(data[&#39;name&#39;])
+    data[&#39;tasks&#39;].each do |task_data|
+      project.tasks.add(Task.load(task_data))
+    end
+    project
   end
 
   extend Forwardable

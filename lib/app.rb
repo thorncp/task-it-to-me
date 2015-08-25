@@ -19,6 +19,7 @@ class App
   end
 
   def run
+    state.load
     print_projects_menu
 
     command = get_input
