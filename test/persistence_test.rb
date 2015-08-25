@@ -13,4 +13,14 @@ class TestPersistence < Minitest::Test
     persistence.save({hello: 'world'})
     assert_equal({hello: 'world'}.to_json, persisted_content)
   end
+
+  def test_load
+    File.open(persistence.path, 'w') {|file| file.write({waz: 'up!'}.to_json)}
+    assert_equal(persistence.load,{'waz' => 'up!'})
+  end
+
+  def test_loading_bad_data
+    File.open(persistence.path, 'w') {|file| file.write('(gerbil}}!')}
+    assert_equal(persistence.load, [])
+  end
 end
