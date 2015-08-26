@@ -20,8 +20,8 @@ class App
 
   def run
     state.load
-    print_projects_menu
 
+    print_projects_menu
     command = get_input
 
     while command != 'q'
@@ -72,6 +72,7 @@ class App
             end
           end
         end
+        print_projects_menu
       else
         case command
         when 'a'
@@ -137,6 +138,7 @@ class App
             print_break
           end
         end
+        print_tasks_menu(current_project.name) if current_project?
       end
 
       command = get_input

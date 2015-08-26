@@ -35,6 +35,24 @@ class TestAppRun < Minitest::Test
     Persistence.stubs(:new).returns(persistence)
   end
 
+  def assert_includes_projects_menu(output)
+    assert_includes output, "a   Add a new project"
+    assert_includes output, "ls  List all project"
+    assert_includes output, "d   Delete a project"
+    assert_includes output, "e   Edit a project"
+    assert_includes output, "q   Quit the app"
+  end
+
+  def assert_includes_tasks_menu(output)
+    assert_includes output, "c   Change the project name"
+    assert_includes output, "a   Add a new task"
+    assert_includes output, "ls  List all tasks"
+    assert_includes output, "d   Delete a task"
+    assert_includes output, "e   Edit a task"
+    assert_includes output, "f   Finish a task"
+    assert_includes output, "b   Back to Projects menu"
+  end
+
   # HELPERS and setup above here ^^^
   # TESTS below here ---------------
 
@@ -50,11 +68,7 @@ class TestAppRun < Minitest::Test
 
   def test_app_initial_message
     app.run
-    assert_includes output, "a   Add a new project"
-    assert_includes output, "ls  List all project"
-    assert_includes output, "d   Delete a project"
-    assert_includes output, "e   Edit a project"
-    assert_includes output, "q   Quit the app"
+    assert_includes_projects_menu(output)
   end
 
   def test_listing_with_empty_projects
@@ -68,6 +82,14 @@ class TestAppRun < Minitest::Test
     app.run
     assert_includes output, "Enter a project name"
     assert_includes output, "Created project: 'Cat Husbandry'"
+  end
+
+  def test_projects_menu_repeated_after_each_command
+    stub_input('a', 'Cat Husbandry', 'q')
+    app.run
+    output.split("Created project").each do |outpart|
+      assert_includes_projects_menu(outpart)
+    end
   end
 
   def test_listing_non_empty_projects
@@ -125,13 +147,7 @@ class TestAppRun < Minitest::Test
   def test_editing_existing_project_shows_project_menu
     stub_input('a', 'House work', 'e', 'House work', 'q')
     app.run
-    assert_includes output, "c   Change the project name"
-    assert_includes output, "a   Add a new task"
-    assert_includes output, "ls  List all tasks"
-    assert_includes output, "d   Delete a task"
-    assert_includes output, "e   Edit a task"
-    assert_includes output, "f   Finish a task"
-    assert_includes output, "b   Back to Projects menu"
+    assert_includes_tasks_menu(output)
   end
 
   def test_edit_project_by_position_number
@@ -148,6 +164,14 @@ class TestAppRun < Minitest::Test
     assert_includes output, "Changed project name from 'House work' to 'Chores'"
     refute_includes last_section, "House work"
     assert_includes last_section, "Chores"
+  end
+
+  def test_tasks_menu_repeated_after_each_command
+    stub_input('a', 'House work', 'e', 'House work', 'c', 'Chores', 'b', 'ls', 'q')
+    app.run
+    output.split("Changed project name").each do |outpart|
+      assert_includes_tasks_menu(outpart)
+    end
   end
 
   def test_changing_project_name_that_does_not_exist
