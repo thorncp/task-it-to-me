@@ -8,12 +8,15 @@ require_relative 'task'
 require_relative 'collection'
 require_relative 'persistence'
 
+require_relative 'print'
+
 class App
   attr_reader :input_stream, :output_stream,
-    :state
+    :state, :print
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
+    @print = Print.new(output_stream)
     @input_stream = input_stream
     @state = State.new
   end
