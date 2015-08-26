@@ -4,7 +4,7 @@ class State
   def initialize
     @projects = Collection.new
     @current_project = NullProject.new
-    @persistence = Persistence.new
+    @persistence = Persistence.new(data_path)
   end
 
   def add_project(name)
@@ -72,5 +72,9 @@ class State
     object = block.call
     persistence.save(projects.as_json) if object
     object
+  end
+
+  def data_path
+    File.expand_path(File.dirname(__FILE__) + "/../data/projects.json")
   end
 end

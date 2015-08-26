@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-25 07:26:33 -0700'>2015-08-25 07:26:33 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 18:24:44 -0700'>2015-08-25 18:24:44 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      13 complexity
+      10 complexity
     </div>
     <div class="file-stat">
       3.3 complexity per method
     </div>
     <div class="file-stat">
-      3 churn
+      4 churn
     </div>
     <div class="file-stat">
-      4 methods
+      3 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -55,7 +55,7 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Persistence
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Persistence &lt; Struct.new(:path)
   def load
     JSON.load(File.read(path))
   rescue JSON::ParserError
@@ -64,10 +64,6 @@
 
   def save(hash)
     write(hash.to_json)
-  end
-
-  def path
-    File.expand_path(File.dirname(__FILE__) + &quot;/../data/projects.json&quot;)
   end
 
   private

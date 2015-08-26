@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-25 07:52:03 -0700'>2015-08-25 07:52:03 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-08-25 18:24:44 -0700'>2015-08-25 18:24:44 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      59 complexity
+      67 complexity
     </div>
     <div class="file-stat">
-      4.2 complexity per method
+      4.5 complexity per method
     </div>
     <div class="file-stat">
-      11 churn
+      13 churn
     </div>
     <div class="file-stat">
-      14 methods
+      15 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -59,7 +59,7 @@
   def initialize
     @projects = Collection.new
     @current_project = NullProject.new
-    @persistence = Persistence.new
+    @persistence = Persistence.new(data_path)
   end
 
   def add_project(name)
@@ -79,6 +79,8 @@
     persistence.load.each do |project_data|
       projects.add(Project.load(project_data))
     end
+  rescue
+    warn &quot;Stored data could not be loaded&quot;
   end
 
   extend Forwardable
@@ -125,6 +127,10 @@
     object = block.call
     persistence.save(projects.as_json) if object
     object
+  end
+
+  def data_path
+    File.expand_path(File.dirname(__FILE__) + &quot;/../data/projects.json&quot;)
   end
 end
 </code>

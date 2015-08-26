@@ -3,3 +3,4 @@ instructions
 tmp
 data
 metrics/rubycritic/snapshots
+test/fixtures
