@@ -1,30 +1,27 @@
-class Print < Struct.new(:output_stream)
-  def projects_menu
+class Print < Struct.new(:output_stream, :menus)
+  def menu(type)
+    data = menus.detect{|menu_data| menu_data.name == type}
+    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
+    data.commands.each do |command|
+      print_line("\e[1;37m%-4s\e[0;35m%s" % [command.id, command.description])
+    end
+    self.break
+  end
+
+  def introduction
     print_line("\e[38;5;40mWelcome to Taskitome!")
     print_line("\e[0;37m=============================\n")
-    print_line("\e[0mPROJECTS MENU")
-    print_line("\e[0;37m-----------------------------")
-    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-    print_line("\e[1;37ma   \e[0;35mAdd a new project")
-    print_line("\e[1;37mls  \e[0;35mList all project")
-    print_line("\e[1;37md   \e[0;35mDelete a project")
-    print_line("\e[1;37me   \e[0;35mEdit a project")
-    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+  end
+
+  def projects_menu
+    print_line("\e[0;37mPROJECTS MENU\e[0m")
+    menu('projects')
   end
 
   def tasks_menu(project_name)
     print_line("\e[38;5;40mEditing project: '#{project_name}'\n\n")
     print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
-    print_line("-----------------------------")
-    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-    print_line("\e[1;37mc   \e[0;35mChange the project name")
-    print_line("\e[1;37ma   \e[0;35mAdd a new task")
-    print_line("\e[1;37mls  \e[0;35mList all tasks")
-    print_line("\e[1;37md   \e[0;35mDelete a task")
-    print_line("\e[1;37me   \e[0;35mEdit a task")
-    print_line("\e[1;37mf   \e[0;35mFinish a task")
-    print_line("\e[1;37mb   \e[0;35mBack to Projects menu")
-    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+    menu('tasks')
   end
 
   # Assorted printing/view methods

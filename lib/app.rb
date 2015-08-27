@@ -9,13 +9,15 @@ require_relative 'collection'
 require_relative 'persistence'
 
 require_relative 'print'
+require_relative 'menu'
+require_relative 'command'
 
 class App
   attr_reader :input_stream,
     :state, :print
 
   def initialize(output_stream, input_stream)
-    @print = Print.new(output_stream)
+    @print = Print.new(output_stream, [projects_menu, tasks_menu])
     @input_stream = input_stream
     @state = State.new
   end
@@ -23,6 +25,7 @@ class App
   def run
     state.load
 
+    print.introduction
     print.projects_menu
     command = get_input
 
@@ -149,6 +152,29 @@ class App
 
   def get_input
     input_stream.gets.strip
+  end
+
+  def projects_menu
+    @projects_menu ||= Menu.new('projects', [
+      Command.new("a",   "Add a new project"),
+      Command.new("ls",  "List all project"),
+      Command.new("d",   "Delete a project"),
+      Command.new("e",   "Edit a project"),
+      Command.new("q",   "Quit the app")
+    ])
+  end
+
+  def tasks_menu
+    @task_menu ||= Menu.new('tasks', [
+      Command.new("c", "Change the project name"),
+      Command.new("a", "Add a new task"),
+      Command.new("ls", "List all tasks"),
+      Command.new("d", "Delete a task"),
+      Command.new("e", "Edit a task"),
+      Command.new("f", "Finish a task"),
+      Command.new("b", "Back to Projects menu"),
+      Command.new("q", "Quit the app")
+    ])
   end
 
   extend Forwardable
