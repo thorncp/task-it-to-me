@@ -9,6 +9,7 @@ require_relative 'collection'
 require_relative 'persistence'
 
 require_relative 'print'
+require_relative 'formatter'
 
 class App
   attr_reader :input_stream,

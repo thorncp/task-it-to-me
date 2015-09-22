@@ -38,7 +38,9 @@ class Print < Struct.new(:output_stream)
   end
 
   def project_name_prompt
-    print_line("\e[0;3mEnter a project name:\e[0m")
+    print_line(
+      format("Enter a project name:", :description)
+    )
   end
 
   def new_project_name_prompt
@@ -129,4 +131,11 @@ class Print < Struct.new(:output_stream)
   def print_line(message='')
     output_stream.puts(message)
   end
+
+  def formatter
+    Formatter.new
+  end
+
+  extend Forwardable
+  def_delegators :formatter, :format
 end
