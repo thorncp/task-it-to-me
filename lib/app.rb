@@ -24,6 +24,8 @@ class App
   def run
     state.load
 
+    print.welcome_message
+
     print.projects_menu
     command = get_input
 

@@ -21,32 +21,32 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-a circled-text circle">
-    A
+  <span class="rating rating-c circled-text circle">
+    C
   </span>
   <h2 class="file-name">Print</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-26 08:15:35 -0700'>2015-08-26 08:15:35 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-09-23 16:47:52 -0700'>2015-09-23 16:47:52 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      52 complexity
+      149 complexity
     </div>
     <div class="file-stat">
-      2.0 complexity per method
+      5.3 complexity per method
     </div>
     <div class="file-stat">
-      2 churn
+      4 churn
     </div>
     <div class="file-stat">
-      26 methods
+      28 methods
     </div>
     <div class="file-stat">
-      0 duplication
+      44 duplication
     </div>
   </div>
 
@@ -55,33 +55,41 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(TooManyMethods) Print has at least 26 methods          </span>  </li></ul>
-  def projects_menu
-    print_line(&quot;\e[38;5;40mWelcome to Taskitome!&quot;)
-    print_line(&quot;\e[0;37m=============================\n&quot;)
-    print_line(&quot;\e[0mPROJECTS MENU&quot;)
-    print_line(&quot;\e[0;37m-----------------------------&quot;)
-    print_line(&quot;\e[40;38;5;214mENTER A COMMAND:\e[0m&quot;)
-    print_line(&quot;\e[1;37ma   \e[0;35mAdd a new project&quot;)
-    print_line(&quot;\e[1;37mls  \e[0;35mList all project&quot;)
-    print_line(&quot;\e[1;37md   \e[0;35mDelete a project&quot;)
-    print_line(&quot;\e[1;37me   \e[0;35mEdit a project&quot;)
-    print_line(&quot;\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n&quot;)
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(TooManyMethods) Print has at least 28 methods          </span>  </li></ul>
+  def welcome_message
+    print_line( format(&quot;Welcome to Taskitome!&quot;, :success) )
+    print_line( format(&quot;=============================&quot;, :dividing_line) )
+    self.break
   end
 
-  def tasks_menu(project_name)
-    print_line(&quot;\e[38;5;40mEditing project: &#39;#{project_name}&#39;\n\n&quot;)
-    print_line(&quot;\e[0;37mEDIT PROJECT MENU\e[0m&quot;)
+  def projects_menu
+    print_line(&quot;PROJECTS MENU&quot;)
+    print_line( format(&quot;-----------------------------&quot;, :dividing_line) )
+    print_line( format(&quot;ENTER A COMMAND:&quot;, :alert) )
+    print_line( command(&quot;a&quot;,  &quot;Add a new project&quot;) )
+    print_line( command(&quot;ls&quot;, &quot;List all project&quot;) )
+    print_line( command(&quot;d&quot;,  &quot;Delete a project&quot;) )
+    print_line( command(&quot;e&quot;,  &quot;Edit a project&quot;) )
+    print_line( command(&quot;q&quot;,  &quot;Quit the app&quot;) )
+    self.break
+  end
+
+  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 27          </span>  </li></ul>
+    print_line( format(&quot;Editing project: &#39;#{project_name}&#39;&quot;, :success) )
+    self.break
+
+    print_line( format(&quot;EDIT PROJECT MENU&quot;, :command) )
     print_line(&quot;-----------------------------&quot;)
-    print_line(&quot;\e[40;38;5;214mENTER A COMMAND:\e[0m&quot;)
-    print_line(&quot;\e[1;37mc   \e[0;35mChange the project name&quot;)
-    print_line(&quot;\e[1;37ma   \e[0;35mAdd a new task&quot;)
-    print_line(&quot;\e[1;37mls  \e[0;35mList all tasks&quot;)
-    print_line(&quot;\e[1;37md   \e[0;35mDelete a task&quot;)
-    print_line(&quot;\e[1;37me   \e[0;35mEdit a task&quot;)
-    print_line(&quot;\e[1;37mf   \e[0;35mFinish a task&quot;)
-    print_line(&quot;\e[1;37mb   \e[0;35mBack to Projects menu&quot;)
-    print_line(&quot;\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n&quot;)
+    print_line( format(&quot;ENTER A COMMAND:&quot;, :alert) )
+    print_line( command(&quot;c&quot;, &quot;Change the project name&quot;) )
+    print_line( command(&quot;a&quot;, &quot;Add a new task&quot;) )
+    print_line( command(&quot;ls&quot;, &quot;List all tasks&quot;) )
+    print_line( command(&quot;d&quot;, &quot;Delete a task&quot;) )
+    print_line( command(&quot;e&quot;, &quot;Edit a task&quot;) )
+    print_line( command(&quot;f&quot;, &quot;Finish a task&quot;) )
+    print_line( command(&quot;b&quot;, &quot;Back to Projects menu&quot;) )
+    print_line( command(&quot;q&quot;, &quot;Quit the app&quot;) )
+    self.break
   end
 
   # Assorted printing/view methods
@@ -91,94 +99,160 @@
 
   # project menu related messages, no arguments required
   def no_projects_message
-    print_line(&quot;\e[40;38;5;214mNo projects created\e[0m\n\n&quot;)
+    print_line(
+      format(&quot;No projects created&quot;, :alert)
+    )
+    self.break
   end
 
   def project_name_prompt
-    print_line(&quot;\e[0;3mEnter a project name:\e[0m&quot;)
+    print_line(
+      format(&quot;Enter a project name:&quot;, :prompt)
+    )
   end
 
   def new_project_name_prompt
-    print_line(&quot;\e[0;35mEnter new project name:\e[0m&quot;)
+    print_line(
+      format(&quot;Enter new project name:&quot;, :prompt)
+    )
   end
 
   def listing_project_header
-    print_line(&quot;\e[38;5;40mListing projects:\e[0m\n&quot;)
+    print_line(
+      format(&quot;Listing projects:&quot;, :success)
+    )
   end
 
   def cant_delete_project
-    print_line(&quot;\e[40;38;5;214mCan&#39;t delete a project\e[0m&quot;)
+    print_line(
+      format(&quot;Can&#39;t delete a project&quot;, :alert)
+    )
   end
 
   def cant_edit_project
-    print_line(&quot;\e[40;38;5;214mCan&#39;t edit any projects\e[0m&quot;)
+    print_line(
+      format(&quot;Can&#39;t edit any projects&quot;, :alert)
+    )
   end
 
   # project menu related messages, with data passed in
   def project_created(name)
-    print_line(&quot;\e[38;5;40mCreated project:\e[0m &#39;#{name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Created project:&quot;, :success) +  &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
-  def project_list_item(project)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Print#project_list_item refers to project more than self          </span>  </li></ul>
-    print_line(&quot;  #{project.position}.  \e[0;35m#{project.name}\e[0m\n&quot;)
+  def project_list_item(project)
+    print_line(
+      &quot;  #{project.position}.  &quot; + format(project.name, :description)
+    )
   end
 
   def successful_delete(name)
-    print_line &quot;\e[38;5;40mDeleting project:\e[0m &#39;#{name}&#39;\n\n&quot;
+    print_line(
+      format(&quot;Deleting project:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
   def project_does_not_exist(name)
-    print_line &quot;\e[40;38;5;214mProject doesn&#39;t exist:\e[0m &#39;#{name}&#39;\n\n&quot;
+    print_line(
+      format(&quot;Project doesn&#39;t exist:&quot;, :alert) + &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
   # task menu related messages, no data passed in
   def task_name_prompt
-    print_line(&quot;\e[0;35mEnter a task name:\e[0m&quot;)
+    print_line(
+      format(&quot;Enter a task name:&quot;, :prompt)
+    )
   end
 
   def task_list_header
-    print_line(&quot;\e[38;5;40mListing tasks:\e[0m&quot;)
+    print_line(
+      format(&quot;Listing tasks:&quot;, :success)
+    )
   end
 
   # task menu related messages, data required
   def created_task(name)
-    print_line(&quot;\e[38;5;40mCreated task:\e[0m &#39;#{name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Created task:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
-  def changed_project_name(old_name, new_name)
-    print_line(&quot;\e[38;5;40mChanged project name from\e[0m &#39;#{old_name}&#39; \e[38;5;40mto\e[0m &#39;#{new_name}&#39;\n\n&quot;)
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L130" class="js-smell-location">0</a>                  <a href="print.html#L140" class="js-smell-location">1</a>                  </span>  </li></ul>
+    print_line(
+      format(&quot;Changed project name from&quot;, :success) +
+        &quot; &#39;#{old_name}&#39; &quot; +
+        format(&quot;to&quot;, :success) +
+        &quot; &#39;#{new_name}&#39;&quot;
+    )
+    self.break
+  end
+
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L130" class="js-smell-location">0</a>                  <a href="print.html#L140" class="js-smell-location">1</a>                  </span>  </li></ul>
+    print_line(
+      format(&quot;Changed task name from&quot;, :success) +
+        &quot; &#39;#{old_name}&#39; &quot; +
+        format(&quot;to&quot;, :success) +
+        &quot; &#39;#{new_name}&#39;&quot;
+    )
+    self.break
   end
 
   def editing_task(name)
-    print_line(&quot;\e[38;5;40mEditing task:\e[0m &#39;#{name}&#39;&quot;)
+    print_line(
+      format(&quot;Editing task:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
+    )
   end
 
   def task_prompt
-    print_line(&quot;\e[0;35mEnter a task name:\e[0m&quot;)
-  end
-
-  def changed_task_name(old_name, new_name)
-    print_line(&quot;\e[38;5;40mChanged task name from\e[0m &#39;#{old_name}&#39; \e[38;5;40mto\e[0m &#39;#{new_name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Enter a task name:&quot;, :prompt)
+    )
   end
 
   def task_does_not_exsit(name)
-    print_line(&quot;\e[40;38;5;214mTask doesn&#39;t exist:\e[0m &#39;#{name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Task doesn&#39;t exist:&quot;, :alert) + &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
   def no_tasks_created_in(project_name)
-    print_line(&quot;\e[40;38;5;214mNo tasks created in &#39;#{project_name}&#39;\e[0m\n\n&quot;)
+    print_line(
+      format(&quot;No tasks created in &quot;, :alert) +
+        &quot;&#39;#{project_name}&#39;&quot;
+    )
+    self.break
   end
 
   def task_deleted(name)
-    print_line(&quot;\e[38;5;40mDeleted task:\e[0m &#39;#{name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Deleted task:&quot;, :success) +
+      &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
   def finished_task(name)
-    print_line(&quot;\e[38;5;40mFinished task:\e[0m &#39;#{name}&#39;\n\n&quot;)
+    print_line(
+      format(&quot;Finished task:&quot;, :success) +
+      &quot; &#39;#{name}&#39;&quot;
+    )
+    self.break
   end
 
-  def task_item(task)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Print#task_item refers to task more than self          </span>  </li></ul>
-    print_line(&quot;  #{task.position}.  \e[0;35m#{task.name}\e[0m&quot;)
+  def task_item(task)
+    print_line(
+      &quot;  #{task.position}.  &quot; +
+      format(&quot;#{task.name}&quot;, :success)
+    )
+    self.break
   end
 
   private
@@ -186,6 +260,13 @@
   def print_line(message=&#39;&#39;)
     output_stream.puts(message)
   end
+
+  def formatter
+    Formatter.new
+  end
+
+  extend Forwardable
+  def_delegators :formatter, :format, :command
 end
 </code>
 

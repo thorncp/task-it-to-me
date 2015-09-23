@@ -1,30 +1,38 @@
 class Print < Struct.new(:output_stream)
+  def welcome_message
+    print_line( format("Welcome to Taskitome!", :success) )
+    print_line( format("=============================", :dividing_line) )
+    self.break
+  end
+
   def projects_menu
-    print_line("\e[38;5;40mWelcome to Taskitome!")
-    print_line("\e[0;37m=============================\n")
-    print_line("\e[0mPROJECTS MENU")
-    print_line("\e[0;37m-----------------------------")
-    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-    print_line("\e[1;37ma   \e[0;35mAdd a new project")
-    print_line("\e[1;37mls  \e[0;35mList all project")
-    print_line("\e[1;37md   \e[0;35mDelete a project")
-    print_line("\e[1;37me   \e[0;35mEdit a project")
-    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+    print_line("PROJECTS MENU")
+    print_line( format("-----------------------------", :dividing_line) )
+    print_line( format("ENTER A COMMAND:", :alert) )
+    print_line( command("a",  "Add a new project") )
+    print_line( command("ls", "List all project") )
+    print_line( command("d",  "Delete a project") )
+    print_line( command("e",  "Edit a project") )
+    print_line( command("q",  "Quit the app") )
+    self.break
   end
 
   def tasks_menu(project_name)
-    print_line("\e[38;5;40mEditing project: '#{project_name}'\n\n")
-    print_line("\e[0;37mEDIT PROJECT MENU\e[0m")
+    print_line( format("Editing project: '#{project_name}'", :success) )
+    self.break
+
+    print_line( format("EDIT PROJECT MENU", :command) )
     print_line("-----------------------------")
-    print_line("\e[40;38;5;214mENTER A COMMAND:\e[0m")
-    print_line("\e[1;37mc   \e[0;35mChange the project name")
-    print_line("\e[1;37ma   \e[0;35mAdd a new task")
-    print_line("\e[1;37mls  \e[0;35mList all tasks")
-    print_line("\e[1;37md   \e[0;35mDelete a task")
-    print_line("\e[1;37me   \e[0;35mEdit a task")
-    print_line("\e[1;37mf   \e[0;35mFinish a task")
-    print_line("\e[1;37mb   \e[0;35mBack to Projects menu")
-    print_line("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
+    print_line( format("ENTER A COMMAND:", :alert) )
+    print_line( command("c", "Change the project name") )
+    print_line( command("a", "Add a new task") )
+    print_line( command("ls", "List all tasks") )
+    print_line( command("d", "Delete a task") )
+    print_line( command("e", "Edit a task") )
+    print_line( command("f", "Finish a task") )
+    print_line( command("b", "Back to Projects menu") )
+    print_line( command("q", "Quit the app") )
+    self.break
   end
 
   # Assorted printing/view methods
@@ -34,96 +42,160 @@ class Print < Struct.new(:output_stream)
 
   # project menu related messages, no arguments required
   def no_projects_message
-    print_line("\e[40;38;5;214mNo projects created\e[0m\n\n")
+    print_line(
+      format("No projects created", :alert)
+    )
+    self.break
   end
 
   def project_name_prompt
     print_line(
-      format("Enter a project name:", :description)
+      format("Enter a project name:", :prompt)
     )
   end
 
   def new_project_name_prompt
-    print_line("\e[0;35mEnter new project name:\e[0m")
+    print_line(
+      format("Enter new project name:", :prompt)
+    )
   end
 
   def listing_project_header
-    print_line("\e[38;5;40mListing projects:\e[0m\n")
+    print_line(
+      format("Listing projects:", :success)
+    )
   end
 
   def cant_delete_project
-    print_line("\e[40;38;5;214mCan't delete a project\e[0m")
+    print_line(
+      format("Can't delete a project", :alert)
+    )
   end
 
   def cant_edit_project
-    print_line("\e[40;38;5;214mCan't edit any projects\e[0m")
+    print_line(
+      format("Can't edit any projects", :alert)
+    )
   end
 
   # project menu related messages, with data passed in
   def project_created(name)
-    print_line("\e[38;5;40mCreated project:\e[0m '#{name}'\n\n")
+    print_line(
+      format("Created project:", :success) +  " '#{name}'"
+    )
+    self.break
   end
 
   def project_list_item(project)
-    print_line("  #{project.position}.  \e[0;35m#{project.name}\e[0m\n")
+    print_line(
+      "  #{project.position}.  " + format(project.name, :description)
+    )
   end
 
   def successful_delete(name)
-    print_line "\e[38;5;40mDeleting project:\e[0m '#{name}'\n\n"
+    print_line(
+      format("Deleting project:", :success) + " '#{name}'"
+    )
+    self.break
   end
 
   def project_does_not_exist(name)
-    print_line "\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n"
+    print_line(
+      format("Project doesn't exist:", :alert) + " '#{name}'"
+    )
+    self.break
   end
 
   # task menu related messages, no data passed in
   def task_name_prompt
-    print_line("\e[0;35mEnter a task name:\e[0m")
+    print_line(
+      format("Enter a task name:", :prompt)
+    )
   end
 
   def task_list_header
-    print_line("\e[38;5;40mListing tasks:\e[0m")
+    print_line(
+      format("Listing tasks:", :success)
+    )
   end
 
   # task menu related messages, data required
   def created_task(name)
-    print_line("\e[38;5;40mCreated task:\e[0m '#{name}'\n\n")
+    print_line(
+      format("Created task:", :success) + " '#{name}'"
+    )
+    self.break
   end
 
   def changed_project_name(old_name, new_name)
-    print_line("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
-  end
-
-  def editing_task(name)
-    print_line("\e[38;5;40mEditing task:\e[0m '#{name}'")
-  end
-
-  def task_prompt
-    print_line("\e[0;35mEnter a task name:\e[0m")
+    print_line(
+      format("Changed project name from", :success) +
+        " '#{old_name}' " +
+        format("to", :success) +
+        " '#{new_name}'"
+    )
+    self.break
   end
 
   def changed_task_name(old_name, new_name)
-    print_line("\e[38;5;40mChanged task name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+    print_line(
+      format("Changed task name from", :success) +
+        " '#{old_name}' " +
+        format("to", :success) +
+        " '#{new_name}'"
+    )
+    self.break
+  end
+
+  def editing_task(name)
+    print_line(
+      format("Editing task:", :success) + " '#{name}'"
+    )
+  end
+
+  def task_prompt
+    print_line(
+      format("Enter a task name:", :prompt)
+    )
   end
 
   def task_does_not_exsit(name)
-    print_line("\e[40;38;5;214mTask doesn't exist:\e[0m '#{name}'\n\n")
+    print_line(
+      format("Task doesn't exist:", :alert) + " '#{name}'"
+    )
+    self.break
   end
 
   def no_tasks_created_in(project_name)
-    print_line("\e[40;38;5;214mNo tasks created in '#{project_name}'\e[0m\n\n")
+    print_line(
+      format("No tasks created in ", :alert) +
+        "'#{project_name}'"
+    )
+    self.break
   end
 
   def task_deleted(name)
-    print_line("\e[38;5;40mDeleted task:\e[0m '#{name}'\n\n")
+    print_line(
+      format("Deleted task:", :success) +
+      " '#{name}'"
+    )
+    self.break
   end
 
   def finished_task(name)
-    print_line("\e[38;5;40mFinished task:\e[0m '#{name}'\n\n")
+    print_line(
+      format("Finished task:", :success) +
+      " '#{name}'"
+    )
+    self.break
   end
 
   def task_item(task)
-    print_line("  #{task.position}.  \e[0;35m#{task.name}\e[0m")
+    print_line(
+      "  #{task.position}.  " +
+      format("#{task.name}", :success)
+    )
+    self.break
   end
 
   private
@@ -137,5 +209,5 @@ class Print < Struct.new(:output_stream)
   end
 
   extend Forwardable
-  def_delegators :formatter, :format
+  def_delegators :formatter, :format, :command
 end
