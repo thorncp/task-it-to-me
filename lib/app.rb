@@ -8,8 +8,8 @@ require_relative 'task'
 require_relative 'collection'
 require_relative 'persistence'
 
-require_relative 'print'
 require_relative 'formatter'
+require_relative 'print'
 
 class App
   attr_reader :input_stream,
@@ -42,10 +42,7 @@ class App
           if projects_empty?
             print.no_projects_message
           else
-            projects.each do |project|
-              print.project_list_item(project)
-            end
-            print.break
+            print.list(projects)
           end
         when 'd'
           if projects_empty?
@@ -81,13 +78,12 @@ class App
       else
         case command
         when 'a'
-          print.task_name_prompt
+          print.task_prompt
           task_name = get_input
           add_task(task_name)
           print.created_task(task_name)
         when 'b'
           set_current_project(false)
-          print.break
         when 'c'
           print.new_project_name_prompt
           old_name = current_project.name
@@ -124,7 +120,7 @@ class App
           if current_tasks_empty?
             print.no_tasks_created_in(project_name)
           else
-            print.task_name_prompt
+            print.task_prompt
             task_name = get_input
             if task = delete_task(task_name)
               print.finished_task(task.name)
@@ -137,10 +133,7 @@ class App
             print.no_tasks_created_in(current_project.name)
           else
             print.task_list_header
-            current_tasks.each do |task|
-              print.task_item(task)
-            end
-            print.break
+            print.list(current_tasks)
           end
         end
         print.tasks_menu(current_project.name) if current_project?

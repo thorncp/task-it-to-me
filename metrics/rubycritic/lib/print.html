@@ -21,8 +21,8 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-c circled-text circle">
-    C
+  <span class="rating rating-d circled-text circle">
+    D
   </span>
   <h2 class="file-name">Print</h2>
 
@@ -34,19 +34,19 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      149 complexity
+      220 complexity
     </div>
     <div class="file-stat">
-      5.3 complexity per method
+      8.5 complexity per method
     </div>
     <div class="file-stat">
       4 churn
     </div>
     <div class="file-stat">
-      28 methods
+      26 methods
     </div>
     <div class="file-stat">
-      44 duplication
+      38 duplication
     </div>
   </div>
 
@@ -55,218 +55,216 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(TooManyMethods) Print has at least 28 methods          </span>  </li></ul>
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) Print has at least 26 methods          </span>  </li></ul>
   def welcome_message
-    print_line( format(&quot;Welcome to Taskitome!&quot;, :success) )
-    print_line( format(&quot;=============================&quot;, :dividing_line) )
-    self.break
+    formatter
+      .success(&quot;Welcome to Taskitome!&quot;).end_line
+      .add_large_rule
+      .add_line
+      .send_to_output
   end
 
-  def projects_menu
-    print_line(&quot;PROJECTS MENU&quot;)
-    print_line( format(&quot;-----------------------------&quot;, :dividing_line) )
-    print_line( format(&quot;ENTER A COMMAND:&quot;, :alert) )
-    print_line( command(&quot;a&quot;,  &quot;Add a new project&quot;) )
-    print_line( command(&quot;ls&quot;, &quot;List all project&quot;) )
-    print_line( command(&quot;d&quot;,  &quot;Delete a project&quot;) )
-    print_line( command(&quot;e&quot;,  &quot;Edit a project&quot;) )
-    print_line( command(&quot;q&quot;,  &quot;Quit the app&quot;) )
-    self.break
+  def projects_menu<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#projects_menu has a flog score of 29          </span>  </li></ul>
+    formatter
+      .command(&quot;PROJECTS MENU&quot;).end_line
+      .add_small_rule
+      .alert(&quot;ENTER A COMMAND:&quot;).end_line
+      .command_menu(&quot;a&quot;,  &quot;Add a new project&quot;)
+      .command_menu(&quot;ls&quot;, &quot;List all project&quot;)
+      .command_menu(&quot;d&quot;,  &quot;Delete a project&quot;)
+      .command_menu(&quot;e&quot;,  &quot;Edit a project&quot;)
+      .command_menu(&quot;q&quot;,  &quot;Quit the app&quot;)
+      .add_separator
+      .send_to_output
   end
 
-  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 27          </span>  </li></ul>
-    print_line( format(&quot;Editing project: &#39;#{project_name}&#39;&quot;, :success) )
-    self.break
-
-    print_line( format(&quot;EDIT PROJECT MENU&quot;, :command) )
-    print_line(&quot;-----------------------------&quot;)
-    print_line( format(&quot;ENTER A COMMAND:&quot;, :alert) )
-    print_line( command(&quot;c&quot;, &quot;Change the project name&quot;) )
-    print_line( command(&quot;a&quot;, &quot;Add a new task&quot;) )
-    print_line( command(&quot;ls&quot;, &quot;List all tasks&quot;) )
-    print_line( command(&quot;d&quot;, &quot;Delete a task&quot;) )
-    print_line( command(&quot;e&quot;, &quot;Edit a task&quot;) )
-    print_line( command(&quot;f&quot;, &quot;Finish a task&quot;) )
-    print_line( command(&quot;b&quot;, &quot;Back to Projects menu&quot;) )
-    print_line( command(&quot;q&quot;, &quot;Quit the app&quot;) )
-    self.break
+  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 49          </span>  </li></ul>
+    formatter
+      .success(&quot;Editing project: &#39;#{project_name}&#39;&quot;).end_line
+      .command(&quot;EDIT PROJECT MENU&quot;).end_line
+      .add_small_rule
+      .alert(&quot;ENTER A COMMAND:&quot;).end_line
+      .command_menu(&quot;c&quot;, &quot;Change the project name&quot;)
+      .command_menu(&quot;a&quot;, &quot;Add a new task&quot;)
+      .command_menu(&quot;ls&quot;, &quot;List all tasks&quot;)
+      .command_menu(&quot;d&quot;, &quot;Delete a task&quot;)
+      .command_menu(&quot;e&quot;, &quot;Edit a task&quot;)
+      .command_menu(&quot;f&quot;, &quot;Finish a task&quot;)
+      .command_menu(&quot;b&quot;, &quot;Back to Projects menu&quot;)
+      .command_menu(&quot;q&quot;, &quot;Quit the app&quot;)
+      .add_separator
+      .send_to_output
   end
 
-  # Assorted printing/view methods
-  def break
-    print_line(&quot;\n\n&quot;)
+  def list(collection)
+    collection.each do |object|
+      item(object)
+    end
+    formatter.add_separator.send_to_output
+  end
+
+  def item(object)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(FeatureEnvy) Print#item refers to object more than self          </span>  </li></ul>
+    formatter
+      .add(&quot;  #{object.position}.  &quot;)
+      .description(&quot;#{object.name}&quot;)
+      .send_to_output
   end
 
   # project menu related messages, no arguments required
   def no_projects_message
-    print_line(
-      format(&quot;No projects created&quot;, :alert)
-    )
-    self.break
+    formatter
+      .alert(&quot;No projects created&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def project_name_prompt
-    print_line(
-      format(&quot;Enter a project name:&quot;, :prompt)
-    )
+    formatter
+      .prompt(&quot;Enter a project name:&quot;)
+      .send_to_output
   end
 
   def new_project_name_prompt
-    print_line(
-      format(&quot;Enter new project name:&quot;, :prompt)
-    )
+    formatter
+      .prompt(&quot;Enter new project name:&quot;)
+      .send_to_output
   end
 
   def listing_project_header
-    print_line(
-      format(&quot;Listing projects:&quot;, :success)
-    )
+    formatter
+      .success(&quot;Listing projects:&quot;)
+      .send_to_output
   end
 
   def cant_delete_project
-    print_line(
-      format(&quot;Can&#39;t delete a project&quot;, :alert)
-    )
+    formatter
+      .alert(&quot;Can&#39;t delete a project&quot;)
+      .send_to_output
   end
 
   def cant_edit_project
-    print_line(
-      format(&quot;Can&#39;t edit any projects&quot;, :alert)
-    )
+    formatter
+      .alert(&quot;Can&#39;t edit any projects&quot;)
+      .send_to_output
   end
 
   # project menu related messages, with data passed in
   def project_created(name)
-    print_line(
-      format(&quot;Created project:&quot;, :success) +  &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
-  end
-
-  def project_list_item(project)
-    print_line(
-      &quot;  #{project.position}.  &quot; + format(project.name, :description)
-    )
+    formatter
+      .success(&quot;Created project:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def successful_delete(name)
-    print_line(
-      format(&quot;Deleting project:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .success(&quot;Deleting project:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def project_does_not_exist(name)
-    print_line(
-      format(&quot;Project doesn&#39;t exist:&quot;, :alert) + &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .alert(&quot;Project doesn&#39;t exist:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   # task menu related messages, no data passed in
   def task_name_prompt
-    print_line(
-      format(&quot;Enter a task name:&quot;, :prompt)
-    )
+    formatter
+      .prompt(&quot;Enter a task name:&quot;)
+      .send_to_output
   end
 
   def task_list_header
-    print_line(
-      format(&quot;Listing tasks:&quot;, :success)
-    )
+    formatter
+      .success(&quot;Listing tasks:&quot;)
+      .send_to_output
   end
 
   # task menu related messages, data required
   def created_task(name)
-    print_line(
-      format(&quot;Created task:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .success(&quot;Created task:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
-  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L130" class="js-smell-location">0</a>                  <a href="print.html#L140" class="js-smell-location">1</a>                  </span>  </li></ul>
-    print_line(
-      format(&quot;Changed project name from&quot;, :success) +
-        &quot; &#39;#{old_name}&#39; &quot; +
-        format(&quot;to&quot;, :success) +
-        &quot; &#39;#{new_name}&#39;&quot;
-    )
-    self.break
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L141" class="js-smell-location">0</a>                  <a href="print.html#L151" class="js-smell-location">1</a>                  </span>  </li></ul>
+    formatter
+      .success(&quot;Changed project name from&quot;)
+      .add(&quot; &#39;#{old_name}&#39; &quot;)
+      .success(&quot;to&quot;)
+      .add(&quot; &#39;#{new_name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
-  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L130" class="js-smell-location">0</a>                  <a href="print.html#L140" class="js-smell-location">1</a>                  </span>  </li></ul>
-    print_line(
-      format(&quot;Changed task name from&quot;, :success) +
-        &quot; &#39;#{old_name}&#39; &quot; +
-        format(&quot;to&quot;, :success) +
-        &quot; &#39;#{new_name}&#39;&quot;
-    )
-    self.break
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L141" class="js-smell-location">0</a>                  <a href="print.html#L151" class="js-smell-location">1</a>                  </span>  </li></ul>
+    formatter
+      .success(&quot;Changed task name from&quot;)
+      .add(&quot; &#39;#{old_name}&#39; &quot;)
+      .success(&quot;to&quot;)
+      .add(&quot; &#39;#{new_name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def editing_task(name)
-    print_line(
-      format(&quot;Editing task:&quot;, :success) + &quot; &#39;#{name}&#39;&quot;
-    )
+    formatter
+      .success(&quot;Editing task:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .send_to_output
   end
 
   def task_prompt
-    print_line(
-      format(&quot;Enter a task name:&quot;, :prompt)
-    )
+    formatter
+      .prompt(&quot;Enter a task name:&quot;)
+      .send_to_output
   end
 
   def task_does_not_exsit(name)
-    print_line(
-      format(&quot;Task doesn&#39;t exist:&quot;, :alert) + &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .alert(&quot;Task doesn&#39;t exist:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def no_tasks_created_in(project_name)
-    print_line(
-      format(&quot;No tasks created in &quot;, :alert) +
-        &quot;&#39;#{project_name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .alert(&quot;No tasks created in &quot;)
+      .add(&quot;&#39;#{project_name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def task_deleted(name)
-    print_line(
-      format(&quot;Deleted task:&quot;, :success) +
-      &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
+    formatter
+      .success(&quot;Deleted task:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   def finished_task(name)
-    print_line(
-      format(&quot;Finished task:&quot;, :success) +
-      &quot; &#39;#{name}&#39;&quot;
-    )
-    self.break
-  end
-
-  def task_item(task)
-    print_line(
-      &quot;  #{task.position}.  &quot; +
-      format(&quot;#{task.name}&quot;, :success)
-    )
-    self.break
+    formatter
+      .success(&quot;Finished task:&quot;)
+      .add(&quot; &#39;#{name}&#39;&quot;)
+      .add_separator
+      .send_to_output
   end
 
   private
 
-  def print_line(message=&#39;&#39;)
-    output_stream.puts(message)
-  end
-
   def formatter
-    Formatter.new
+    Formatter.new(output_stream)
   end
-
-  extend Forwardable
-  def_delegators :formatter, :format, :command
 end
 </code>
 

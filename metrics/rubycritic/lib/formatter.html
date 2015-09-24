@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      7 complexity
+      25 complexity
     </div>
     <div class="file-stat">
-      3.5 complexity per method
+      2.5 complexity per method
     </div>
     <div class="file-stat">
       2 churn
     </div>
     <div class="file-stat">
-      2 methods
+      10 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -58,18 +58,73 @@
     success: &quot;\e[38;5;40m&quot;,
     reset: &quot;\e[0m&quot;,
     alert: &quot;\e[40;38;5;214m&quot;,
-    command: &quot;\e[1;37&quot;,
+    command: &quot;\e[1;37m&quot;,
     description: &quot;\e[0;35m&quot;,
     prompt: &quot;\e[0;35m&quot;,
-    dividing_line: &quot;\e[1;37&quot;
+    dividing_line: &quot;\e[1;37m&quot;
   }
 
+  attr_reader :output_stream, :aggregated_message
+
+  def initialize(output_stream)
+    @output_stream = output_stream
+    reset_aggregator
+  end
+
   def format(message, style)
+    return message unless style
     &quot;#{COLORS[style]}#{message}#{COLORS[:reset]}&quot;
   end
 
-  def command(key, description)
-    format(&#39;%-4s&#39; % key, :command) + format(description, :description)
+  def command_menu(key, description)
+    command(&#39;%-4s&#39; % key)
+    description(description)
+    add_line
+  end
+
+  def add(message, style=nil)
+    aggregated_message &lt;&lt; format(message, style)
+    self
+  end
+
+  COLORS.keys.each do |name|
+    define_method(name) do |message|
+      add(message, name)
+    end
+  end
+
+  def add_line
+    aggregated_message &lt;&lt; &quot;\n&quot;
+    self
+  end
+
+  alias :end_line :add_line
+
+  def add_separator
+    add_line
+    add_line
+  end
+
+  def add_small_rule
+    add(&quot;-----------------------------&quot;, :dividing_line)
+    add_line
+  end
+
+  def add_large_rule
+    add(&quot;=============================&quot;, :dividing_line)
+    add_line
+  end
+
+  def send_to_output
+    output_stream.puts(aggregated_message)
+    reset_aggregator
+    self
+  end
+
+  private
+
+  def reset_aggregator
+    @aggregated_message = &quot;&quot;
   end
 end
 </code>
