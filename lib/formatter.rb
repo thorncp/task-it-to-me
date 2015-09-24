@@ -16,11 +16,6 @@ class Formatter
     reset_aggregator
   end
 
-  def format(message, style)
-    return message unless style
-    "#{COLORS[style]}#{message}#{COLORS[:reset]}"
-  end
-
   def command_menu(key, description)
     command('%-4s' % key)
     description(description)
@@ -87,7 +82,34 @@ class Formatter
     self
   end
 
+  def success_with_name(message, name)
+    add_with_name(message, name, :success)
+  end
+
+  def alert_with_name(message, name)
+    add_with_name(message, name, :alert)
+  end
+
+  def change_name(message, old_name, new_name)
+    success(message)
+    add(" '#{old_name}' ")
+    success("to")
+    add(" '#{new_name}'")
+    add_separator
+  end
+
   private
+
+  def format(message, style)
+    return message unless style
+    "#{COLORS[style]}#{message}#{COLORS[:reset]}"
+  end
+
+  def add_with_name(message, name, style)
+    add(message, style)
+    add(" '#{name}'")
+    add_separator
+  end
 
   def reset_aggregator
     @aggregated_message = ""

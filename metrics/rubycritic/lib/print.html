@@ -21,32 +21,32 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-d circled-text circle">
-    D
+  <span class="rating rating-b circled-text circle">
+    B
   </span>
   <h2 class="file-name">Print</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-23 16:47:52 -0700'>2015-09-23 16:47:52 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-09-24 07:54:49 -0700'>2015-09-24 07:54:49 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      220 complexity
+      86 complexity
     </div>
     <div class="file-stat">
-      8.5 complexity per method
+      3.4 complexity per method
     </div>
     <div class="file-stat">
-      4 churn
+      7 churn
     </div>
     <div class="file-stat">
-      26 methods
+      25 methods
     </div>
     <div class="file-stat">
-      38 duplication
+      0 duplication
     </div>
   </div>
 
@@ -55,7 +55,7 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) Print has at least 26 methods          </span>  </li></ul>
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)
   def welcome_message
     formatter
       .success(&quot;Welcome to Taskitome!&quot;).end_line
@@ -64,11 +64,9 @@
       .send_to_output
   end
 
-  def projects_menu<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#projects_menu has a flog score of 29          </span>  </li></ul>
+  def projects_menu
     formatter
-      .command(&quot;PROJECTS MENU&quot;).end_line
-      .add_small_rule
-      .alert(&quot;ENTER A COMMAND:&quot;).end_line
+      .add_menu_header(&quot;PROJECTS MENU&quot;)
       .command_menu(&quot;a&quot;,  &quot;Add a new project&quot;)
       .command_menu(&quot;ls&quot;, &quot;List all project&quot;)
       .command_menu(&quot;d&quot;,  &quot;Delete a project&quot;)
@@ -78,12 +76,10 @@
       .send_to_output
   end
 
-  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 49          </span>  </li></ul>
+  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 32          </span>  </li></ul>
     formatter
       .success(&quot;Editing project: &#39;#{project_name}&#39;&quot;).end_line
-      .command(&quot;EDIT PROJECT MENU&quot;).end_line
-      .add_small_rule
-      .alert(&quot;ENTER A COMMAND:&quot;).end_line
+      .add_menu_header(&quot;EDIT PROJECT MENU&quot;)
       .command_menu(&quot;c&quot;, &quot;Change the project name&quot;)
       .command_menu(&quot;a&quot;, &quot;Add a new task&quot;)
       .command_menu(&quot;ls&quot;, &quot;List all tasks&quot;)
@@ -97,170 +93,110 @@
   end
 
   def list(collection)
-    collection.each do |object|
-      item(object)
-    end
-    formatter.add_separator.send_to_output
-  end
-
-  def item(object)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(FeatureEnvy) Print#item refers to object more than self          </span>  </li></ul>
     formatter
-      .add(&quot;  #{object.position}.  &quot;)
-      .description(&quot;#{object.name}&quot;)
-      .send_to_output
-  end
-
-  # project menu related messages, no arguments required
-  def no_projects_message
-    formatter
-      .alert(&quot;No projects created&quot;)
-      .add_separator
+      .list(collection)
       .send_to_output
   end
 
   def project_name_prompt
-    formatter
-      .prompt(&quot;Enter a project name:&quot;)
-      .send_to_output
+    prompt(&quot;Enter a project name:&quot;)
   end
 
   def new_project_name_prompt
-    formatter
-      .prompt(&quot;Enter new project name:&quot;)
-      .send_to_output
-  end
-
-  def listing_project_header
-    formatter
-      .success(&quot;Listing projects:&quot;)
-      .send_to_output
-  end
-
-  def cant_delete_project
-    formatter
-      .alert(&quot;Can&#39;t delete a project&quot;)
-      .send_to_output
-  end
-
-  def cant_edit_project
-    formatter
-      .alert(&quot;Can&#39;t edit any projects&quot;)
-      .send_to_output
-  end
-
-  # project menu related messages, with data passed in
-  def project_created(name)
-    formatter
-      .success(&quot;Created project:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  def successful_delete(name)
-    formatter
-      .success(&quot;Deleting project:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  def project_does_not_exist(name)
-    formatter
-      .alert(&quot;Project doesn&#39;t exist:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  # task menu related messages, no data passed in
-  def task_name_prompt
-    formatter
-      .prompt(&quot;Enter a task name:&quot;)
-      .send_to_output
-  end
-
-  def task_list_header
-    formatter
-      .success(&quot;Listing tasks:&quot;)
-      .send_to_output
-  end
-
-  # task menu related messages, data required
-  def created_task(name)
-    formatter
-      .success(&quot;Created task:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L141" class="js-smell-location">0</a>                  <a href="print.html#L151" class="js-smell-location">1</a>                  </span>  </li></ul>
-    formatter
-      .success(&quot;Changed project name from&quot;)
-      .add(&quot; &#39;#{old_name}&#39; &quot;)
-      .success(&quot;to&quot;)
-      .add(&quot; &#39;#{new_name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="print.html#L141" class="js-smell-location">0</a>                  <a href="print.html#L151" class="js-smell-location">1</a>                  </span>  </li></ul>
-    formatter
-      .success(&quot;Changed task name from&quot;)
-      .add(&quot; &#39;#{old_name}&#39; &quot;)
-      .success(&quot;to&quot;)
-      .add(&quot; &#39;#{new_name}&#39;&quot;)
-      .add_separator
-      .send_to_output
-  end
-
-  def editing_task(name)
-    formatter
-      .success(&quot;Editing task:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .send_to_output
+    prompt(&quot;Enter new project name:&quot;)
   end
 
   def task_prompt
-    formatter
-      .prompt(&quot;Enter a task name:&quot;)
-      .send_to_output
+    prompt(&quot;Enter a task name:&quot;)
   end
 
-  def task_does_not_exsit(name)
-    formatter
-      .alert(&quot;Task doesn&#39;t exist:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
+  def listing_project_header
+    success(&quot;Listing projects:&quot;)
   end
 
-  def no_tasks_created_in(project_name)
-    formatter
-      .alert(&quot;No tasks created in &quot;)
-      .add(&quot;&#39;#{project_name}&#39;&quot;)
-      .add_separator
-      .send_to_output
+  def task_list_header
+    success(&quot;Listing tasks:&quot;)
+  end
+
+  def cant_delete_project
+    alert(&quot;Can&#39;t delete a project&quot;)
+  end
+
+  def cant_edit_project
+    alert(&quot;Can&#39;t edit any projects&quot;)
+  end
+
+  def no_projects_message
+    alert(&quot;No projects created&quot;)
+  end
+
+  def project_created(name)
+    success_with_name(&quot;Created project:&quot;, name)
+  end
+
+  def successful_delete(name)
+    success_with_name(&quot;Deleting project:&quot;, name)
+  end
+
+  def created_task(name)
+    success_with_name(&quot;Created task:&quot;, name)
+  end
+
+  def editing_task(name)
+    success_with_name(&quot;Editing task:&quot;, name)
   end
 
   def task_deleted(name)
-    formatter
-      .success(&quot;Deleted task:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
+    success_with_name(&quot;Deleted task:&quot;, name)
   end
 
   def finished_task(name)
-    formatter
-      .success(&quot;Finished task:&quot;)
-      .add(&quot; &#39;#{name}&#39;&quot;)
-      .add_separator
-      .send_to_output
+    success_with_name(&quot;Finished task:&quot;, name)
+  end
+
+  def project_does_not_exist(name)
+    alert_with_name(&quot;Project doesn&#39;t exist:&quot;, name)
+  end
+
+  def task_does_not_exsit(name)
+    alert_with_name(&quot;Task doesn&#39;t exist:&quot;, name)
+  end
+
+  def no_tasks_created_in(name)
+    alert_with_name(&quot;No tasks created in&quot;, name)
+  end
+
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+    change_name(&quot;Changed project name from&quot;, old_name, new_name)
+  end
+
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+    change_name(&quot;Changed task name from&quot;, old_name, new_name)
   end
 
   private
+
+  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+    formatter
+      .change_name(message, old_name, new_name)
+      .send_to_output
+  end
+
+  (Formatter::COLORS).keys.each do |method_name|
+    define_method(method_name) do |message|
+      formatter
+        .add(message, method_name)
+        .send_to_output
+    end
+  end
+
+  [:success_with_name, :alert_with_name].each do |method_name|
+    define_method(method_name) do |message, name|
+      formatter
+        .send(method_name, message, name)
+        .send_to_output
+    end
+  end
 
   def formatter
     Formatter.new(output_stream)

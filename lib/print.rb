@@ -41,14 +41,6 @@ class Print < Struct.new(:output_stream)
       .send_to_output
   end
 
-  # project menu related messages, no arguments required
-  def no_projects_message
-    formatter
-      .alert("No projects created")
-      .add_separator
-      .send_to_output
-  end
-
   def project_name_prompt
     prompt("Enter a project name:")
   end
@@ -62,131 +54,89 @@ class Print < Struct.new(:output_stream)
   end
 
   def listing_project_header
-    formatter
-      .success("Listing projects:")
-      .send_to_output
+    success("Listing projects:")
+  end
+
+  def task_list_header
+    success("Listing tasks:")
   end
 
   def cant_delete_project
-    formatter
-      .alert("Can't delete a project")
-      .send_to_output
+    alert("Can't delete a project")
   end
 
   def cant_edit_project
-    formatter
-      .alert("Can't edit any projects")
-      .send_to_output
+    alert("Can't edit any projects")
   end
 
-  # project menu related messages, with data passed in
+  def no_projects_message
+    alert("No projects created")
+  end
+
   def project_created(name)
-    formatter
-      .success("Created project:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Created project:", name)
   end
 
   def successful_delete(name)
-    formatter
-      .success("Deleting project:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Deleting project:", name)
   end
 
-  def project_does_not_exist(name)
-    formatter
-      .alert("Project doesn't exist:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
-  end
-
-  # task menu related messages, no data passed in
-
-
-  def task_list_header
-    formatter
-      .success("Listing tasks:")
-      .send_to_output
-  end
-
-  # task menu related messages, data required
   def created_task(name)
-    formatter
-      .success("Created task:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
-  end
-
-  def changed_project_name(old_name, new_name)
-    formatter
-      .success("Changed project name from")
-      .add(" '#{old_name}' ")
-      .success("to")
-      .add(" '#{new_name}'")
-      .add_separator
-      .send_to_output
-  end
-
-  def changed_task_name(old_name, new_name)
-    formatter
-      .success("Changed task name from")
-      .add(" '#{old_name}' ")
-      .success("to")
-      .add(" '#{new_name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Created task:", name)
   end
 
   def editing_task(name)
-    formatter
-      .success("Editing task:")
-      .add(" '#{name}'")
-      .send_to_output
-  end
-
-  def task_does_not_exsit(name)
-    formatter
-      .alert("Task doesn't exist:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
-  end
-
-  def no_tasks_created_in(project_name)
-    formatter
-      .alert("No tasks created in ")
-      .add("'#{project_name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Editing task:", name)
   end
 
   def task_deleted(name)
-    formatter
-      .success("Deleted task:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Deleted task:", name)
   end
 
   def finished_task(name)
-    formatter
-      .success("Finished task:")
-      .add(" '#{name}'")
-      .add_separator
-      .send_to_output
+    success_with_name("Finished task:", name)
+  end
+
+  def project_does_not_exist(name)
+    alert_with_name("Project doesn't exist:", name)
+  end
+
+  def task_does_not_exsit(name)
+    alert_with_name("Task doesn't exist:", name)
+  end
+
+  def no_tasks_created_in(name)
+    alert_with_name("No tasks created in", name)
+  end
+
+  def changed_project_name(old_name, new_name)
+    change_name("Changed project name from", old_name, new_name)
+  end
+
+  def changed_task_name(old_name, new_name)
+    change_name("Changed task name from", old_name, new_name)
   end
 
   private
 
-  Formatter::COLORS.keys.each do |name|
-    define_method(name) do |message|
+  def change_name(message, old_name, new_name)
+    formatter
+      .change_name(message, old_name, new_name)
+      .send_to_output
+  end
+
+  (Formatter::COLORS).keys.each do |method_name|
+    define_method(method_name) do |message|
       formatter
-        .add(message, name)
+        .add(message, method_name)
+        .send_to_output
+    end
+  end
+
+  [:success_with_name, :alert_with_name].each do |method_name|
+    define_method(method_name) do |message, name|
+      formatter
+        .send(method_name, message, name)
         .send_to_output
     end
   end
