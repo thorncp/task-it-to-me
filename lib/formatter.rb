@@ -11,8 +11,7 @@ class Formatter
 
   attr_reader :output_stream, :aggregated_message
 
-  def initialize(output_stream)
-    @output_stream = output_stream
+  def initialize
     reset_aggregator
   end
 
@@ -76,10 +75,10 @@ class Formatter
     end_line
   end
 
-  def send_to_output
-    output_stream.puts(aggregated_message)
+  def flush
+    output = aggregated_message.dup
     reset_aggregator
-    self
+    output
   end
 
   def success_with_name(message, name)

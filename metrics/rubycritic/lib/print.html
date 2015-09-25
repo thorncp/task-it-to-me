@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      86 complexity
+      92 complexity
     </div>
     <div class="file-stat">
-      3.4 complexity per method
+      3.5 complexity per method
     </div>
     <div class="file-stat">
       7 churn
     </div>
     <div class="file-stat">
-      25 methods
+      26 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -55,17 +55,18 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) Print has at least 26 methods          </span>  </li></ul>
   def welcome_message
-    formatter
+    view = formatter
       .success(&quot;Welcome to Taskitome!&quot;).end_line
       .add_large_rule
       .add_line
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   def projects_menu
-    formatter
+    view = formatter
       .add_menu_header(&quot;PROJECTS MENU&quot;)
       .command_menu(&quot;a&quot;,  &quot;Add a new project&quot;)
       .command_menu(&quot;ls&quot;, &quot;List all project&quot;)
@@ -73,11 +74,12 @@
       .command_menu(&quot;e&quot;,  &quot;Edit a project&quot;)
       .command_menu(&quot;q&quot;,  &quot;Quit the app&quot;)
       .add_separator
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
-  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 32          </span>  </li></ul>
-    formatter
+  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 33          </span>  </li></ul>
+    view = formatter
       .success(&quot;Editing project: &#39;#{project_name}&#39;&quot;).end_line
       .add_menu_header(&quot;EDIT PROJECT MENU&quot;)
       .command_menu(&quot;c&quot;, &quot;Change the project name&quot;)
@@ -89,13 +91,13 @@
       .command_menu(&quot;b&quot;, &quot;Back to Projects menu&quot;)
       .command_menu(&quot;q&quot;, &quot;Quit the app&quot;)
       .add_separator
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   def list(collection)
-    formatter
-      .list(collection)
-      .send_to_output
+    view = formatter.list(collection).flush
+    send_to_output(view)
   end
 
   def project_name_prompt
@@ -166,40 +168,47 @@
     alert_with_name(&quot;No tasks created in&quot;, name)
   end
 
-  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed project name from&quot;, old_name, new_name)
   end
 
-  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed task name from&quot;, old_name, new_name)
   end
 
   private
 
-  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L112" class="js-smell-location">0</a>                  <a href="print.html#L116" class="js-smell-location">1</a>                  <a href="print.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
-    formatter
+  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
+    view = formatter
       .change_name(message, old_name, new_name)
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   (Formatter::COLORS).keys.each do |method_name|
     define_method(method_name) do |message|
-      formatter
+      view = formatter
         .add(message, method_name)
-        .send_to_output
+        .flush
+      send_to_output(view)
     end
   end
 
   [:success_with_name, :alert_with_name].each do |method_name|
     define_method(method_name) do |message, name|
-      formatter
+      view = formatter
         .send(method_name, message, name)
-        .send_to_output
+        .flush
+      send_to_output(view)
     end
   end
 
   def formatter
-    Formatter.new(output_stream)
+    Formatter.new
+  end
+
+  def send_to_output(view)
+    output_stream.puts(view)
   end
 end
 </code>

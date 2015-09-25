@@ -1,14 +1,15 @@
 class Print < Struct.new(:output_stream)
   def welcome_message
-    formatter
+    view = formatter
       .success("Welcome to Taskitome!").end_line
       .add_large_rule
       .add_line
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   def projects_menu
-    formatter
+    view = formatter
       .add_menu_header("PROJECTS MENU")
       .command_menu("a",  "Add a new project")
       .command_menu("ls", "List all project")
@@ -16,11 +17,12 @@ class Print < Struct.new(:output_stream)
       .command_menu("e",  "Edit a project")
       .command_menu("q",  "Quit the app")
       .add_separator
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   def tasks_menu(project_name)
-    formatter
+    view = formatter
       .success("Editing project: '#{project_name}'").end_line
       .add_menu_header("EDIT PROJECT MENU")
       .command_menu("c", "Change the project name")
@@ -32,13 +34,13 @@ class Print < Struct.new(:output_stream)
       .command_menu("b", "Back to Projects menu")
       .command_menu("q", "Quit the app")
       .add_separator
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   def list(collection)
-    formatter
-      .list(collection)
-      .send_to_output
+    view = formatter.list(collection).flush
+    send_to_output(view)
   end
 
   def project_name_prompt
@@ -120,28 +122,35 @@ class Print < Struct.new(:output_stream)
   private
 
   def change_name(message, old_name, new_name)
-    formatter
+    view = formatter
       .change_name(message, old_name, new_name)
-      .send_to_output
+      .flush
+    send_to_output(view)
   end
 
   (Formatter::COLORS).keys.each do |method_name|
     define_method(method_name) do |message|
-      formatter
+      view = formatter
         .add(message, method_name)
-        .send_to_output
+        .flush
+      send_to_output(view)
     end
   end
 
   [:success_with_name, :alert_with_name].each do |method_name|
     define_method(method_name) do |message, name|
-      formatter
+      view = formatter
         .send(method_name, message, name)
-        .send_to_output
+        .flush
+      send_to_output(view)
     end
   end
 
   def formatter
-    Formatter.new(output_stream)
+    Formatter.new
+  end
+
+  def send_to_output(view)
+    output_stream.puts(view)
   end
 end
