@@ -11,6 +11,10 @@ require_relative 'persistence'
 require_relative 'formatter'
 require_relative 'print'
 
+require_relative 'menu_factory'
+require_relative 'menu'
+require_relative 'route'
+
 class App
   attr_reader :input_stream,
     :state, :print
