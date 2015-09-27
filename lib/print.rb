@@ -8,34 +8,20 @@ class Print < Struct.new(:output_stream)
     send_to_output(view)
   end
 
-  def projects_menu
-    view = formatter
-      .add_menu_header("PROJECTS MENU")
-      .command_menu("a",  "Add a new project")
-      .command_menu("ls", "List all project")
-      .command_menu("d",  "Delete a project")
-      .command_menu("e",  "Edit a project")
-      .command_menu("q",  "Quit the app")
-      .add_separator
-      .flush
-    send_to_output(view)
+  def projects_menu(menu)
+    f = formatter.add_menu_header("PROJECTS MENU")
+    menu.each { |route| f.command_menu(route.id, route.description) }
+    f.add_separator
+    send_to_output(f.flush)
   end
 
-  def tasks_menu(project_name)
-    view = formatter
+  def tasks_menu(project_name, menu)
+    f = formatter
       .success("Editing project: '#{project_name}'").end_line
       .add_menu_header("EDIT PROJECT MENU")
-      .command_menu("c", "Change the project name")
-      .command_menu("a", "Add a new task")
-      .command_menu("ls", "List all tasks")
-      .command_menu("d", "Delete a task")
-      .command_menu("e", "Edit a task")
-      .command_menu("f", "Finish a task")
-      .command_menu("b", "Back to Projects menu")
-      .command_menu("q", "Quit the app")
-      .add_separator
-      .flush
-    send_to_output(view)
+    menu.each { |route| f.command_menu(route.id, route.description) }
+    f.add_separator
+    send_to_output(f.flush)
   end
 
   def list(collection)

@@ -30,10 +30,15 @@ class App
 
     print.welcome_message
 
-    print.projects_menu
+    print.projects_menu(menu)
     command = get_input
 
     while command != 'q'
+      if !menu.include?(command)
+        command = get_input
+        next
+      end
+
       if !current_project?
         case command
         when 'a'
@@ -69,7 +74,7 @@ class App
             print.project_name_prompt
             name = get_input
             if project = set_current_project(name)
-              print.tasks_menu(project.name)
+              print.tasks_menu(project.name, menu)
               command = get_input
               next
             else
@@ -78,7 +83,7 @@ class App
             end
           end
         end
-        print.projects_menu
+        print.projects_menu(menu)
       else
         case command
         when 'a'
@@ -140,7 +145,7 @@ class App
             print.list(current_tasks)
           end
         end
-        print.tasks_menu(current_project.name) if current_project?
+        print.tasks_menu(current_project.name, menu) if current_project?
       end
 
       command = get_input
@@ -149,6 +154,14 @@ class App
 
   def get_input
     input_stream.gets.strip
+  end
+
+  def menu
+    menu_factory.generate
+  end
+
+  def menu_factory
+    @menu_factory ||= MenuFactory.new(state)
   end
 
   extend Forwardable

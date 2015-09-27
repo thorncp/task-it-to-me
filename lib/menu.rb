@@ -13,5 +13,5 @@ class Menu < Struct.new(:routes)
 
   extend Forwardable
 
-  def_delegators :routes, :size
+  def_delegators :routes, :size, :each
 end
