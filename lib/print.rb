@@ -49,16 +49,8 @@ class Print < Struct.new(:output_stream)
     success("Listing tasks:")
   end
 
-  def cant_delete_project
-    alert("Can't delete a project")
-  end
-
   def cant_edit_project
     alert("Can't edit any projects")
-  end
-
-  def no_projects_message
-    alert("No projects created")
   end
 
   def project_created(name)
@@ -91,10 +83,6 @@ class Print < Struct.new(:output_stream)
 
   def task_does_not_exsit(name)
     alert_with_name("Task doesn't exist:", name)
-  end
-
-  def no_tasks_created_in(name)
-    alert_with_name("No tasks created in", name)
   end
 
   def changed_project_name(old_name, new_name)

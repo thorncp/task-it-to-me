@@ -17,12 +17,13 @@ require_relative 'route'
 
 class App
   attr_reader :input_stream,
-    :state, :print
+    :state, :print, :menu_factory
 
   def initialize(output_stream, input_stream)
     @print = Print.new(output_stream)
     @input_stream = input_stream
     @state = State.new
+    @menu_factory = MenuFactory.new(state)
   end
 
   def run
@@ -48,39 +49,25 @@ class App
           print.project_created(name)
         when 'ls'
           print.listing_project_header
-          if projects_empty?
-            print.no_projects_message
-          else
-            print.list(projects)
-          end
+          print.list(projects)
         when 'd'
-          if projects_empty?
-            print.cant_delete_project
-            print.no_projects_message
+          print.project_name_prompt
+          project_name = get_input
+          if project = delete_project(project_name)
+            print.successful_delete(project.name)
           else
-            print.project_name_prompt
-            project_name = get_input
-            if project = delete_project(project_name)
-              print.successful_delete(project.name)
-            else
-              print.project_does_not_exist(project_name)
-            end
+            print.project_does_not_exist(project_name)
           end
         when 'e'
-          if projects_empty?
-            print.cant_edit_project
-            print.no_projects_message
+          print.project_name_prompt
+          name = get_input
+          if project = set_current_project(name)
+            print.tasks_menu(project.name, menu)
+            command = get_input
+            next
           else
-            print.project_name_prompt
-            name = get_input
-            if project = set_current_project(name)
-              print.tasks_menu(project.name, menu)
-              command = get_input
-              next
-            else
-              print.cant_edit_project
-              print.project_does_not_exist(name)
-            end
+            print.cant_edit_project
+            print.project_does_not_exist(name)
           end
         end
         print.projects_menu(menu)
@@ -113,37 +100,25 @@ class App
           end
         when 'd'
           project_name = current_project.name
-          if current_tasks_empty?
-            print.no_tasks_created_in(project_name)
+          print.task_prompt
+          task_name = get_input
+          if task = delete_task(task_name)
+            print.task_deleted(task.name)
           else
-            print.task_prompt
-            task_name = get_input
-            if task = delete_task(task_name)
-              print.task_deleted(task.name)
-            else
-              print.task_does_not_exsit(task_name)
-            end
+            print.task_does_not_exsit(task_name)
           end
         when 'f'
           project_name = current_project.name
-          if current_tasks_empty?
-            print.no_tasks_created_in(project_name)
+          print.task_prompt
+          task_name = get_input
+          if task = delete_task(task_name)
+            print.finished_task(task.name)
           else
-            print.task_prompt
-            task_name = get_input
-            if task = delete_task(task_name)
-              print.finished_task(task.name)
-            else
-              print.task_does_not_exsit(task_name)
-            end
+            print.task_does_not_exsit(task_name)
           end
         when 'ls'
-          if current_tasks_empty?
-            print.no_tasks_created_in(current_project.name)
-          else
-            print.task_list_header
-            print.list(current_tasks)
-          end
+          print.task_list_header
+          print.list(current_tasks)
         end
         print.tasks_menu(current_project.name, menu) if current_project?
       end
@@ -158,10 +133,6 @@ class App
 
   def menu
     menu_factory.generate
-  end
-
-  def menu_factory
-    @menu_factory ||= MenuFactory.new(state)
   end
 
   extend Forwardable

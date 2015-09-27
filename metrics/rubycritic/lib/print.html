@@ -21,29 +21,29 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-b circled-text circle">
-    B
+  <span class="rating rating-a circled-text circle">
+    A
   </span>
   <h2 class="file-name">Print</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-24 07:54:49 -0700'>2015-09-24 07:54:49 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-09-27 13:50:33 -0700'>2015-09-27 13:50:33 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      92 complexity
+      62 complexity
     </div>
     <div class="file-stat">
-      3.5 complexity per method
+      2.7 complexity per method
     </div>
     <div class="file-stat">
-      7 churn
+      9 churn
     </div>
     <div class="file-stat">
-      26 methods
+      23 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -55,7 +55,7 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(TooManyMethods) Print has at least 26 methods          </span>  </li></ul>
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Print &lt; Struct.new(:output_stream)
   def welcome_message
     view = formatter
       .success(&quot;Welcome to Taskitome!&quot;).end_line
@@ -65,34 +65,20 @@
     send_to_output(view)
   end
 
-  def projects_menu
-    view = formatter
-      .add_menu_header(&quot;PROJECTS MENU&quot;)
-      .command_menu(&quot;a&quot;,  &quot;Add a new project&quot;)
-      .command_menu(&quot;ls&quot;, &quot;List all project&quot;)
-      .command_menu(&quot;d&quot;,  &quot;Delete a project&quot;)
-      .command_menu(&quot;e&quot;,  &quot;Edit a project&quot;)
-      .command_menu(&quot;q&quot;,  &quot;Quit the app&quot;)
-      .add_separator
-      .flush
-    send_to_output(view)
+  def projects_menu(menu)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Print#projects_menu refers to f more than self          </span>  </li></ul>
+    f = formatter.add_menu_header(&quot;PROJECTS MENU&quot;)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) Print#projects_menu has the variable name 'f'          </span>  </li></ul>
+    menu.each { |route| f.command_menu(route.id, route.description) }
+    f.add_separator
+    send_to_output(f.flush)
   end
 
-  def tasks_menu(project_name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) Print#tasks_menu has a flog score of 33          </span>  </li></ul>
-    view = formatter
+  def tasks_menu(project_name, menu)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Print#tasks_menu refers to f more than self          </span>  </li></ul>
+    f = formatter<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) Print#tasks_menu has the variable name 'f'          </span>  </li></ul>
       .success(&quot;Editing project: &#39;#{project_name}&#39;&quot;).end_line
       .add_menu_header(&quot;EDIT PROJECT MENU&quot;)
-      .command_menu(&quot;c&quot;, &quot;Change the project name&quot;)
-      .command_menu(&quot;a&quot;, &quot;Add a new task&quot;)
-      .command_menu(&quot;ls&quot;, &quot;List all tasks&quot;)
-      .command_menu(&quot;d&quot;, &quot;Delete a task&quot;)
-      .command_menu(&quot;e&quot;, &quot;Edit a task&quot;)
-      .command_menu(&quot;f&quot;, &quot;Finish a task&quot;)
-      .command_menu(&quot;b&quot;, &quot;Back to Projects menu&quot;)
-      .command_menu(&quot;q&quot;, &quot;Quit the app&quot;)
-      .add_separator
-      .flush
-    send_to_output(view)
+    menu.each { |route| f.command_menu(route.id, route.description) }
+    f.add_separator
+    send_to_output(f.flush)
   end
 
   def list(collection)
@@ -120,16 +106,8 @@
     success(&quot;Listing tasks:&quot;)
   end
 
-  def cant_delete_project
-    alert(&quot;Can&#39;t delete a project&quot;)
-  end
-
   def cant_edit_project
     alert(&quot;Can&#39;t edit any projects&quot;)
-  end
-
-  def no_projects_message
-    alert(&quot;No projects created&quot;)
   end
 
   def project_created(name)
@@ -164,21 +142,17 @@
     alert_with_name(&quot;Task doesn&#39;t exist:&quot;, name)
   end
 
-  def no_tasks_created_in(name)
-    alert_with_name(&quot;No tasks created in&quot;, name)
-  end
-
-  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed project name from&quot;, old_name, new_name)
   end
 
-  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed task name from&quot;, old_name, new_name)
   end
 
   private
 
-  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L114" class="js-smell-location">0</a>                  <a href="print.html#L118" class="js-smell-location">1</a>                  <a href="print.html#L124" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
     view = formatter
       .change_name(message, old_name, new_name)
       .flush
