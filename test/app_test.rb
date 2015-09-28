@@ -286,6 +286,13 @@ class TestAppRun < Minitest::Test
     app.run
     assert_includes output, "Created project:"
   end
+
+  def test_bug_going_back_to_projects_will_not_print_menu
+    stub_input('a', 'new project', 'e', 'new project', 'b', 'q')
+    app.run
+    sections = output.split("Add a new project")
+    assert_equal 4, sections.size
+  end
 end
 
 
