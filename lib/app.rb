@@ -14,14 +14,15 @@ require_relative 'print'
 require_relative 'menu_factory'
 require_relative 'menu'
 require_relative 'route'
+require_relative 'input'
+require_relative 'controller/create_project'
 
 class App
-  attr_reader :input_stream,
-    :state, :print, :menu_factory
+  attr_reader :state, :print, :menu_factory, :input
 
   def initialize(output_stream, input_stream)
     @print =        Print.new(output_stream)
-    @input_stream = input_stream
+    @input =        Input.new(input_stream)
     @state =        State.new
     @menu_factory = MenuFactory.new(state)
   end
@@ -47,7 +48,7 @@ class App
   end
 
   def get_input
-    input_stream.gets.strip
+    input.get
   end
 
   def menu
@@ -73,10 +74,7 @@ class App
   def do_project_command(command)
     case command
     when 'a'
-      print.project_name_prompt
-      name = get_input
-      add_project(name)
-      print.project_created(name)
+      Controller::CreateProject.new(state, input, print).perform
     when 'ls'
       print.listing_project_header
       print.list(projects)
