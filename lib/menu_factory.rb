@@ -30,22 +30,22 @@ class MenuFactory < Struct.new(:state)
 
   def tasks
     Menu.new([
-      Route.new("c", "Change the project name"),
-      Route.new("a", "Add a new task"),
-      Route.new("ls", "List all tasks"),
-      Route.new("d", "Delete a task"),
-      Route.new("e", "Edit a task"),
-      Route.new("f", "Finish a task"),
-      Route.new("b", "Back to Projects menu"),
+      Route.new("c", "Change the project name", Controller::RenameProject),
+      Route.new("a", "Add a new task",          Controller::CreateTask),
+      Route.new("ls", "List all tasks",         Controller::ListTasks),
+      Route.new("d", "Delete a task",           Controller::DeleteTask),
+      Route.new("e", "Edit a task",             Controller::RenameTask),
+      Route.new("f", "Finish a task",           Controller::FinishTask),
+      Route.new("b", "Back to Projects menu",   Controller::Back),
       Route.new("q", "Quit the app")
     ])
   end
 
   def null_tasks
     Menu.new([
-      Route.new("c", "Change the project name"),
-      Route.new("a", "Add a new task"),
-      Route.new("b", "Back to Projects menu"),
+      Route.new("c", "Change the project name", Controller::RenameProject),
+      Route.new("a", "Add a new task",          Controller::CreateTask),
+      Route.new("b", "Back to Projects menu",   Controller::Back),
       Route.new("q", "Quit the app")
     ])
   end

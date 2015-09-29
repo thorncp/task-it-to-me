@@ -24,11 +24,11 @@
   <span class="rating rating-a circled-text circle">
     A
   </span>
-  <h2 class="file-name">Route</h2>
+  <h2 class="file-name">Input</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-28 22:59:46 -0400'>2015-09-28 22:59:46 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-09-28 22:34:36 -0400'>2015-09-28 22:34:36 -0400</time>
     
   </span>
 
@@ -40,7 +40,7 @@
       4.0 complexity per method
     </div>
     <div class="file-stat">
-      2 churn
+      1 churn
     </div>
     <div class="file-stat">
       1 methods
@@ -53,9 +53,9 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">class Route &lt; Struct.new(:id, :description, :controller_class)
-  def perform(state, input, print)
-    controller_class.new(state, input, print).perform
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Input &lt; Struct.new(:input_stream)
+  def get
+    input_stream.gets.strip
   end
 end
 </code>

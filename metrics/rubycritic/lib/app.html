@@ -21,32 +21,32 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-c circled-text circle">
-    C
+  <span class="rating rating-a circled-text circle">
+    A
   </span>
   <h2 class="file-name">App</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-27 13:50:33 -0700'>2015-09-27 13:50:33 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-09-28 22:59:46 -0400'>2015-09-28 22:59:46 -0400</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      179 complexity
+      56 complexity
     </div>
     <div class="file-stat">
-      22.4 complexity per method
+      11.2 complexity per method
     </div>
     <div class="file-stat">
-      54 churn
+      57 churn
     </div>
     <div class="file-stat">
-      8 methods
+      5 methods
     </div>
     <div class="file-stat">
-      42 duplication
+      0 duplication
     </div>
   </div>
 
@@ -71,52 +71,52 @@ require_relative &#39;print&#39;
 require_relative &#39;menu_factory&#39;
 require_relative &#39;menu&#39;
 require_relative &#39;route&#39;
+require_relative &#39;input&#39;
+
+require_relative &#39;controller/create_project&#39;
+require_relative &#39;controller/list_projects&#39;
+require_relative &#39;controller/delete_project&#39;
+require_relative &#39;controller/edit_project&#39;
+require_relative &#39;controller/create_task&#39;
+require_relative &#39;controller/back&#39;
+require_relative &#39;controller/rename_project&#39;
+require_relative &#39;controller/rename_task&#39;
+require_relative &#39;controller/delete_task&#39;
+require_relative &#39;controller/finish_task&#39;
+require_relative &#39;controller/list_tasks&#39;
 
 class App
-  attr_reader :input_stream,
-    :state, :print, :menu_factory
+  attr_reader :state, :print, :menu_factory, :input
 
   def initialize(output_stream, input_stream)
     @print =        Print.new(output_stream)
-    @input_stream = input_stream
+    @input =        Input.new(input_stream)
     @state =        State.new
     @menu_factory = MenuFactory.new(state)
   end
 
-  def run
+  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) App#run has a flog score of 32          </span>  </li></ul>
     state.load
 
     print.welcome_message
     print.projects_menu(menu)
 
-    command = get_input
+    command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
 
     while command != &#39;q&#39;
       if !menu.include?(command)
-        command = get_input
+        command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
         next
       end
 
-      do_command(command)
+      route(command).perform(state, input, print)
       print_menu
-      command = get_input
+      command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
     end
-  end
-
-  def get_input
-    input_stream.gets.strip
   end
 
   def menu
     menu_factory.generate
-  end
-
-  def do_command(command)
-    if current_project?
-      do_task_command(command)
-    else
-      do_project_command(command)
-    end
   end
 
   def print_menu
@@ -127,85 +127,8 @@ class App
     end
   end
 
-  def do_project_command(command)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) App#do_project_command has a flog score of 48          </span>  </li></ul>
-    case command<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(ControlParameter) App#do_project_command is controlled by argument command          </span>  </li></ul>
-    when &#39;a&#39;
-      print.project_name_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_project_command calls print.project_name_prompt 3 times                        <a href="app.html#L76" class="js-smell-location">0</a>                  <a href="app.html#L84" class="js-smell-location">1</a>                  <a href="app.html#L92" class="js-smell-location">2</a>                  </span>  </li></ul>
-      name = get_input
-      add_project(name)
-      print.project_created(name)
-    when &#39;ls&#39;
-      print.listing_project_header
-      print.list(projects)
-    when &#39;d&#39;
-      print.project_name_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_project_command calls print.project_name_prompt 3 times                        <a href="app.html#L76" class="js-smell-location">0</a>                  <a href="app.html#L84" class="js-smell-location">1</a>                  <a href="app.html#L92" class="js-smell-location">2</a>                  </span>  </li></ul>
-      project_name = get_input
-      if project = delete_project(project_name)
-        print.successful_delete(project.name)
-      else
-        print.project_does_not_exist(project_name)
-      end
-    when &#39;e&#39;
-      print.project_name_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_project_command calls print.project_name_prompt 3 times                        <a href="app.html#L76" class="js-smell-location">0</a>                  <a href="app.html#L84" class="js-smell-location">1</a>                  <a href="app.html#L92" class="js-smell-location">2</a>                  </span>  </li></ul>
-      name = get_input
-      if project = set_current_project(name)
-        print.tasks_menu(project.name, menu)
-      else
-        print.cant_edit_project
-        print.project_does_not_exist(name)
-      end
-    end
-  end
-
-  def do_task_command(command)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(VeryHighComplexity) App#do_task_command has a flog score of 82          </span>  </li></ul>
-    case command<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(ControlParameter) App#do_task_command is controlled by argument command          </span>  </li></ul>
-    when &#39;a&#39;
-      print.task_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls print.task_prompt 4 times                        <a href="app.html#L106" class="js-smell-location">0</a>                  <a href="app.html#L123" class="js-smell-location">1</a>                  <a href="app.html#L132" class="js-smell-location">2</a>                  <a href="app.html#L141" class="js-smell-location">3</a>                  </span>  </li></ul>
-      task_name = get_input
-      add_task(task_name)
-      print.created_task(task_name)
-    when &#39;b&#39;
-      set_current_project(false)
-    when &#39;c&#39;
-      print.new_project_name_prompt
-      old_name = current_project.name<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls current_project.name 3 times                        <a href="app.html#L114" class="js-smell-location">0</a>                  <a href="app.html#L131" class="js-smell-location">1</a>                  <a href="app.html#L140" class="js-smell-location">2</a>                  </span>  </li></ul>
-      new_name = get_input
-      rename_project(old_name, new_name)
-      print.changed_project_name(old_name, new_name)
-    when &#39;e&#39;
-      name = get_input
-      if task = find_task(name)
-        old_name = task.name<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls task.name 3 times                        <a href="app.html#L121" class="js-smell-location">0</a>                  <a href="app.html#L135" class="js-smell-location">1</a>                  <a href="app.html#L144" class="js-smell-location">2</a>                  </span>  </li></ul>
-        print.editing_task(old_name)
-        print.task_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls print.task_prompt 4 times                        <a href="app.html#L106" class="js-smell-location">0</a>                  <a href="app.html#L123" class="js-smell-location">1</a>                  <a href="app.html#L132" class="js-smell-location">2</a>                  <a href="app.html#L141" class="js-smell-location">3</a>                  </span>  </li></ul>
-        new_name = get_input
-        rename_task(old_name, new_name)
-        print.changed_task_name(old_name, new_name)
-      else
-        print.task_does_not_exsit(name)
-      end
-    when &#39;d&#39;<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L130" class="js-smell-location">0</a>                  <a href="app.html#L139" class="js-smell-location">1</a>                  </span>  </li></ul>
-      project_name = current_project.name<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls current_project.name 3 times                        <a href="app.html#L114" class="js-smell-location">0</a>                  <a href="app.html#L131" class="js-smell-location">1</a>                  <a href="app.html#L140" class="js-smell-location">2</a>                  </span>  </li></ul>
-      print.task_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls print.task_prompt 4 times                        <a href="app.html#L106" class="js-smell-location">0</a>                  <a href="app.html#L123" class="js-smell-location">1</a>                  <a href="app.html#L132" class="js-smell-location">2</a>                  <a href="app.html#L141" class="js-smell-location">3</a>                  </span>  </li></ul>
-      task_name = get_input
-      if task = delete_task(task_name)
-        print.task_deleted(task.name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls task.name 3 times                        <a href="app.html#L121" class="js-smell-location">0</a>                  <a href="app.html#L135" class="js-smell-location">1</a>                  <a href="app.html#L144" class="js-smell-location">2</a>                  </span>  </li></ul>
-      else
-        print.task_does_not_exsit(task_name)
-      end
-    when &#39;f&#39;<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="app.html#L130" class="js-smell-location">0</a>                  <a href="app.html#L139" class="js-smell-location">1</a>                  </span>  </li></ul>
-      project_name = current_project.name<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls current_project.name 3 times                        <a href="app.html#L114" class="js-smell-location">0</a>                  <a href="app.html#L131" class="js-smell-location">1</a>                  <a href="app.html#L140" class="js-smell-location">2</a>                  </span>  </li></ul>
-      print.task_prompt<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls print.task_prompt 4 times                        <a href="app.html#L106" class="js-smell-location">0</a>                  <a href="app.html#L123" class="js-smell-location">1</a>                  <a href="app.html#L132" class="js-smell-location">2</a>                  <a href="app.html#L141" class="js-smell-location">3</a>                  </span>  </li></ul>
-      task_name = get_input
-      if task = delete_task(task_name)
-        print.finished_task(task.name)<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#do_task_command calls task.name 3 times                        <a href="app.html#L121" class="js-smell-location">0</a>                  <a href="app.html#L135" class="js-smell-location">1</a>                  <a href="app.html#L144" class="js-smell-location">2</a>                  </span>  </li></ul>
-      else
-        print.task_does_not_exsit(task_name)
-      end
-    when &#39;ls&#39;
-      print.task_list_header
-      print.list(current_tasks)
-    end
+  def route(command)
+    menu.get(command)
   end
 
   extend Forwardable
