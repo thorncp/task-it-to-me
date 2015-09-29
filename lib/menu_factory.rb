@@ -13,17 +13,17 @@ class MenuFactory < Struct.new(:state)
 
   def projects
     Menu.new([
-      Route.new("a",  "Add a new project"),
-      Route.new("ls", "List all project"),
-      Route.new("d",  "Delete a project"),
-      Route.new("e",  "Edit a project"),
+      Route.new("a",  "Add a new project", Controller::CreateProject),
+      Route.new("ls", "List all project",  Controller::ListProjects),
+      Route.new("d",  "Delete a project",  Controller::DeleteProject),
+      Route.new("e",  "Edit a project",    Controller::EditProject),
       Route.new("q",  "Quit the app")
     ])
   end
 
   def null_projects
     Menu.new([
-      Route.new("a",  "Add a new project"),
+      Route.new("a",  "Add a new project", Controller::CreateProject),
       Route.new("q",  "Quit the app")
     ])
   end

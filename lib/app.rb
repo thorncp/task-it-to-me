@@ -16,6 +16,9 @@ require_relative 'menu'
 require_relative 'route'
 require_relative 'input'
 require_relative 'controller/create_project'
+require_relative 'controller/list_projects'
+require_relative 'controller/delete_project'
+require_relative 'controller/edit_project'
 
 class App
   attr_reader :state, :print, :menu_factory, :input
@@ -71,31 +74,12 @@ class App
     end
   end
 
+  def route(command)
+    menu.get(command)
+  end
+
   def do_project_command(command)
-    case command
-    when 'a'
-      Controller::CreateProject.new(state, input, print).perform
-    when 'ls'
-      print.listing_project_header
-      print.list(projects)
-    when 'd'
-      print.project_name_prompt
-      project_name = get_input
-      if project = delete_project(project_name)
-        print.successful_delete(project.name)
-      else
-        print.project_does_not_exist(project_name)
-      end
-    when 'e'
-      print.project_name_prompt
-      name = get_input
-      if project = set_current_project(name)
-        print.tasks_menu(project.name, menu)
-      else
-        print.cant_edit_project
-        print.project_does_not_exist(name)
-      end
-    end
+    route(command).perform(state, input, print)
   end
 
   def do_task_command(command)
