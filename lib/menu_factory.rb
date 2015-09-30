@@ -12,24 +12,27 @@ class MenuFactory < Struct.new(:state)
   end
 
   def projects
-    Menu.new([
-      Route.new("a",  "Add a new project", Controller::CreateProject),
-      Route.new("ls", "List all project",  Controller::ListProjects),
-      Route.new("d",  "Delete a project",  Controller::DeleteProject),
-      Route.new("e",  "Edit a project",    Controller::EditProject),
-      Route.new("q",  "Quit the app")
-    ])
+    Menu.new(all_project_routes)
   end
 
   def null_projects
-    Menu.new([
-      Route.new("a",  "Add a new project", Controller::CreateProject),
-      Route.new("q",  "Quit the app")
-    ])
+    null_routes = all_project_routes.find_all {|route| ['a', 'q'].include?(route.id) }
+    Menu.new(null_routes)
   end
 
   def tasks
-    Menu.new([
+    Menu.new(all_task_routes)
+  end
+
+  def null_tasks
+    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'b', 'q'].include?(route.id) }
+    Menu.new(null_routes)
+  end
+
+  private
+
+  def all_task_routes
+    [
       Route.new("c", "Change the project name", Controller::RenameProject),
       Route.new("a", "Add a new task",          Controller::CreateTask),
       Route.new("ls", "List all tasks",         Controller::ListTasks),
@@ -38,15 +41,16 @@ class MenuFactory < Struct.new(:state)
       Route.new("f", "Finish a task",           Controller::FinishTask),
       Route.new("b", "Back to Projects menu",   Controller::Back),
       Route.new("q", "Quit the app")
-    ])
+    ]
   end
 
-  def null_tasks
-    Menu.new([
-      Route.new("c", "Change the project name", Controller::RenameProject),
-      Route.new("a", "Add a new task",          Controller::CreateTask),
-      Route.new("b", "Back to Projects menu",   Controller::Back),
-      Route.new("q", "Quit the app")
-    ])
+  def all_project_routes
+    [
+      Route.new("a",  "Add a new project", Controller::CreateProject),
+      Route.new("ls", "List all project",  Controller::ListProjects),
+      Route.new("d",  "Delete a project",  Controller::DeleteProject),
+      Route.new("e",  "Edit a project",    Controller::EditProject),
+      Route.new("q",  "Quit the app")
+    ]
   end
 end

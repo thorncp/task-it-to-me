@@ -47,12 +47,10 @@ class App
     command = input.get
 
     while command != 'q'
-      if !menu.include?(command)
-        command = input.get
-        next
+      if route = menu.get(command)
+        route.perform(state, input, print)
       end
 
-      route(command).perform(state, input, print)
       print_menu
       command = input.get
     end
@@ -70,28 +68,9 @@ class App
     end
   end
 
-  def route(command)
-    menu.get(command)
-  end
-
   extend Forwardable
 
   def_delegators :state,
-    :projects,
-    :add_project,
-    :delete_project,
-    :rename_project,
-    :find_project,
-    :projects_empty?,
-
-    :set_current_project,
     :current_project?,
-    :current_project,
-
-    :current_tasks,
-    :current_tasks_empty?,
-    :add_task,
-    :delete_task,
-    :rename_task,
-    :find_task
+    :current_project
 end

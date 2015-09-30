@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      14 complexity
+      9 complexity
     </div>
     <div class="file-stat">
-      4.7 complexity per method
+      4.5 complexity per method
     </div>
     <div class="file-stat">
       2 churn
     </div>
     <div class="file-stat">
-      3 methods
+      2 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -54,10 +54,6 @@
 </div>
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Menu &lt; Struct.new(:routes)
-  def include?(id)
-    routes.any?{|route| route.id == id}
-  end
-
   def get(id)
     routes.detect{|route| route.id == id}
   end

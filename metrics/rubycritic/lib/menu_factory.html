@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-28 22:59:46 -0400'>2015-09-28 22:59:46 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-09-28 23:37:51 -0400'>2015-09-28 23:37:51 -0400</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      44 complexity
+      46 complexity
     </div>
     <div class="file-stat">
-      8.8 complexity per method
+      6.6 complexity per method
     </div>
     <div class="file-stat">
-      2 churn
+      3 churn
     </div>
     <div class="file-stat">
-      5 methods
+      7 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -67,24 +67,27 @@
   end
 
   def projects
-    Menu.new([
-      Route.new(&quot;a&quot;,  &quot;Add a new project&quot;, Controller::CreateProject),
-      Route.new(&quot;ls&quot;, &quot;List all project&quot;,  Controller::ListProjects),
-      Route.new(&quot;d&quot;,  &quot;Delete a project&quot;,  Controller::DeleteProject),
-      Route.new(&quot;e&quot;,  &quot;Edit a project&quot;,    Controller::EditProject),
-      Route.new(&quot;q&quot;,  &quot;Quit the app&quot;)
-    ])
+    Menu.new(all_project_routes)
   end
 
   def null_projects
-    Menu.new([
-      Route.new(&quot;a&quot;,  &quot;Add a new project&quot;, Controller::CreateProject),
-      Route.new(&quot;q&quot;,  &quot;Quit the app&quot;)
-    ])
+    null_routes = all_project_routes.find_all {|route| [&#39;a&#39;, &#39;q&#39;].include?(route.id) }
+    Menu.new(null_routes)
   end
 
   def tasks
-    Menu.new([
+    Menu.new(all_task_routes)
+  end
+
+  def null_tasks
+    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }
+    Menu.new(null_routes)
+  end
+
+  private
+
+  def all_task_routes
+    [
       Route.new(&quot;c&quot;, &quot;Change the project name&quot;, Controller::RenameProject),
       Route.new(&quot;a&quot;, &quot;Add a new task&quot;,          Controller::CreateTask),
       Route.new(&quot;ls&quot;, &quot;List all tasks&quot;,         Controller::ListTasks),
@@ -93,16 +96,17 @@
       Route.new(&quot;f&quot;, &quot;Finish a task&quot;,           Controller::FinishTask),
       Route.new(&quot;b&quot;, &quot;Back to Projects menu&quot;,   Controller::Back),
       Route.new(&quot;q&quot;, &quot;Quit the app&quot;)
-    ])
+    ]
   end
 
-  def null_tasks
-    Menu.new([
-      Route.new(&quot;c&quot;, &quot;Change the project name&quot;, Controller::RenameProject),
-      Route.new(&quot;a&quot;, &quot;Add a new task&quot;,          Controller::CreateTask),
-      Route.new(&quot;b&quot;, &quot;Back to Projects menu&quot;,   Controller::Back),
-      Route.new(&quot;q&quot;, &quot;Quit the app&quot;)
-    ])
+  def all_project_routes
+    [
+      Route.new(&quot;a&quot;,  &quot;Add a new project&quot;, Controller::CreateProject),
+      Route.new(&quot;ls&quot;, &quot;List all project&quot;,  Controller::ListProjects),
+      Route.new(&quot;d&quot;,  &quot;Delete a project&quot;,  Controller::DeleteProject),
+      Route.new(&quot;e&quot;,  &quot;Edit a project&quot;,    Controller::EditProject),
+      Route.new(&quot;q&quot;,  &quot;Quit the app&quot;)
+    ]
   end
 end
 </code>

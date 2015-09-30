@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-28 22:59:46 -0400'>2015-09-28 22:59:46 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-09-28 23:37:51 -0400'>2015-09-28 23:37:51 -0400</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      56 complexity
+      47 complexity
     </div>
     <div class="file-stat">
-      11.2 complexity per method
+      11.8 complexity per method
     </div>
     <div class="file-stat">
-      57 churn
+      58 churn
     </div>
     <div class="file-stat">
-      5 methods
+      4 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -95,23 +95,21 @@ class App
     @menu_factory = MenuFactory.new(state)
   end
 
-  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) App#run has a flog score of 32          </span>  </li></ul>
+  def run<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(HighComplexity) App#run has a flog score of 26          </span>  </li></ul>
     state.load
 
     print.welcome_message
     print.projects_menu(menu)
 
-    command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
+    command = input.get
 
     while command != &#39;q&#39;
-      if !menu.include?(command)
-        command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
-        next
+      if route = menu.get(command)
+        route.perform(state, input, print)
       end
 
-      route(command).perform(state, input, print)
       print_menu
-      command = input.get<ul class="nocode smells js-smells">  <li class="smell new">    <span class="description">(DuplicateMethodCall) App#run calls input.get 3 times                        <a href="app.html#L47" class="js-smell-location">0</a>                  <a href="app.html#L51" class="js-smell-location">1</a>                  <a href="app.html#L57" class="js-smell-location">2</a>                  </span>  </li></ul>
+      command = input.get
     end
   end
 
@@ -127,30 +125,11 @@ class App
     end
   end
 
-  def route(command)
-    menu.get(command)
-  end
-
   extend Forwardable
 
   def_delegators :state,
-    :projects,
-    :add_project,
-    :delete_project,
-    :rename_project,
-    :find_project,
-    :projects_empty?,
-
-    :set_current_project,
     :current_project?,
-    :current_project,
-
-    :current_tasks,
-    :current_tasks_empty?,
-    :add_task,
-    :delete_task,
-    :rename_task,
-    :find_task
+    :current_project
 end
 </code>
 
