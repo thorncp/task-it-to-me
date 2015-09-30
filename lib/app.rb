@@ -1,35 +1,7 @@
-require 'forwardable'
-require 'json'
-
-require_relative 'state'
-require_relative 'project'
-require_relative 'null_project'
-require_relative 'task'
-require_relative 'collection'
-require_relative 'persistence'
-
-require_relative 'formatter'
-require_relative 'print'
-
-require_relative 'menu_factory'
-require_relative 'menu'
-require_relative 'route'
-require_relative 'input'
-
-require_relative 'controller/create_project'
-require_relative 'controller/list_projects'
-require_relative 'controller/delete_project'
-require_relative 'controller/edit_project'
-require_relative 'controller/create_task'
-require_relative 'controller/back'
-require_relative 'controller/rename_project'
-require_relative 'controller/rename_task'
-require_relative 'controller/delete_task'
-require_relative 'controller/finish_task'
-require_relative 'controller/list_tasks'
+require_relative 'manifest'
 
 class App
-  attr_reader :state, :print, :menu_factory, :input
+  attr_reader :state, :print, :menu_factory, :input, :command
 
   def initialize(output_stream, input_stream)
     @print =        Print.new(output_stream)
@@ -44,16 +16,21 @@ class App
     print.welcome_message
     print.projects_menu(menu)
 
-    command = input.get
+    get_next_command
 
     while command != 'q'
-      if route = menu.get(command)
-        route.perform(state, input, print)
-      end
-
+      route.perform(state, input, print) if route
       print_menu
-      command = input.get
+      get_next_command
     end
+  end
+
+  def route
+    menu.get(command)
+  end
+
+  def get_next_command
+    @command = input.get
   end
 
   def menu

@@ -14,26 +14,26 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-29T00:00:04-04:00">2015-09-29T00:00:04-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-30T05:48:39-04:00">2015-09-30T05:48:39-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.06%</span></span>
+    (<span class="covered_percent"><span class="green">99.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         63.74
+         67.19
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>24</b> files in total.
-    <b>427</b> relevant lines. 
-    <span class="green"><b>423</b> lines covered</span> and
+    <b>25</b> files in total.
+    <b>431</b> relevant lines. 
+    <span class="green"><b>427</b> lines covered</span> and
     <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#1359a246c00752159e257faa5a67415edbdc4220" class="src_link" title="lib/app.rb">lib/app.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>76</td>
-        <td>50</td>
-        <td>50</td>
+        <td>53</td>
+        <td>29</td>
+        <td>29</td>
         <td>0</td>
-        <td>22.2</td>
+        <td>48.2</td>
       </tr>
       
       <tr>
@@ -201,13 +201,23 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#e5fc611f836900ff4b684fa15400fbf95f4a7938" class="src_link" title="lib/manifest.rb">lib/manifest.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>29</td>
+        <td>25</td>
+        <td>25</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#ee8a33032ddf47436f64de5f7bf0a089eaabf2ba" class="src_link" title="lib/menu.rb">lib/menu.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>13</td>
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>49.6</td>
+        <td>94.0</td>
       </tr>
       
       <tr>
@@ -217,7 +227,7 @@
         <td>24</td>
         <td>24</td>
         <td>0</td>
-        <td>89.7</td>
+        <td>124.5</td>
       </tr>
       
       <tr>
@@ -277,7 +287,7 @@
         <td>44</td>
         <td>43</td>
         <td>1</td>
-        <td>38.7</td>
+        <td>45.2</td>
       </tr>
       
       <tr>
@@ -311,8 +321,8 @@
     <h3>lib/app.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>50</b> relevant lines. 
-      <span class="green"><b>50</b> lines covered</span> and
+      <b>29</b> relevant lines. 
+      <span class="green"><b>29</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -323,103 +333,103 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require &#39;forwardable&#39;</code>
+          <code class="ruby">require_relative &#39;manifest&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require &#39;json&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="never" data-hits="" data-linenumber="2">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class App</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">require_relative &#39;state&#39;</code>
+          <code class="ruby">  attr_reader :state, :print, :menu_factory, :input, :command</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="5">
           
-          <code class="ruby">require_relative &#39;project&#39;</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">require_relative &#39;null_project&#39;</code>
+          <code class="ruby">  def initialize(output_stream, input_stream)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="7">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;task&#39;</code>
+          <code class="ruby">    @print =        Print.new(output_stream)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="8">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;collection&#39;</code>
+          <code class="ruby">    @input =        Input.new(input_stream)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="9">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;persistence&#39;</code>
+          <code class="ruby">    @state =        State.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="covered" data-hits="33" data-linenumber="10">
+          <span class="hits">33</span>
+          
+          <code class="ruby">    @menu_factory = MenuFactory.new(state)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">require_relative &#39;formatter&#39;</code>
+          <code class="ruby">  def run</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="14">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;print&#39;</code>
+          <code class="ruby">    state.load</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="16">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;menu_factory&#39;</code>
+          <code class="ruby">    print.welcome_message</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="17">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;menu&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;route&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;input&#39;</code>
+          <code class="ruby">    print.projects_menu(menu)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="18">
@@ -428,349 +438,211 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="33" data-linenumber="19">
+          <span class="hits">33</span>
           
-          <code class="ruby">require_relative &#39;controller/create_project&#39;</code>
+          <code class="ruby">    get_next_command</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/list_projects&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/delete_project&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/edit_project&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="23">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/create_task&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/back&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/rename_project&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="26">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/rename_task&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="27">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/delete_task&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="28">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/finish_task&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="29">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require_relative &#39;controller/list_tasks&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
-          
-          <code class="ruby">class App</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  attr_reader :state, :print, :menu_factory, :input</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="33">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="34">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def initialize(output_stream, input_stream)</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="35">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    @print =        Print.new(output_stream)</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="36">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    @input =        Input.new(input_stream)</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="37">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    @state =        State.new</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="38">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    @menu_factory = MenuFactory.new(state)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="40">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def run</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="42">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    state.load</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="43">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="44">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    print.welcome_message</code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="45">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    print.projects_menu(menu)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="47">
-          <span class="hits">33</span>
-          
-          <code class="ruby">    command = input.get</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="48">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="33" data-linenumber="49">
+        <li class="covered" data-hits="33" data-linenumber="21">
           <span class="hits">33</span>
           
           <code class="ruby">    while command != &#39;q&#39;</code>
         </li>
       
-        <li class="covered" data-hits="94" data-linenumber="50">
+        <li class="covered" data-hits="94" data-linenumber="22">
           <span class="hits">94</span>
           
-          <code class="ruby">      if route = menu.get(command)</code>
+          <code class="ruby">      route.perform(state, input, print) if route</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="51">
-          <span class="hits">89</span>
-          
-          <code class="ruby">        route.perform(state, input, print)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="52">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="94" data-linenumber="54">
+        <li class="covered" data-hits="94" data-linenumber="23">
           <span class="hits">94</span>
           
           <code class="ruby">      print_menu</code>
         </li>
       
-        <li class="covered" data-hits="94" data-linenumber="55">
+        <li class="covered" data-hits="94" data-linenumber="24">
           <span class="hits">94</span>
           
-          <code class="ruby">      command = input.get</code>
+          <code class="ruby">      get_next_command</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="59">
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def route</code>
+        </li>
+      
+        <li class="covered" data-hits="183" data-linenumber="29">
+          <span class="hits">183</span>
+          
+          <code class="ruby">    menu.get(command)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_next_command</code>
+        </li>
+      
+        <li class="covered" data-hits="127" data-linenumber="33">
+          <span class="hits">127</span>
+          
+          <code class="ruby">    @command = input.get</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
           <span class="hits">1</span>
           
           <code class="ruby">  def menu</code>
         </li>
       
-        <li class="covered" data-hits="221" data-linenumber="60">
-          <span class="hits">221</span>
+        <li class="covered" data-hits="310" data-linenumber="37">
+          <span class="hits">310</span>
           
           <code class="ruby">    menu_factory.generate</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
           <code class="ruby">  def print_menu</code>
         </li>
       
-        <li class="covered" data-hits="94" data-linenumber="64">
+        <li class="covered" data-hits="94" data-linenumber="41">
           <span class="hits">94</span>
           
           <code class="ruby">    if current_project?</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="65">
+        <li class="covered" data-hits="47" data-linenumber="42">
           <span class="hits">47</span>
           
           <code class="ruby">      print.tasks_menu(current_project.name, menu)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="67">
+        <li class="covered" data-hits="47" data-linenumber="44">
           <span class="hits">47</span>
           
           <code class="ruby">      print.projects_menu(menu)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="71">
+        <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
           <code class="ruby">  extend Forwardable</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="49">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="73">
+        <li class="covered" data-hits="1" data-linenumber="50">
           <span class="hits">1</span>
           
           <code class="ruby">  def_delegators :state,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="never" data-hits="" data-linenumber="51">
           
           
           <code class="ruby">    :current_project?,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="52">
           
           
           <code class="ruby">    :current_project</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby">end</code>
@@ -2916,6 +2788,198 @@
   </pre>
 </div>
       
+        <div class="source_table" id="e5fc611f836900ff4b684fa15400fbf95f4a7938">
+  <div class="header">
+    <h3>lib/manifest.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>25</b> relevant lines. 
+      <span class="green"><b>25</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;forwardable&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;json&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;state&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;null_project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;task&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;collection&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;persistence&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;formatter&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;print&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;menu_factory&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;menu&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;route&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;input&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/create_project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="20">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/list_projects&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/delete_project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/edit_project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/create_task&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/back&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/rename_project&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/rename_task&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/delete_task&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/finish_task&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;controller/list_tasks&#39;</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
         <div class="source_table" id="ee8a33032ddf47436f64de5f7bf0a089eaabf2ba">
   <div class="header">
     <h3>lib/menu.rb</h3>
@@ -2942,8 +3006,8 @@
           <code class="ruby">  def get(id)</code>
         </li>
       
-        <li class="covered" data-hits="338" data-linenumber="3">
-          <span class="hits">338</span>
+        <li class="covered" data-hits="649" data-linenumber="3">
+          <span class="hits">649</span>
           
           <code class="ruby">    routes.detect{|route| route.id == id}</code>
         </li>
@@ -3038,38 +3102,38 @@
           <code class="ruby">  def generate</code>
         </li>
       
-        <li class="covered" data-hits="229" data-linenumber="3">
-          <span class="hits">229</span>
+        <li class="covered" data-hits="318" data-linenumber="3">
+          <span class="hits">318</span>
           
           <code class="ruby">    if state.current_project? &amp;&amp; !state.current_tasks_empty?</code>
         </li>
       
-        <li class="covered" data-hits="34" data-linenumber="4">
-          <span class="hits">34</span>
+        <li class="covered" data-hits="46" data-linenumber="4">
+          <span class="hits">46</span>
           
           <code class="ruby">      tasks</code>
         </li>
       
-        <li class="covered" data-hits="195" data-linenumber="5">
-          <span class="hits">195</span>
+        <li class="covered" data-hits="272" data-linenumber="5">
+          <span class="hits">272</span>
           
           <code class="ruby">    elsif state.current_project?</code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="6">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="69" data-linenumber="6">
+          <span class="hits">69</span>
           
           <code class="ruby">      null_tasks</code>
         </li>
       
-        <li class="covered" data-hits="145" data-linenumber="7">
-          <span class="hits">145</span>
+        <li class="covered" data-hits="203" data-linenumber="7">
+          <span class="hits">203</span>
           
           <code class="ruby">    elsif state.projects_empty?</code>
         </li>
       
-        <li class="covered" data-hits="73" data-linenumber="8">
-          <span class="hits">73</span>
+        <li class="covered" data-hits="102" data-linenumber="8">
+          <span class="hits">102</span>
           
           <code class="ruby">      null_projects</code>
         </li>
@@ -3080,8 +3144,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="72" data-linenumber="10">
-          <span class="hits">72</span>
+        <li class="covered" data-hits="101" data-linenumber="10">
+          <span class="hits">101</span>
           
           <code class="ruby">      projects</code>
         </li>
@@ -3110,8 +3174,8 @@
           <code class="ruby">  def projects</code>
         </li>
       
-        <li class="covered" data-hits="72" data-linenumber="15">
-          <span class="hits">72</span>
+        <li class="covered" data-hits="101" data-linenumber="15">
+          <span class="hits">101</span>
           
           <code class="ruby">    Menu.new(all_project_routes)</code>
         </li>
@@ -3134,14 +3198,14 @@
           <code class="ruby">  def null_projects</code>
         </li>
       
-        <li class="covered" data-hits="438" data-linenumber="19">
-          <span class="hits">438</span>
+        <li class="covered" data-hits="612" data-linenumber="19">
+          <span class="hits">612</span>
           
           <code class="ruby">    null_routes = all_project_routes.find_all {|route| [&#39;a&#39;, &#39;q&#39;].include?(route.id) }</code>
         </li>
       
-        <li class="covered" data-hits="73" data-linenumber="20">
-          <span class="hits">73</span>
+        <li class="covered" data-hits="102" data-linenumber="20">
+          <span class="hits">102</span>
           
           <code class="ruby">    Menu.new(null_routes)</code>
         </li>
@@ -3164,8 +3228,8 @@
           <code class="ruby">  def tasks</code>
         </li>
       
-        <li class="covered" data-hits="34" data-linenumber="24">
-          <span class="hits">34</span>
+        <li class="covered" data-hits="46" data-linenumber="24">
+          <span class="hits">46</span>
           
           <code class="ruby">    Menu.new(all_task_routes)</code>
         </li>
@@ -3188,14 +3252,14 @@
           <code class="ruby">  def null_tasks</code>
         </li>
       
-        <li class="covered" data-hits="450" data-linenumber="28">
-          <span class="hits">450</span>
+        <li class="covered" data-hits="621" data-linenumber="28">
+          <span class="hits">621</span>
           
           <code class="ruby">    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }</code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="29">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="69" data-linenumber="29">
+          <span class="hits">69</span>
           
           <code class="ruby">    Menu.new(null_routes)</code>
         </li>
@@ -3236,8 +3300,8 @@
           <code class="ruby">    [</code>
         </li>
       
-        <li class="covered" data-hits="84" data-linenumber="36">
-          <span class="hits">84</span>
+        <li class="covered" data-hits="115" data-linenumber="36">
+          <span class="hits">115</span>
           
           <code class="ruby">      Route.new(&quot;c&quot;, &quot;Change the project name&quot;, Controller::RenameProject),</code>
         </li>
@@ -3314,8 +3378,8 @@
           <code class="ruby">    [</code>
         </li>
       
-        <li class="covered" data-hits="145" data-linenumber="49">
-          <span class="hits">145</span>
+        <li class="covered" data-hits="203" data-linenumber="49">
+          <span class="hits">203</span>
           
           <code class="ruby">      Route.new(&quot;a&quot;,  &quot;Add a new project&quot;, Controller::CreateProject),</code>
         </li>
@@ -4982,8 +5046,8 @@
           <code class="ruby">  def current_project?</code>
         </li>
       
-        <li class="covered" data-hits="551" data-linenumber="40">
-          <span class="hits">551</span>
+        <li class="covered" data-hits="717" data-linenumber="40">
+          <span class="hits">717</span>
           
           <code class="ruby">    !current_project.is_a?(NullProject)</code>
         </li>
@@ -5090,8 +5154,8 @@
           <code class="ruby">  def projects_empty?</code>
         </li>
       
-        <li class="covered" data-hits="147" data-linenumber="58">
-          <span class="hits">147</span>
+        <li class="covered" data-hits="205" data-linenumber="58">
+          <span class="hits">205</span>
           
           <code class="ruby">    projects.size == 0</code>
         </li>
@@ -5114,8 +5178,8 @@
           <code class="ruby">  def current_tasks_empty?</code>
         </li>
       
-        <li class="covered" data-hits="86" data-linenumber="62">
-          <span class="hits">86</span>
+        <li class="covered" data-hits="117" data-linenumber="62">
+          <span class="hits">117</span>
           
           <code class="ruby">    current_tasks.size == 0</code>
         </li>
@@ -5138,8 +5202,8 @@
           <code class="ruby">  def current_tasks</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="66">
-          <span class="hits">89</span>
+        <li class="covered" data-hits="120" data-linenumber="66">
+          <span class="hits">120</span>
           
           <code class="ruby">    current_project.tasks</code>
         </li>

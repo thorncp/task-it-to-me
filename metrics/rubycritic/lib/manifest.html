@@ -24,7 +24,7 @@
   <span class="rating rating-a circled-text circle">
     A
   </span>
-  <h2 class="file-name">App</h2>
+  <h2 class="file-name">Manifest</h2>
 
   <span class="file-committed-at">
     
@@ -34,16 +34,16 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      52 complexity
+      0 complexity
     </div>
     <div class="file-stat">
-      8.7 complexity per method
+      N/A complexity per method
     </div>
     <div class="file-stat">
-      60 churn
+      1 churn
     </div>
     <div class="file-stat">
-      6 methods
+      0 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -53,59 +53,35 @@
   
 </div>
 
-<code class="prettyprint linenums lang-ruby file-code js-file-code">require_relative &#39;manifest&#39;
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;forwardable&#39;
+require &#39;json&#39;
 
-class App
-  attr_reader :state, :print, :menu_factory, :input, :command
+require_relative &#39;state&#39;
+require_relative &#39;project&#39;
+require_relative &#39;null_project&#39;
+require_relative &#39;task&#39;
+require_relative &#39;collection&#39;
+require_relative &#39;persistence&#39;
 
-  def initialize(output_stream, input_stream)
-    @print =        Print.new(output_stream)
-    @input =        Input.new(input_stream)
-    @state =        State.new
-    @menu_factory = MenuFactory.new(state)
-  end
+require_relative &#39;formatter&#39;
+require_relative &#39;print&#39;
 
-  def run
-    state.load
+require_relative &#39;menu_factory&#39;
+require_relative &#39;menu&#39;
+require_relative &#39;route&#39;
+require_relative &#39;input&#39;
 
-    print.welcome_message
-    print.projects_menu(menu)
-
-    get_next_command
-
-    while command != &#39;q&#39;
-      route.perform(state, input, print) if route
-      print_menu
-      get_next_command
-    end
-  end
-
-  def route
-    menu.get(command)
-  end
-
-  def get_next_command
-    @command = input.get
-  end
-
-  def menu
-    menu_factory.generate
-  end
-
-  def print_menu
-    if current_project?
-      print.tasks_menu(current_project.name, menu)
-    else
-      print.projects_menu(menu)
-    end
-  end
-
-  extend Forwardable
-
-  def_delegators :state,
-    :current_project?,
-    :current_project
-end
+require_relative &#39;controller/create_project&#39;
+require_relative &#39;controller/list_projects&#39;
+require_relative &#39;controller/delete_project&#39;
+require_relative &#39;controller/edit_project&#39;
+require_relative &#39;controller/create_task&#39;
+require_relative &#39;controller/back&#39;
+require_relative &#39;controller/rename_project&#39;
+require_relative &#39;controller/rename_task&#39;
+require_relative &#39;controller/delete_task&#39;
+require_relative &#39;controller/finish_task&#39;
+require_relative &#39;controller/list_tasks&#39;
 </code>
 
     </div>
