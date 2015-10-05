@@ -69,4 +69,19 @@ class TestCollection < Minitest::Test
     data.delete('camping')
     assert_equal(1, data.find('glamping').position)
   end
+
+  def test_reduce
+    expired_task = Task.new('expire me')
+    expired_task.finished_at = Time.now - Task::GRACE_PERIOD * 3
+    data.add(expired_task)
+
+    current_task = Task.new('current affairs')
+    data.add(current_task)
+
+    reduced = data.reduce(&:visible?)
+
+    refute(data === reduced)
+    assert_includes(reduced, current_task)
+    refute_includes(reduced, expired_task)
+  end
 end

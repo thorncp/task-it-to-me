@@ -1,5 +1,5 @@
 class Collection
-  attr_reader :collection
+  attr_accessor :collection
 
   def initialize
     @collection ||= []
@@ -35,8 +35,14 @@ class Collection
     collection.map(&:name)
   end
 
+  def reduce(&block)
+    reduced = Collection.new
+    reduced.collection = collection.find_all(&block)
+    reduced
+  end
+
   extend Forwardable
-  def_delegators :collection, :size, :map, :each
+  def_delegators :collection, :size, :map, :each, :include?
 
   def as_json
     map(&:to_hash)
