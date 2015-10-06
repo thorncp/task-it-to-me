@@ -47,5 +47,14 @@ class TestMenuFactory < Minitest::Test
     assert_equal ['c', 'a', 'ls', 'd', 'e', 'f', 'b', 'q'], menu.ids
     assert_equal "Add a new task", menu.get('a').description
   end
+
+  def test_when_current_project_with_only_finished_visible_tasks
+    state.add_project('foo')
+    state.set_current_project('foo')
+    state.add_task('bar')
+    state.finish_task('bar')
+    assert_equal ['c', 'a', 'ls', 'b', 'q'], menu.ids
+    assert_equal "Add a new task", menu.get('a').description
+  end
 end
 

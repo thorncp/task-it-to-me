@@ -2,6 +2,8 @@ class MenuFactory < Struct.new(:state)
   def generate
     if state.current_project? && !state.current_tasks_empty?
       tasks
+    elsif state.current_project? && state.finished_tasks?
+      finished_tasks
     elsif state.current_project?
       null_tasks
     elsif state.projects_empty?
@@ -26,6 +28,11 @@ class MenuFactory < Struct.new(:state)
 
   def null_tasks
     null_routes = all_task_routes.find_all {|route| ['c', 'a', 'b', 'q'].include?(route.id) }
+    Menu.new(null_routes)
+  end
+
+  def finished_tasks
+    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'ls', 'b', 'q'].include?(route.id) }
     Menu.new(null_routes)
   end
 

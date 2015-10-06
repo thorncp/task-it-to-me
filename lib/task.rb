@@ -1,5 +1,5 @@
 class Task < Struct.new(:name, :position)
-  GRACE_PERIOD = 12*3600
+  GRACE_PERIOD = 8*3600
 
   attr_accessor :finished_at
 

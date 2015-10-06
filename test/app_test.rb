@@ -262,6 +262,8 @@ class TestAppRun < Minitest::Test
     stub_input('a', 'House work', 'e', 'House work', 'a', 'clean out the freezer', 'f', 'clean out the freezer', 'ls', 'q')
     app.run
     assert_includes output, "Finished task: 'clean out the freezer'"
+    listed_output = output.split("Finished task: 'clean out the freezer'").last
+    assert_includes listed_output, 'clean out the freezer'
   end
 
   def test_finish_task_by_position

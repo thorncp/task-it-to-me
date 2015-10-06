@@ -29,7 +29,8 @@ class State
   end
 
   extend Forwardable
-  def_delegator :projects, :find,   :find_project
+  def_delegator :projects, :find, :find_project
+  def_delegators :current_project, :finished_tasks
 
   def set_current_project(name)
     @current_project = find_project(name) || NullProject.new
@@ -54,12 +55,20 @@ class State
     save { current_project.delete_task(*args) }
   end
 
+  def finish_task(*args)
+    save { current_project.finish(*args) }
+  end
+
   def projects_empty?
     projects.size == 0
   end
 
   def current_tasks_empty?
     current_tasks.size == 0
+  end
+
+  def finished_tasks?
+    finished_tasks.size > 0
   end
 
   def current_tasks

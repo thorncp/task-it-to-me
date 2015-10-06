@@ -29,6 +29,13 @@ class Print < Struct.new(:output_stream)
     send_to_output(view)
   end
 
+  def finished_task_list(collection)
+    view = formatter
+      .success("Recently finished tasks:").end_line
+    view.list(collection)
+    send_to_output(view.flush)
+  end
+
   def project_name_prompt
     prompt("Enter a project name:")
   end
