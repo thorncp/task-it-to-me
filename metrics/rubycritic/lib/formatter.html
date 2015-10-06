@@ -34,22 +34,24 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      47 complexity
+      67 complexity
     </div>
     <div class="file-stat">
-      2.8 complexity per method
+      3.4 complexity per method
     </div>
     <div class="file-stat">
       5 churn
     </div>
     <div class="file-stat">
-      17 methods
+      20 methods
     </div>
     <div class="file-stat">
       0 duplication
     </div>
   </div>
 
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
   
 </div>
 
@@ -64,10 +66,11 @@
     dividing_line: &quot;\e[1;37m&quot;
   }
 
-  attr_reader :output_stream, :aggregated_message
+  attr_reader :output_stream, :aggregated_message, :persistence
 
   def initialize
     reset_aggregator
+    @persistence = Persistence.new(color_configuration_path)
   end
 
   def command_menu(key, description)
@@ -152,11 +155,24 @@
     add_separator
   end
 
+  def colors<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) Formatter#colors refers to key_value more than self          </span>  </li></ul>
+    configured_colors.inject(COLORS.dup) do |combined_colors, key_value|
+      combined_colors[key_value.first.to_sym] = &quot;\e[#{key_value.last}m&quot;
+      combined_colors
+    end
+  end
+
   private
+
+  def configured_colors
+    @configured_colors ||= persistence.load
+  rescue
+    {}
+  end
 
   def format(message, style)
     return message unless style
-    &quot;#{COLORS[style]}#{message}#{COLORS[:reset]}&quot;
+    &quot;#{colors[style]}#{message}#{colors[:reset]}&quot;
   end
 
   def add_with_name(message, name, style)
@@ -167,6 +183,10 @@
 
   def reset_aggregator
     @aggregated_message = &quot;&quot;
+  end
+
+  def color_configuration_path
+    File.expand_path( File.dirname(__FILE__) + &quot;/../data/color.json&quot; )
   end
 end
 </code>

@@ -9,10 +9,11 @@ class Formatter
     dividing_line: "\e[1;37m"
   }
 
-  attr_reader :output_stream, :aggregated_message
+  attr_reader :output_stream, :aggregated_message, :persistence
 
   def initialize
     reset_aggregator
+    @persistence = Persistence.new(color_configuration_path)
   end
 
   def command_menu(key, description)
@@ -97,11 +98,24 @@ class Formatter
     add_separator
   end
 
+  def colors
+    configured_colors.inject(COLORS.dup) do |combined_colors, key_value|
+      combined_colors[key_value.first.to_sym] = "\e[#{key_value.last}m"
+      combined_colors
+    end
+  end
+
   private
+
+  def configured_colors
+    @configured_colors ||= persistence.load
+  rescue
+    {}
+  end
 
   def format(message, style)
     return message unless style
-    "#{COLORS[style]}#{message}#{COLORS[:reset]}"
+    "#{colors[style]}#{message}#{colors[:reset]}"
   end
 
   def add_with_name(message, name, style)
@@ -112,5 +126,9 @@ class Formatter
 
   def reset_aggregator
     @aggregated_message = ""
+  end
+
+  def color_configuration_path
+    File.expand_path( File.dirname(__FILE__) + "/../data/color.json" )
   end
 end
