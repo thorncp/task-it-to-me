@@ -5,7 +5,7 @@ class TestProject < Minitest::Test
     project = Project.new('things')
     project.add_task('start at the beginning')
     task = project.find_task('start at the beginning')
-    project.finish('start at the beginning')
+    project.finish_task('start at the beginning')
 
     refute_includes(project.tasks, task)
     assert_includes(project.finished_tasks, task)
@@ -15,7 +15,7 @@ class TestProject < Minitest::Test
     project = Project.new('things')
     project.add_task('start at the beginning')
     task = project.find_task('start at the beginning')
-    project.finish('start at the beginning')
+    project.finish_task('start at the beginning')
     task.finished_at = Time.now - (Task::GRACE_PERIOD * 2)
 
     refute_includes(project.tasks, task)

@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-25 18:24:44 -0700'>2015-08-25 18:24:44 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 17:08:53 -0700'>2015-10-05 17:08:53 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      67 complexity
+      74 complexity
     </div>
     <div class="file-stat">
-      4.5 complexity per method
+      4.4 complexity per method
     </div>
     <div class="file-stat">
-      13 churn
+      14 churn
     </div>
     <div class="file-stat">
-      15 methods
+      17 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -84,7 +84,8 @@
   end
 
   extend Forwardable
-  def_delegator :projects, :find,   :find_project
+  def_delegator :projects, :find, :find_project
+  def_delegators :current_project, :finished_tasks
 
   def set_current_project(name)
     @current_project = find_project(name) || NullProject.new
@@ -109,12 +110,20 @@
     save { current_project.delete_task(*args) }
   end
 
+  def finish_task(*args)
+    save { current_project.finish_task(*args) }
+  end
+
   def projects_empty?
     projects.size == 0
   end
 
   def current_tasks_empty?
     current_tasks.size == 0
+  end
+
+  def finished_tasks?
+    finished_tasks.size &gt; 0
   end
 
   def current_tasks

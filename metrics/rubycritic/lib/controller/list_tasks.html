@@ -28,19 +28,19 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-28 23:37:51 -0400'>2015-09-28 23:37:51 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 17:08:53 -0700'>2015-10-05 17:08:53 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      7 complexity
+      12 complexity
     </div>
     <div class="file-stat">
-      7.0 complexity per method
+      12.0 complexity per method
     </div>
     <div class="file-stat">
-      1 churn
+      2 churn
     </div>
     <div class="file-stat">
       1 methods
@@ -58,6 +58,7 @@
     def perform
       print.task_list_header
       print.list(state.current_tasks)
+      print.finished_task_list(state.finished_tasks)
     end
   end
 end

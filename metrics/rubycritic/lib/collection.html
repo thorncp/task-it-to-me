@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-23 09:42:38 -0700'>2015-08-23 09:42:38 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 07:46:22 -0700'>2015-10-05 07:46:22 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      41 complexity
+      45 complexity
     </div>
     <div class="file-stat">
       4.1 complexity per method
     </div>
     <div class="file-stat">
-      7 churn
+      8 churn
     </div>
     <div class="file-stat">
-      10 methods
+      11 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -54,7 +54,7 @@
 </div>
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Collection
-  attr_reader :collection
+  attr_accessor :collection
 
   def initialize
     @collection ||= []
@@ -90,8 +90,14 @@
     collection.map(&amp;:name)
   end
 
+  def reduce(&amp;block)
+    reduced = Collection.new
+    reduced.collection = collection.find_all(&amp;block)
+    reduced
+  end
+
   extend Forwardable
-  def_delegators :collection, :size, :map, :each
+  def_delegators :collection, :size, :map, :each, :include?
 
   def as_json
     map(&amp;:to_hash)

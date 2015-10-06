@@ -12,7 +12,7 @@ class Project
     tasks.add(Task.new(name))
   end
 
-  def finish(name)
+  def finish_task(name)
     return unless task = find_task(name)
     delete_task(name)
     task.finish

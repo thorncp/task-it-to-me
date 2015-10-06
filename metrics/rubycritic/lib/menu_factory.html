@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-30 05:35:23 -0400'>2015-09-30 05:35:23 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 17:08:53 -0700'>2015-10-05 17:08:53 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      46 complexity
+      59 complexity
     </div>
     <div class="file-stat">
-      6.6 complexity per method
+      7.4 complexity per method
     </div>
     <div class="file-stat">
-      4 churn
+      5 churn
     </div>
     <div class="file-stat">
-      7 methods
+      8 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -51,13 +51,17 @@
   </div>
 
   
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
 </div>
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class MenuFactory &lt; Struct.new(:state)
   def generate
-    if state.current_project? &amp;&amp; !state.current_tasks_empty?
+    if state.current_project? &amp;&amp; !state.current_tasks_empty?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) MenuFactory#generate calls state.current_project? 3 times                        <a href="menu_factory.html#L3" class="js-smell-location">0</a>                  <a href="menu_factory.html#L5" class="js-smell-location">1</a>                  <a href="menu_factory.html#L7" class="js-smell-location">2</a>                  </span>  </li></ul>
       tasks
-    elsif state.current_project?
+    elsif state.current_project? &amp;&amp; state.finished_tasks?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) MenuFactory#generate calls state.current_project? 3 times                        <a href="menu_factory.html#L3" class="js-smell-location">0</a>                  <a href="menu_factory.html#L5" class="js-smell-location">1</a>                  <a href="menu_factory.html#L7" class="js-smell-location">2</a>                  </span>  </li></ul>
+      finished_tasks
+    elsif state.current_project?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) MenuFactory#generate calls state.current_project? 3 times                        <a href="menu_factory.html#L3" class="js-smell-location">0</a>                  <a href="menu_factory.html#L5" class="js-smell-location">1</a>                  <a href="menu_factory.html#L7" class="js-smell-location">2</a>                  </span>  </li></ul>
       null_tasks
     elsif state.projects_empty?
       null_projects
@@ -81,6 +85,11 @@
 
   def null_tasks
     null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }
+    Menu.new(null_routes)
+  end
+
+  def finished_tasks
+    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;ls&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }
     Menu.new(null_routes)
   end
 

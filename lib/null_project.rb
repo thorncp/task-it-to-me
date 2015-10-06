@@ -19,7 +19,15 @@ class NullProject
     false
   end
 
+  def finish_task(name)
+    false
+  end
+
   def tasks
+    []
+  end
+
+  def finished_tasks
     []
   end
 end

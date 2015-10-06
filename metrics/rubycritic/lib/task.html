@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-25 07:52:03 -0700'>2015-08-25 07:52:03 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 17:08:53 -0700'>2015-10-05 17:08:53 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      3 complexity
+      17 complexity
     </div>
     <div class="file-stat">
-      1.5 complexity per method
+      2.8 complexity per method
     </div>
     <div class="file-stat">
-      4 churn
+      6 churn
     </div>
     <div class="file-stat">
-      2 methods
+      6 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -54,12 +54,39 @@
 </div>
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class Task &lt; Struct.new(:name, :position)
+  GRACE_PERIOD = 8*3600
+
+  attr_accessor :finished_at
+
+  def visible?
+    not_finished? || finished_recently?
+  end
+
+  def finish
+    self.finished_at = Time.now
+  end
+
   def to_hash
-    { name: name }
+    {
+      name: name,
+      finished_at: finished_at
+    }
   end
 
   def self.load(data)
-    new(data[&#39;name&#39;])
+    task = new(data[&#39;name&#39;])
+    task.finished_at = data[&#39;finished_at&#39;]
+    task
+  end
+
+  private
+
+  def not_finished?
+    !finished_at
+  end
+
+  def finished_recently?
+    finished_at &gt;= Time.now - GRACE_PERIOD
   end
 end
 </code>

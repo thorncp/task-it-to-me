@@ -28,22 +28,22 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-27 13:50:33 -0700'>2015-09-27 13:50:33 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-05 17:08:53 -0700'>2015-10-05 17:08:53 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      62 complexity
+      69 complexity
     </div>
     <div class="file-stat">
-      2.7 complexity per method
+      2.9 complexity per method
     </div>
     <div class="file-stat">
-      9 churn
+      10 churn
     </div>
     <div class="file-stat">
-      23 methods
+      24 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -84,6 +84,13 @@
   def list(collection)
     view = formatter.list(collection).flush
     send_to_output(view)
+  end
+
+  def finished_task_list(collection)
+    view = formatter
+      .success(&quot;Recently finished tasks:&quot;).end_line
+    view.list(collection)
+    send_to_output(view.flush)
   end
 
   def project_name_prompt
@@ -142,17 +149,17 @@
     alert_with_name(&quot;Task doesn&#39;t exist:&quot;, name)
   end
 
-  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_project_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L95" class="js-smell-location">0</a>                  <a href="print.html#L99" class="js-smell-location">1</a>                  <a href="print.html#L105" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed project name from&quot;, old_name, new_name)
   end
 
-  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def changed_task_name(old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L95" class="js-smell-location">0</a>                  <a href="print.html#L99" class="js-smell-location">1</a>                  <a href="print.html#L105" class="js-smell-location">2</a>                  </span>  </li></ul>
     change_name(&quot;Changed task name from&quot;, old_name, new_name)
   end
 
   private
 
-  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L88" class="js-smell-location">0</a>                  <a href="print.html#L92" class="js-smell-location">1</a>                  <a href="print.html#L98" class="js-smell-location">2</a>                  </span>  </li></ul>
+  def change_name(message, old_name, new_name)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DataClump) Print takes parameters [new_name, old_name] to 3 methods                        <a href="print.html#L95" class="js-smell-location">0</a>                  <a href="print.html#L99" class="js-smell-location">1</a>                  <a href="print.html#L105" class="js-smell-location">2</a>                  </span>  </li></ul>
     view = formatter
       .change_name(message, old_name, new_name)
       .flush

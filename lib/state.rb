@@ -56,7 +56,7 @@ class State
   end
 
   def finish_task(*args)
-    save { current_project.finish(*args) }
+    save { current_project.finish_task(*args) }
   end
 
   def projects_empty?
