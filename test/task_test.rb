@@ -19,9 +19,10 @@ class TestTask < Minitest::Test
   end
 
   def test_task_load
-    task_data = {'name' => 'buy plastic', 'finished_at' => Time.now - 3600}
+    task_data = {'name' => 'buy plastic', 'finished_at' => (Time.now - 3600).to_s}
     task = Task.load(task_data)
     assert_equal('buy plastic', task.name)
+    assert(task.finished_at.class == Time)
     assert_equal((Time.now - 3600).inspect, task.finished_at.inspect)
   end
 end

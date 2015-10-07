@@ -1,7 +1,15 @@
 class Task < Struct.new(:name, :position)
   GRACE_PERIOD = 8*3600
 
-  attr_accessor :finished_at
+  attr_reader :finished_at
+
+  def finished_at=(value)
+    @finished_at = if value.is_a?(String)
+      Time.parse(value)
+    else
+      value
+    end
+  end
 
   def visible?
     not_finished? || finished_recently?

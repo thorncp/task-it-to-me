@@ -59,6 +59,7 @@
       "/Users/baccigalupi/Projects/refactories/my-solutions/task-it-to-me/lib/manifest.rb": [
         1,
         1,
+        1,
         null,
         1,
         1,
@@ -277,6 +278,14 @@
         1,
         null,
         1,
+        null,
+        1,
+        14,
+        3,
+        null,
+        11,
+        null,
+        null,
         null,
         1,
         22,
@@ -905,6 +914,6 @@
         null
       ]
     },
-    "timestamp": 1444090648
+    "timestamp": 1444181203
   }
 }

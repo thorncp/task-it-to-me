@@ -27,8 +27,8 @@ class TestProject < Minitest::Test
       'name' => 'Build a Bridge',
       'tasks' => [{'name' => 'buy plastic'}],
       'finished_tasks' => [
-        {'name' => 'go sailing', 'finished_at' => Time.now - 3600},
-        {'name' => 'go fishing', 'finished_at' => Time.now - Task::GRACE_PERIOD * 4}
+        {'name' => 'go sailing', 'finished_at' => (Time.now - 3600).to_s},
+        {'name' => 'go fishing', 'finished_at' => (Time.now - Task::GRACE_PERIOD * 4).to_s}
       ]
     }
     project = Project.load(project_data)
