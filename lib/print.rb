@@ -60,6 +60,10 @@ class Print < Struct.new(:output_stream)
     success("Listing tasks:")
   end
 
+  def signing_out(name)
+    success("Signing out #{name}")
+  end
+
   def cant_edit_project
     alert("Can't edit any projects")
   end
