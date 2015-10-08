@@ -14,6 +14,7 @@ class TestState < Minitest::Test
 
   def setup
     Persistence.stubs(:new).returns(persistence)
+    state.username = 'kane'
   end
 
   def test_adding_a_project
@@ -81,26 +82,38 @@ class TestState < Minitest::Test
   end
 
   def test_saving_on_add_project
-    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: [], finished_tasks: []}])
+    persistence.expects(:save).with({
+      kane: [{name: 'Build a Bridge', tasks: [], finished_tasks: []}]
+    })
     state.add_project('Build a Bridge')
   end
 
   def test_saving_on_rename_project
     state.add_project('Build a Bridge')
-    persistence.expects(:save).with([{name: 'Break a Bridge', tasks: [], finished_tasks: []}])
+    persistence.expects(:save).with({
+      kane: [{name: 'Break a Bridge', tasks: [], finished_tasks: []}]
+    })
     state.rename_project('Build a Bridge', 'Break a Bridge')
   end
 
   def test_saving_on_delete_project
     state.add_project('Build a Bridge')
-    persistence.expects(:save).with([])
+    persistence.expects(:save).with({
+      kane: []
+    })
     state.delete_project('Build a Bridge')
   end
 
   def test_saving_on_create_task
     state.add_project('Build a Bridge')
     state.set_current_project('Build a Bridge')
-    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: [{name: 'buy steel', finished_at: nil}], finished_tasks: []}])
+    persistence.expects(:save).with({
+      kane: [{
+        name: 'Build a Bridge',
+        tasks: [{name: 'buy steel', finished_at: nil}],
+        finished_tasks: []
+      }]
+    })
     state.add_task('buy steel')
   end
 
@@ -108,11 +121,13 @@ class TestState < Minitest::Test
     state.add_project('Build a Bridge')
     state.set_current_project('Build a Bridge')
     state.add_task('buy steel')
-    persistence.expects(:save).with([{
-      name: 'Build a Bridge',
-      tasks: [{name: 'buy plastic', finished_at: nil}],
-      finished_tasks: []
-    }])
+    persistence.expects(:save).with({
+      kane: [{
+        name: 'Build a Bridge',
+        tasks: [{name: 'buy plastic', finished_at: nil}],
+        finished_tasks: []
+      }]
+    })
     state.rename_task('buy steel', 'buy plastic')
   end
 
@@ -120,15 +135,19 @@ class TestState < Minitest::Test
     state.add_project('Build a Bridge')
     state.set_current_project('Build a Bridge')
     state.add_task('buy steel')
-    persistence.expects(:save).with([{name: 'Build a Bridge', tasks: [], finished_tasks: []}])
+    persistence.expects(:save).with({
+      kane: [{name: 'Build a Bridge', tasks: [], finished_tasks: []}]
+    })
     state.delete_task('buy steel')
   end
 
   def test_loading_data
-    persistence.expects(:load).returns([
-      {'name' => 'Build a Bridge', 'tasks' => [{'name' => 'buy plastic', finished_at: nil}]}
-    ])
-    state.load
+    persistence.expects(:load).returns({
+      'kane' => [
+        {'name' => 'Build a Bridge', 'tasks' => [{'name' => 'buy plastic', finished_at: nil}]}
+      ]
+    })
+    state.load('kane')
     project = state.find_project('Build a Bridge')
     assert(project)
     task = project.find_task('buy plastic')

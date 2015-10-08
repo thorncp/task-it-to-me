@@ -10,7 +10,10 @@ class TestMenuFactory < Minitest::Test
   end
 
   def state
-    @state ||= State.new
+    return @state if @state
+    @state = State.new
+    @state.username = 'kane'
+    @state
   end
 
   def setup

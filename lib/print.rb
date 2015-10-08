@@ -48,6 +48,10 @@ class Print < Struct.new(:output_stream)
     prompt("Enter a task name:")
   end
 
+  def prompt_for_username
+    prompt("Enter your username:")
+  end
+
   def listing_project_header
     success("Listing projects:")
   end

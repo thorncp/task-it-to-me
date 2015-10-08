@@ -1,5 +1,6 @@
 class State
   attr_reader :projects, :current_project, :persistence
+  attr_accessor :username
 
   def initialize
     @projects = Collection.new
@@ -19,13 +20,15 @@ class State
     save { projects.delete(*args) }
   end
 
-  def load
+  def load(username)
+    @username = username
     @projects = Collection.new
-    persistence.load.each do |project_data|
+    user_data.each do |project_data|
       projects.add(Project.load(project_data))
     end
-  rescue
-    warn "Stored data could not be loaded"
+  rescue Exception => e
+    warn "Stored data could not be loaded: #{e.message}"
+    #puts e.backtrace
   end
 
   extend Forwardable
@@ -77,9 +80,15 @@ class State
 
   private
 
+  def user_data
+    persistence.load[username] || []
+  end
+
   def save(&block)
     object = block.call
-    persistence.save(projects.as_json) if object
+    persistence.save({
+      username.to_sym => projects.as_json
+    }) if object
     object
   end
 

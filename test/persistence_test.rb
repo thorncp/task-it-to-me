@@ -6,7 +6,7 @@ class TestPersistence < Minitest::Test
   end
 
   def path
-    File.expand_path(File.dirname(__FILE__) + "/fixtures/projects.json")
+    File.expand_path(File.dirname(__FILE__) + "/fixtures/persisted.json")
   end
 
   def setup
@@ -30,6 +30,6 @@ class TestPersistence < Minitest::Test
 
   def test_loading_bad_data
     File.open(path, 'w') {|file| file.write('(gerbil}}!')}
-    assert_equal(persistence.load, [])
+    assert_equal(persistence.load, {})
   end
 end

@@ -11,7 +11,8 @@ class App
   end
 
   def run
-    state.load
+    print.prompt_for_username
+    state.load(input.get)
 
     print.welcome_message
     print.projects_menu(menu)

@@ -2,7 +2,7 @@ class Persistence < Struct.new(:path)
   def load
     JSON.load(File.read(path))
   rescue JSON::ParserError
-    []
+    {}
   end
 
   def save(hash)
