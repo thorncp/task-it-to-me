@@ -74,6 +74,13 @@ class TestAppRun < Minitest::Test
   # HELPERS and setup above here ^^^
   # TESTS below here ---------------
 
+  def test_prompted_for_username_on_start_and_logout
+    stub_input('kane', 'a', 'separate the data', 'o', 'q')
+    app.run
+    sections = output.split("Enter your username:")
+    assert_equal(3, sections.size)
+  end
+
   def test_getting_input_until_quit_message
     stdin.expects(:gets).times(3).returns('kane', 'not-a-command', 'q')
     app.run

@@ -18,7 +18,7 @@ class MenuFactory < Struct.new(:state)
   end
 
   def null_projects
-    null_routes = all_project_routes.find_all {|route| ['a', 'q'].include?(route.id) }
+    null_routes = all_project_routes.find_all {|route| ['a', 'o', 'q'].include?(route.id) }
     Menu.new(null_routes)
   end
 
@@ -27,12 +27,12 @@ class MenuFactory < Struct.new(:state)
   end
 
   def null_tasks
-    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'b', 'q'].include?(route.id) }
+    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'b', 'o', 'q'].include?(route.id) }
     Menu.new(null_routes)
   end
 
   def finished_tasks
-    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'ls', 'b', 'q'].include?(route.id) }
+    null_routes = all_task_routes.find_all {|route| ['c', 'a', 'ls', 'b', 'o', 'q'].include?(route.id) }
     Menu.new(null_routes)
   end
 
@@ -47,6 +47,7 @@ class MenuFactory < Struct.new(:state)
       Route.new("e", "Edit a task",             Controller::RenameTask),
       Route.new("f", "Finish a task",           Controller::FinishTask),
       Route.new("b", "Back to Projects menu",   Controller::Back),
+      Route.new("o", "Sign out",                Controller::SigninNewUser),
       Route.new("q", "Quit the app")
     ]
   end
@@ -57,6 +58,7 @@ class MenuFactory < Struct.new(:state)
       Route.new("ls", "List all project",  Controller::ListProjects),
       Route.new("d",  "Delete a project",  Controller::DeleteProject),
       Route.new("e",  "Edit a project",    Controller::EditProject),
+      Route.new("o", "Sign out",           Controller::SigninNewUser),
       Route.new("q",  "Quit the app")
     ]
   end

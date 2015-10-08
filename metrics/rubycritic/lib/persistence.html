@@ -28,7 +28,7 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-08-25 18:24:44 -0700'>2015-08-25 18:24:44 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-07 17:00:34 -0700'>2015-10-07 17:00:34 -0700</time>
     
   </span>
 
@@ -40,7 +40,7 @@
       3.3 complexity per method
     </div>
     <div class="file-stat">
-      4 churn
+      5 churn
     </div>
     <div class="file-stat">
       3 methods
@@ -59,7 +59,7 @@
   def load
     JSON.load(File.read(path))
   rescue JSON::ParserError
-    []
+    {}
   end
 
   def save(hash)

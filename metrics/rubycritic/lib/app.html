@@ -28,19 +28,19 @@
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-09-30 05:45:24 -0400'>2015-09-30 05:45:24 -0400</time>
+      Updated <time class='js-timeago' datetime='2015-10-07 17:00:34 -0700'>2015-10-07 17:00:34 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      52 complexity
+      57 complexity
     </div>
     <div class="file-stat">
-      8.7 complexity per method
+      9.5 complexity per method
     </div>
     <div class="file-stat">
-      60 churn
+      61 churn
     </div>
     <div class="file-stat">
       6 methods
@@ -50,6 +50,8 @@
     </div>
   </div>
 
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
   
 </div>
 
@@ -65,10 +67,12 @@ class App
     @menu_factory = MenuFactory.new(state)
   end
 
-  def run
-    state.load
-
+  def run<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) App#run has a flog score of 29          </span>  </li></ul>
     print.welcome_message
+
+    print.prompt_for_username
+    state.load(input.get)
+
     print.projects_menu(menu)
 
     get_next_command

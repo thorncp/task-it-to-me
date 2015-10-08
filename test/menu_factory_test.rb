@@ -27,19 +27,19 @@ class TestMenuFactory < Minitest::Test
   end
 
   def test_when_no_projects
-    assert_equal ['a', 'q'], menu.ids
+    assert_equal ['a', 'o', 'q'], menu.ids
     assert_equal "Add a new project", menu.get('a').description
   end
 
   def test_when_projects
     state.add_project('foo')
-    assert_equal ['a', 'ls', 'd', 'e', 'q'], menu.ids
+    assert_equal ['a', 'ls', 'd', 'e', 'o', 'q'], menu.ids
   end
 
   def test_when_current_project
     state.add_project('foo')
     state.set_current_project('foo')
-    assert_equal ['c', 'a', 'b', 'q'], menu.ids
+    assert_equal ['c', 'a', 'b', 'o', 'q'], menu.ids
     assert_equal "Add a new task", menu.get('a').description
   end
 
@@ -47,7 +47,7 @@ class TestMenuFactory < Minitest::Test
     state.add_project('foo')
     state.set_current_project('foo')
     state.add_task('bar')
-    assert_equal ['c', 'a', 'ls', 'd', 'e', 'f', 'b', 'q'], menu.ids
+    assert_equal ['c', 'a', 'ls', 'd', 'e', 'f', 'b', 'o', 'q'], menu.ids
     assert_equal "Add a new task", menu.get('a').description
   end
 
@@ -56,7 +56,7 @@ class TestMenuFactory < Minitest::Test
     state.set_current_project('foo')
     state.add_task('bar')
     state.finish_task('bar')
-    assert_equal ['c', 'a', 'ls', 'b', 'q'], menu.ids
+    assert_equal ['c', 'a', 'ls', 'b', 'o', 'q'], menu.ids
     assert_equal "Add a new task", menu.get('a').description
   end
 end

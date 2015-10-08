@@ -21,29 +21,29 @@
     </header>
     <div class="container">
       <div class="file-header group rated">
-  <span class="rating rating-a circled-text circle">
-    A
+  <span class="rating rating-b circled-text circle">
+    B
   </span>
   <h2 class="file-name">State</h2>
 
   <span class="file-committed-at">
     
-      Updated <time class='js-timeago' datetime='2015-10-05 17:17:52 -0700'>2015-10-05 17:17:52 -0700</time>
+      Updated <time class='js-timeago' datetime='2015-10-07 17:00:34 -0700'>2015-10-07 17:00:34 -0700</time>
     
   </span>
 
   <div class="file-stats group">
     <div class="file-stat">
-      74 complexity
+      82 complexity
     </div>
     <div class="file-stat">
-      4.4 complexity per method
+      4.6 complexity per method
     </div>
     <div class="file-stat">
-      15 churn
+      16 churn
     </div>
     <div class="file-stat">
-      17 methods
+      18 methods
     </div>
     <div class="file-stat">
       0 duplication
@@ -51,10 +51,13 @@
   </div>
 
   
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
 </div>
 
 <code class="prettyprint linenums lang-ruby file-code js-file-code">class State
   attr_reader :projects, :current_project, :persistence
+  attr_accessor :username
 
   def initialize
     @projects = Collection.new
@@ -74,13 +77,15 @@
     save { projects.delete(*args) }
   end
 
-  def load
+  def load(username)
+    @username = username
     @projects = Collection.new
-    persistence.load.each do |project_data|
+    user_data.each do |project_data|
       projects.add(Project.load(project_data))
     end
-  rescue
-    warn &quot;Stored data could not be loaded&quot;
+  rescue Exception =&gt; e<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) State#load has the variable name 'e'          </span>  </li></ul>
+    warn &quot;Stored data could not be loaded: #{e.message}&quot;
+    #puts e.backtrace
   end
 
   extend Forwardable
@@ -132,9 +137,15 @@
 
   private
 
+  def user_data
+    persistence.load[username] || []
+  end
+
   def save(&amp;block)
     object = block.call
-    persistence.save(projects.as_json) if object
+    persistence.save({
+      username.to_sym =&gt; projects.as_json
+    }) if object
     object
   end
 

@@ -34,10 +34,10 @@
 
   <div class="file-stats group">
     <div class="file-stat">
-      59 complexity
+      61 complexity
     </div>
     <div class="file-stat">
-      7.4 complexity per method
+      7.6 complexity per method
     </div>
     <div class="file-stat">
       5 churn
@@ -75,7 +75,7 @@
   end
 
   def null_projects
-    null_routes = all_project_routes.find_all {|route| [&#39;a&#39;, &#39;q&#39;].include?(route.id) }
+    null_routes = all_project_routes.find_all {|route| [&#39;a&#39;, &#39;o&#39;, &#39;q&#39;].include?(route.id) }
     Menu.new(null_routes)
   end
 
@@ -84,12 +84,12 @@
   end
 
   def null_tasks
-    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }
+    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;o&#39;, &#39;q&#39;].include?(route.id) }
     Menu.new(null_routes)
   end
 
   def finished_tasks
-    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;ls&#39;, &#39;b&#39;, &#39;q&#39;].include?(route.id) }
+    null_routes = all_task_routes.find_all {|route| [&#39;c&#39;, &#39;a&#39;, &#39;ls&#39;, &#39;b&#39;, &#39;o&#39;, &#39;q&#39;].include?(route.id) }
     Menu.new(null_routes)
   end
 
@@ -104,6 +104,7 @@
       Route.new(&quot;e&quot;, &quot;Edit a task&quot;,             Controller::RenameTask),
       Route.new(&quot;f&quot;, &quot;Finish a task&quot;,           Controller::FinishTask),
       Route.new(&quot;b&quot;, &quot;Back to Projects menu&quot;,   Controller::Back),
+      Route.new(&quot;o&quot;, &quot;Sign out&quot;,                Controller::SigninNewUser),
       Route.new(&quot;q&quot;, &quot;Quit the app&quot;)
     ]
   end
@@ -114,6 +115,7 @@
       Route.new(&quot;ls&quot;, &quot;List all project&quot;,  Controller::ListProjects),
       Route.new(&quot;d&quot;,  &quot;Delete a project&quot;,  Controller::DeleteProject),
       Route.new(&quot;e&quot;,  &quot;Edit a project&quot;,    Controller::EditProject),
+      Route.new(&quot;o&quot;, &quot;Sign out&quot;,           Controller::SigninNewUser),
       Route.new(&quot;q&quot;,  &quot;Quit the app&quot;)
     ]
   end

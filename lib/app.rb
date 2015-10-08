@@ -11,10 +11,11 @@ class App
   end
 
   def run
+    print.welcome_message
+
     print.prompt_for_username
     state.load(input.get)
 
-    print.welcome_message
     print.projects_menu(menu)
 
     get_next_command
