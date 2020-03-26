@@ -1,10 +1,4 @@
-require "rake/testtask"
 require "rubygems"
-
-Rake::TestTask.new do |t|
-  t.libs.push "test"
-  t.pattern = "test/**/*_test.rb"
-end
 
 desc "Generates a coverage report"
 task :coverage do
