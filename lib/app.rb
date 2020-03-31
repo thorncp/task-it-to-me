@@ -1,4 +1,6 @@
 class App
+  attr_reader :current_project, :input_stream, :command_or_project_name, :output_stream, :projects
+
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
     @input_stream = input_stream
@@ -55,16 +57,12 @@ class App
           end
           @deleted = nil
         when "e"
-          if !@projects || @projects.size == 0
+          if no_projects?
             @output_stream.puts("\e[40;38;5;214mCan't edit any projects\e[0m")
             @output_stream.puts("\e[40;38;5;214mNo projects created\e[0m\n\n")
-            break
-          end
-
-          @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
-          name = @input_stream.gets.chomp
-          if (@current_project = @projects.detect { |p| p.keys.first == name })
-            @output_stream.puts("\e[38;5;40mEditing project: '#{name}'\n\n")
+          elsif get_project_name && project_name_valid?
+            switch_project
+            @output_stream.puts("\e[38;5;40mEditing project: '#{command_or_project_name}'\n\n")
             @output_stream.puts("\e[0;37mEDIT PROJECT MENU\e[0m")
             @output_stream.puts("-----------------------------")
             @output_stream.puts("\e[40;38;5;214mENTER A COMMAND:\e[0m")
@@ -76,11 +74,11 @@ class App
             @output_stream.puts("\e[1;37mf   \e[0;35mFinish a task")
             @output_stream.puts("\e[1;37mb   \e[0;35mBack to Projects menu")
             @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
-            command = @input_stream.gets.chomp
+            command = get_user_input
             next
           else
             @output_stream.puts("\e[40;38;5;214mCan't edit project\e[0m")
-            @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{name}'\n\n")
+            @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{command_or_project_name}'\n\n")
           end
         end
       else
@@ -152,5 +150,36 @@ class App
 
       command = @input_stream.gets.chomp
     end
+  end
+
+  private
+
+  def get_project_name
+    prompt_for_project
+    get_user_input
+  end
+
+  def prompt_for_project
+    output_stream.puts("\e[0;35mEnter a project name:\e[0m")
+  end
+
+  def project_name_valid?
+    !!referenced_project
+  end
+
+  def switch_project
+    @current_project = referenced_project
+  end
+
+  def referenced_project
+    projects.detect { |p| p.keys.first == command_or_project_name }
+  end
+
+  def get_user_input
+    @command_or_project_name = input_stream.gets.chomp
+  end
+
+  def no_projects?
+    !@projects || @projects.size == 0
   end
 end

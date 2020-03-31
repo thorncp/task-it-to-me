@@ -129,12 +129,12 @@ RSpec.describe App do
     expect(output).to include("Project doesn't exist: 'House Work'")
   end
 
-  it "cannot edit a project with command 'e' when there are none" do
+  it "prints an error with command 'e' and no projects then returns to the menu" do
     stdout = StringIO.new("")
     stdin = StringIO.new("")
     app = App.new(stdout, stdin)
 
-    allow(stdin).to receive(:gets).and_return(
+    expect(stdin).to receive(:gets).and_return(
       "e\n", "q\n"
     )
 
