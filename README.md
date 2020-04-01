@@ -43,11 +43,12 @@ Stubbing of the user input is on the `stdin` in tests. We can inspect the
 
 ## Stories
 
-1. [Bug - unexpected app quit when editing without projects](stories/1-bug-unexpected-quit.md)
+1. [Bug - unexpected app quit when editing without projects](stories/1-unexpected-quit.md)
 2. [Bug - commands fail if command has a space afterwards](stories/2-command-fails.md)
-3. [Pay down some debt](stories/3-pay-down.md)
-4. [Bug - duplicate projects](stories/4-bug-duplicate-projects.md)
-5. [Feature - numbered menu items](stories/5-numbered-menu-items.md)
+3. [Chore - follow the color](stories/3-follow-the-color.md)
+4. [Chore - follow the shape](stories/4-follow-the-shape.md)
+5. [Bug - duplicate projects](stories/5-duplicate-projects.md)
+6. [Feature - numbered menu items](stories/6-numbered-menu-items.md)
 
 ## Refactoring ethos
 
