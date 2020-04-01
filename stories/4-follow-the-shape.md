@@ -1,4 +1,4 @@
-# Chore: Follow the color as your refactoring guide
+# Chore: Follow the shape as your refactoring guide
 
 One of the measures of good object oriented code is [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)). Cohesion is a fuzzy measure of how much the methods belong together.
 
