@@ -5,7 +5,7 @@ created, it balks with a message. What we would like instead is to only
 show commands that can be executed.
 
 This is an opportunity to do some refactoring around extract the command related
-data into a separate structure. Also, there a whole bunch of null handling that
+data into a separate structure. Also, there is a whole bunch of null handling that
 goes away with this rework.
 
 ~~~gherkin
