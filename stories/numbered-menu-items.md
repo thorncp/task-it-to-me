@@ -1,4 +1,4 @@
-# 5 - Numbered menu items, less typing!
+# Feature - Numbered menu items, less typing!
 
 Currently when a user selects a project or task to edit, delete, etc,
 the prompt asks for the full name of the task or project. It is

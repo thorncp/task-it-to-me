@@ -43,11 +43,39 @@ Stubbing of the user input is on the `stdin` in tests. We can inspect the
 
 ## Stories
 
-1. [Bug - unexpected app quit when editing without projects](stories/1-bug-unexpected-quit.md)
-2. [Bug - commands fail if command has a space afterwards](stories/2-command-fails.md)
-3. [Pay down some debt](stories/3-pay-down.md)
-4. [Bug - duplicate projects](stories/4-bug-duplicate-projects.md)
-5. [Feature - numbered menu items](stories/5-numbered-menu-items.md)
+[Backstory](stories/backstory.md)
+
+### Understanding the mess
+
+1. [Bug - unexpected app quit when editing without projects](stories/unexpected-quit.md)
+2. [Bug - commands fail if command has a space afterwards](stories/command-fails.md)
+3. [Chore - follow the color](stories/follow-the-color.md)
+4. [Chore - follow the shape](stories/follow-the-shape.md)
+
+### Model
+
+5. [Bug - duplicate projects](stories/duplicate-projects.md)
+6. [Feature - numbered menu items](stories/numbered-menu-items.md)
+7. [Feature - persist data between app runs](stories/save-data.md)
+
+### View
+
+1. [Feature - show menu after each command](stories/show-more-menu.md)
+2. [Bug - inconsistent console formatting](stories/inconsistent-formats.md)
+
+### Controller
+
+1. [Feature - friendlier menus](stories/friendlier-menus.md)
+2. [Chore - remove conditional](stories/remove-conditional.md)
+
+### Stretch stories
+
+1. [Feature - show recently finished tasks](stories/show-finished.md)
+2. [Feature - custom colors with configuration](stories/configure-colors.md)
+3. [Feature - multiple users](stories/multiple-users.md)
+4. [Feature - super efficient commands](stories/super-efficient-commands.md)
+
+[Conclusion](story/conclusion.md)
 
 ## Refactoring ethos
 
