@@ -1,6 +1,6 @@
 # Feature - Friendlier menus
 
-Currently when a user tries to list project before any have been
+Currently when a user tries to list projects before any have been
 created, it balks with a message. What we would like instead is to only
 show commands that can be executed.
 
