@@ -3,7 +3,7 @@
 Uptake of the app has greatly improved as reliability has gone up and
 features have increased. Unfortunately the mostly male team is now at
 the point where they cannot live with even a little pink text. The one senior
-developer who is a woman was offended by request to eliminate ping. So as a
+developer who is a woman was offended by request to eliminate pink. So as a
 compromise, developers will be able to customize their own colors.
 
 Product people have been able to push this down to a minimal viable
