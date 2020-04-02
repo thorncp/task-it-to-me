@@ -1,3 +1,5 @@
 metrics
 coverage
 spec/examples.txt
+
+.vscode
