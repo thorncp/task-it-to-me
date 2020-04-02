@@ -1,6 +1,6 @@
 # Application backstory
 
-One of the guys at work, Derek, is some kind of VIM protegy. He works in
+One of the guys at work, Derek, is some kind of VIM prodigy. He works in
 tmux, because it is "the only way to code". He switches between
 workspaces so rapidly that he gave the product person with epilepsy a
 seizure, just watching him work.
