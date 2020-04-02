@@ -395,4 +395,25 @@ RSpec.describe App do
     expect(output).to include("Finished task: 'clean out the freezer'")
     expect(output).to include("No tasks created in 'House work'")
   end
+
+  it "strips extra whitespace from commands to behave more like the shells people are used to" do
+    stdout = StringIO.new("")
+    stdin = StringIO.new("")
+    app = App.new(stdout, stdin)
+
+    allow(stdin).to receive(:gets).and_return(
+      " a \n", "House work\n",
+      " e \n", "House work\n",
+      " a \n", "clean out the freezer\n",
+      " ls \n",
+      " f \n", "clean out the freezer\n",
+      " q \n"
+    )
+
+    app.run
+
+    output = normalized_output(stdout)
+    expect(output).to include("Listing tasks:\n  clean out the freezer")
+    expect(output).to include("Finished task: 'clean out the freezer'")
+  end
 end

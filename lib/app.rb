@@ -1,5 +1,11 @@
 class App
-  attr_reader :current_project, :input_stream, :command_or_project_name, :output_stream, :projects
+  attr_reader :command,
+    :current_project,
+    :input_stream,
+    :output_stream,
+    :project_name,
+    :projects,
+    :task_name
 
   def initialize(output_stream, input_stream)
     @output_stream = output_stream
@@ -18,7 +24,7 @@ class App
     @output_stream.puts("\e[1;37me   \e[0;35mEdit a project")
     @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
 
-    command = @input_stream.gets.chomp
+    capture_command
 
     while command != "q"
       if !@current_project
@@ -42,7 +48,7 @@ class App
         when "d"
           if @projects && (@projects.size > 0)
             @output_stream.puts("\e[0;35mEnter a project name:\e[0m")
-            project_name = @input_stream.gets
+            capture_project_name
             @deleted = @projects.delete_if { |project| project.keys.first == project_name.strip }.empty?
             if @deleted
               @output_stream.puts "\e[38;5;40mDeleting project:\e[0m '#{project_name.strip}'\n\n"
@@ -60,9 +66,9 @@ class App
           if no_projects?
             @output_stream.puts("\e[40;38;5;214mCan't edit any projects\e[0m")
             @output_stream.puts("\e[40;38;5;214mNo projects created\e[0m\n\n")
-          elsif get_project_name && project_name_valid?
+          elsif capture_project_name && project_name_valid?
             switch_project
-            @output_stream.puts("\e[38;5;40mEditing project: '#{command_or_project_name}'\n\n")
+            @output_stream.puts("\e[38;5;40mEditing project: '#{project_name}'\n\n")
             @output_stream.puts("\e[0;37mEDIT PROJECT MENU\e[0m")
             @output_stream.puts("-----------------------------")
             @output_stream.puts("\e[40;38;5;214mENTER A COMMAND:\e[0m")
@@ -74,18 +80,17 @@ class App
             @output_stream.puts("\e[1;37mf   \e[0;35mFinish a task")
             @output_stream.puts("\e[1;37mb   \e[0;35mBack to Projects menu")
             @output_stream.puts("\e[1;37mq   \e[0;35mQuit the app\e[0m\n\n")
-            command = get_user_input
+            capture_command
             next
           else
             @output_stream.puts("\e[40;38;5;214mCan't edit project\e[0m")
-            @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{command_or_project_name}'\n\n")
+            @output_stream.puts("\e[40;38;5;214mProject doesn't exist:\e[0m '#{project_name}'\n\n")
           end
         end
       else
         case command
         when "a"
-          @output_stream.puts("\e[0;35mEnter a task name:\e[0m")
-          task_name = @input_stream.gets.chomp
+          capture_task_name
           @current_project.values.first << task_name
           @output_stream.puts("\e[38;5;40mCreated task:\e[0m '#{task_name}'\n\n")
         when "b"
@@ -94,20 +99,20 @@ class App
         when "c"
           @output_stream.puts("\e[0;35mEnter new project name:\e[0m")
           old_name = @current_project.keys.first
-          new_name = @input_stream.gets.chomp
-          @current_project[new_name] = @current_project.values.first
+          capture_project_name
+          @current_project[project_name] = @current_project.values.first
           @current_project.delete(old_name)
-          @output_stream.puts("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+          @output_stream.puts("\e[38;5;40mChanged project name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{project_name}'\n\n")
         when "e"
-          name = @input_stream.gets.chomp
-          if (index = @current_project.values.first.find_index(name))
-            @output_stream.puts("\e[38;5;40mEditing task:\e[0m '#{name}'")
-            @output_stream.puts("\e[0;35mEnter a task name:\e[0m")
-            new_name = @input_stream.gets.chomp
-            @current_project[@current_project.keys.first][index] = new_name
-            @output_stream.puts("\e[38;5;40mChanged task name from\e[0m '#{name}' \e[38;5;40mto\e[0m '#{new_name}'\n\n")
+          capture_task_name
+          if (index = @current_project.values.first.find_index(task_name))
+            old_name = task_name
+            @output_stream.puts("\e[38;5;40mEditing task:\e[0m '#{old_name}'")
+            capture_task_name
+            @current_project[@current_project.keys.first][index] = task_name
+            @output_stream.puts("\e[38;5;40mChanged task name from\e[0m '#{old_name}' \e[38;5;40mto\e[0m '#{task_name}'\n\n")
           else
-            @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{name}'\n\n")
+            @output_stream.puts("\e[40;38;5;214mTask doesn't exist:\e[0m '#{task_name}'\n\n")
           end
         when "d"
           project_name = @current_project.keys.first
@@ -148,15 +153,15 @@ class App
         end
       end
 
-      command = @input_stream.gets.chomp
+      capture_command
     end
   end
 
   private
 
-  def get_project_name
+  def capture_project_name
     prompt_for_project
-    get_user_input
+    set_project_name
   end
 
   def prompt_for_project
@@ -167,16 +172,37 @@ class App
     !!referenced_project
   end
 
+  def capture_task_name
+    prompt_for_task
+    set_task_name
+  end
+
+  def prompt_for_task
+    output_stream.puts("\e[0;35mEnter a task name:\e[0m")
+  end
+
+  def set_task_name
+    @task_name = get_user_input
+  end
+
   def switch_project
     @current_project = referenced_project
   end
 
   def referenced_project
-    projects.detect { |p| p.keys.first == command_or_project_name }
+    projects.detect { |p| p.keys.first == project_name }
+  end
+
+  def capture_command
+    @command = get_user_input
+  end
+
+  def set_project_name
+    @project_name = get_user_input
   end
 
   def get_user_input
-    @command_or_project_name = input_stream.gets.chomp
+    input_stream.gets.strip
   end
 
   def no_projects?
